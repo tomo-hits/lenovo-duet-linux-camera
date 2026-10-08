@@ -1,0 +1,71 @@
+{
+  "date": "2026-10-05",
+  "finding": "S2",
+  "status": "resolved",
+  "scope": "Historical preserved-input packaging-helper revision; v6 APKs, camera runtime and S1 hardware evidence unchanged",
+  "files": {
+    "scripts/package-low-fps-fix.py": {
+      "sha256": "4590092b425f9d50fb5c1beefd0b40c910213536bdf2a2c67a3d21dd47016759",
+      "license": "MIT"
+    },
+    "tests/test-package-paths.py": {
+      "sha256": "0c1799e6d99a773ae60ade1dd0c7da91643aedcd6b2a4562b21e56a3e393c771",
+      "license": "MIT"
+    }
+  },
+  "protections": [
+    "Validate the complete sidecar before creating output: exact package set, canonical relative paths, SHA256 syntax, duplicate JSON keys and canonical P1 presence",
+    "Pin the exact preserved v5 sidecar bytes, separately from the eleven APK hashes and public key",
+    "Use a fixed P1 destination and validate every stage path component; reject symlinks and a hard-linked P1 destination before replacement",
+    "Compare the full extracted regular-file set and hashes before replacement",
+    "Read the P1 input once; hash, ELF, modinfo and packaging use the same bytes"
+  ],
+  "preserved_v5_payload_manifest_sha256": "34efbd109b4b2d3ce72bc327fe3972e35cf23907fe84aa67e32e8e59b9eab88e",
+  "host_regression": {
+    "entrypoint": "tests/test-package-paths.py",
+    "normal_python": "PASS",
+    "optimized_python": "PASS",
+    "unittest_methods_per_run": 18,
+    "expanded_scenarios_per_run": 42,
+    "original_absolute_and_parent_path_repro": "Both rejected before output creation; outside sentinel unchanged",
+    "coverage": [
+      "valid full packaging flow and unchanged payloads",
+      "malformed/changed sidecar, duplicate JSON keys, wrong package sets and hashes",
+      "absolute/parent/noncanonical paths, including unchanged packages",
+      "stage parent/final symlink and P1 hardlink",
+      "existing output and output symlink preservation",
+      "unexpected or mismatched extracted files",
+      "stable verified P1 snapshot despite source replacement"
+    ],
+    "simulation_scope": "Production Python main, paths and filesystem writes; self-contained fixture pins, apk/modinfo/openssl external operations mocked. No real private key or device needed."
+  },
+  "native_packaging": {
+    "python_optimized": true,
+    "native_arch": "aarch64",
+    "apk_tools": "3.0.8",
+    "signed_APKs_verified": 11,
+    "signed_index_verified": true,
+    "signed_regular_payloads_verified": 284,
+    "runtime_payloads_identical_to_selected_v6": true,
+    "selected_v6_not_overwritten": true,
+    "p1_sha256": "81bfb2020f3e5f8a0a6f3a1435ba1b751db06b439db3620db91e28d98e375d41",
+    "packager_sha256": "4590092b425f9d50fb5c1beefd0b40c910213536bdf2a2c67a3d21dd47016759",
+    "hardware_touched": false,
+    "new_test_packages_selected_for_release": false
+  },
+  "independent_review": "No further actionable findings in metadata/path validation or P1 snapshot handling",
+  "selected_release": {
+    "apk": "mt8183-camera-fresh-apk-20261005-v6.tar",
+    "apk_sha256": "fd370e312be8f9ab3c87a31061d35dbe45891bd9fe83bd4124769a17f716bcd1",
+    "complete_source_archive": "mt8183-camera-complete-sources-20261005-v1.tar.xz",
+    "hardware_record": "S1_VALIDATION.json",
+    "camera_code_changed": false,
+    "new_device_test": false,
+    "new_binary_release": false
+  },
+  "limits": [
+    "No new camera device or kernel/userspace rebuild tests in this helper-only revision",
+    "Host fixtures do not replace native signature checks; a separate real ARM64 packaging and signed extraction check passed",
+    "Inputs and new output directories must not be concurrently modified by another process"
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "schema": 1,
+  "date": "2026-10-08",
+  "scope": "Separate v1.0.1 hardware baseline and rear-gamma tuning tests; not installation acceptance of the v1.0.2 APK set",
+  "environment": {
+    "model": "Original Lenovo Duet Chromebook SKU176",
+    "os": "postmarketOS v26.06 / Alpine v3.24",
+    "kernel": "6.18.28-mt81 ARM64 KCFI",
+    "storage_mode": "internal eMMC"
+  },
+  "baseline_v1_0_1": {
+    "runtime": "Unmodified public v1.0.1 packages and recovery scripts",
+    "boot_preparation_installation_reboot": "PASS",
+    "issue_2": "PASS: untouched PREPARED cancellation preserved the original state and backups; a new preparation and installation then succeeded",
+    "snapshot_endurance": {
+      "result": "PASS",
+      "front_minutes": 15,
+      "rear_minutes": 15,
+      "scope": "Normal GUI preview, local photos, switching, normal close and reopening; driver completion counters are not application display FPS"
+    },
+    "audio": {
+      "result": "PASS",
+      "scope": "Audible speaker playback was checked before installation and during front-camera capture; microphone recording was not tested"
+    },
+    "sleep": {
+      "result": "PASS",
+      "deep_sleep_seconds": 28.4427,
+      "postwake_capture": "Front/rear switching, three local photos, reopening and clean STOP passed"
+    },
+    "issue_1": "PASS: an external configuration change was refused before restoration writes; only the test change was then removed and ordinary restoration succeeded",
+    "restoration": "PASS: after normal restoration, reboot and GUI login, recorded package/world, saved-target contents and attributes, boot partition and boot-mount conditions matched the original state",
+    "restoration_limit": "Recorded targets were verified; this is not a whole-filesystem byte comparison"
+  },
+  "rear_gamma_comparison": {
+    "runtime": "The same v1.0.1 ELF binaries for metadata and visual comparisons; front tuning was unchanged",
+    "candidate_source": "developer/tuning/ov8856.yaml",
+    "candidate_yaml_sha256": "91c6a6e64f89c6006c31504901cfbb5c3b1d28184bcc9ecd952a2dce6686c95c",
+    "change": "Rear Adjust gamma 2.2 to 2.4; AE, default rear contrast 1.0 and the 30 fps request remain unchanged",
+    "metadata_cases": 7,
+    "completed_requests": 2880,
+    "case_sequence": [
+      "rear 30 fps baseline",
+      "rear 15 fps comparison",
+      "rear 30 fps baseline repeat",
+      "rear 30 fps gamma 2.4",
+      "rear 30 fps gamma 2.2 restored",
+      "front 30 fps default tuning",
+      "rear 30 fps after front/rear switching"
+    ],
+    "candidate_buffer_timestamp_fps": 30.01155,
+    "fps_scope": "Rate calculated from received cam buffer timestamps, not Snapshot display FPS; 15 fps was a diagnostic comparison, not the selected configuration",
+    "all_cases_clean_stop_and_scp_offline": true,
+    "sensor_timing": "Rear binned-mode pixel rate 144 MHz and horizontal blanking 2188 were consistent, including after front/rear switching",
+    "low_light_limit": "Rear exposure and analogue gain reached their 30 fps limits in the tested scene; gamma changes midtones without removing those limits",
+    "visual_observations": [
+      {
+        "stage": "original rear",
+        "result_ja": "少し暗い",
+        "result_en": "Slightly dark"
+      },
+      {
+        "stage": "candidate rear",
+        "result_ja": "中間調が明るくなり視認性が改善",
+        "result_en": "Brighter midtones and improved visibility"
+      },
+      {
+        "stage": "front with candidate override active",
+        "result_ja": "大きな異常はない",
+        "result_en": "No major visible abnormality"
+      },
+      {
+        "stage": "original rear restored",
+        "result_ja": "比較ではgamma 2.4の視認性が高い",
+        "result_en": "Gamma 2.4 had better visibility in the comparison"
+      }
+    ],
+    "visual_scope": "Limited same-scene visual comparison using candidate YAML; no quantitative or full image-quality calibration",
+    "final_state": "Temporary tuning and application/session changes were removed; ordinary restoration, a new boot, GUI login and verification of the recorded original state passed",
+    "candidate_left_installed": false,
+    "metadata_method": "cam standard Gamma controls selected 2.4 or 2.2 with the baseline tuning file. The seven-case metadata run did not load the candidate YAML override",
+    "visual_method": "A separate Snapshot comparison used the temporary rear-only candidate YAML override, with its exact SHA256 verified"
+  },
+  "v1_0_2_candidate_boundary": {
+    "status": "Package-set installation and restoration untested",
+    "libcamera_version": "0.7.2-r103",
+    "meta_versions": [
+      "0.2.13-r0",
+      "0.2.13-r1"
+    ],
+    "packaging_scope": "Four libcamera APKs and two meta APKs are repackaged; the other five APKs are retained byte-identically",
+    "elf_scope": "No new ELF build is part of the tuning change; candidate packaging must verify reuse of the tested v1.0.1 ELF bytes",
+    "candidate_package_installation_tested": false,
+    "candidate_package_verification": "Package signatures, payload/source correspondence and bundle checks are recorded separately from these hardware results",
+    "previous_public_acceptance": "PUBLIC_ACCEPTANCE.json"
+  },
+  "source_change_host_checks": {
+    "unique_cases": 31,
+    "normal_and_optimized_executions": 62,
+    "suites": [
+      "test-update-bundle.py",
+      "test-entrypoints.py"
+    ],
+    "result": "PASS",
+    "scope": "Checks of the initial gamma source and documentation change, before candidate packaging; not a substitute for package or hardware verification"
+  },
+  "remaining_limits": [
+    "Complete colour, noise, lighting/flicker and distance-dependent AF calibration",
+    "Day-scale endurance and other SKUs or kernels",
+    "Concurrent hardware codec, MDP or JPEG use with SCP",
+    "SoftISP output application of computed digital gain is a separate unimplemented change",
+    "New v1.0.2 APK installation and restoration"
+  ],
+  "privacy": "No camera pixels, private raw logs, credentials or unique device identifiers are included"
+}

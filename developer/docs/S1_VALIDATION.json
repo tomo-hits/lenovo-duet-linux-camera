@@ -1,0 +1,297 @@
+{
+  "date": "2026-10-05",
+  "finding": "S1",
+  "status": "resolved; actual RAM hardware tests passed",
+  "target": {
+    "sku": "google,krane-sku176",
+    "kernel": "6.18.28-mt81",
+    "runtime": "Same existing RAM boot and legacy DT alias; eudev",
+    "firmware_sha256": "401e9c027b0e105efa9eb9b31683924a8d5f5ab3b1654f0915b174effe2df33d"
+  },
+  "change": {
+    "source": "modules/mt8183-p1-public/mt8183_p1_handoff.c",
+    "idle_publication_wait": "wait_for_completion, explicitly woken by dph_close on STOP/error",
+    "active_copy_deadline_ms": 1500,
+    "capture_progress_deadlines_retained": true,
+    "sensor_and_isp_algorithms_changed": false
+  },
+  "native_build": {
+    "source_files": {
+      "mt8183_p1_adapter.c": "ca45372ea0d3f6b8c876ea2d510195991837473de7349392c35abf9e1c8bead5",
+      "camera_video.h": "c2273fb8138ec200dd242adc36329103b400aa75ee729f3a8a43160453b0d126",
+      "mt8183_p1_workers.h": "0107dfd81cadc6c45ce7797ad91e4145238e69ab836c3e617f899c0a60a5b4cb",
+      "mt8183_p1_legacy.h": "386b15483a388073bbefcb84d700a6c665bd02705bab3f7485a05805e706f643",
+      "mt8183_p1_continuous.c": "f802261f860207411a1d23e0702fce57204db1f9787c6d7a666e4af6eca8ac08",
+      "mt8183_p1_abi.h": "f27961493158a91c4412f32f200f82ebb38e933e9c14750ff52d2628ff4c90cc",
+      "camera_raw.c": "5d40c19d97329c214dbb7decbe58f7cc195cf93dc63650143d43f0875968881e",
+      "mt8183_p1_adapter.h": "72d267217e6812497eadac8d74f9279805f0b9df0dd30a369d434754717b596a",
+      "mt8183_p1_workers.c": "322f8b4b9e7b84e1b59604642e55b46f480a853b52879b8c1b06cad040358468",
+      "mtk_cam-ipi.h": "44c0d23cde88c5af87c812c4065be16f909e9936fccacf6db63b8b959cbe1c6e",
+      "README.md": "63535f7a1b7ccce11ac833116ab8d7941b194ea02c1d563524d882c162e8db6e",
+      "mt8183_p1_bqueue.c": "f76e27d5720d16b99bb66565fca3899a262490f463f519a94c3e36b4f213d0ea",
+      "mt8183_p1_handoff.h": "83b861f98e0a741a5716667a72414fde28178872f5a2fe5b228b7dadb6f677a1",
+      "camera_raw.h": "409ea5a6426d053680a8153169ba33189693c5d3b29fda084355b3b74c4adb83",
+      "mt8183_p1_abi.c": "54a76c5b9ca2731f1e03905df8584f68a2f7b315069a19eea3e09dbae562336c",
+      "camera_video.c": "1b063deb78ac5c2a3aee6b8ab4065e19ed717e7c3ce0e0b77965d8cf7b968216",
+      "mt8183_p1_hw.h": "b785316c1992987ad92b60eb1ad6499f92f39921b2a815aaebc2e3edc8e117d7",
+      "mt8183_p1_stop.h": "1414fd01442de27b0d41e94b6cce583ec8219cbf9bd751d3389724d3b6ef4f8d",
+      "Makefile": "532543fa9802ebdd050095767592fc7728a6613fc558e2a83ba02667b8d3504a",
+      "mt8183_p1_bqueue.h": "938f0c432d622d009a7c94945466e80bd6a333b0118c0a9224e92254174fd29d",
+      "mt8183_p1_stream.c": "e121b15b35b775f0bae4effb0a5b07cc4533b1bcfffe7789abff6eca63f5456a",
+      "mt8183_p1_stream_codec.c": "62eab70b45435bc426a85439dc098d82cf6da2c27cb2bc583028de37258157a2",
+      "mt8183_p1_stop.c": "7e555c3fbca81a578ca3c3a67963a450f4a484bfbfa758b3a4d35ffe2c14de3f",
+      "mt8183_p1_handoff.c": "e4f6bfeae6b157a1992bcbbb2a7e279b645de0d9c3393536c7baff3c2b137cb3",
+      "mt8183_p1_stream_codec.h": "97b0b33adbee6938a5b3d688992452df249c20a45da9927b8d6392467e71ea1e",
+      "mt8183_p1_stream.h": "367092317f885a0310e6d5432a215cb122613cab082d387d9502059570a4093c",
+      "mt8183_p1_hw.c": "409383e1525252940794d97ceea74575bf49c53ee28cdab0ff361f35df98774f",
+      "LICENSES/softisp-MIT.txt": "e47e0bf839ee0898c64c350dabad2c1b396c30cd6a058f753a02c387dd9d9499",
+      "tests/run_stop_gate.py": "354b1a89dbceb58456c9b3a44eb4cc7017e5716a23d6c4166a9ec001aa030f96"
+    },
+    "p1_module_sha256": "81bfb2020f3e5f8a0a6f3a1435ba1b751db06b439db3620db91e28d98e375d41",
+    "p1_module_bytes": 202888,
+    "selected_sdk_files_unchanged": 125,
+    "providers_hash_checked": 10,
+    "required_exports": 201,
+    "missing_exports": 0,
+    "kcfi": true,
+    "native_compiler": "Alpine clang 22.1.3",
+    "kernel": "6.18.28-mt81",
+    "fresh_p1_compile": true,
+    "full_clean_kernel_rebuild": false
+  },
+  "package_set": {
+    "archive": "mt8183-camera-fresh-apk-20261005-v6.tar",
+    "bytes": 6277120,
+    "sha256": "fd370e312be8f9ab3c87a31061d35dbe45891bd9fe83bd4124769a17f716bcd1",
+    "modules": "0.2.4-r0",
+    "meta": "0.2.6-r0/r1",
+    "config": "0.1.3-r0/r1",
+    "libcamera": "0.7.2-r102",
+    "pipewire_gstreamer": "1.6.8-r103",
+    "signed_APKs_verified": 11,
+    "signed_index_verified": true,
+    "reissued_packages": 3,
+    "byte_identical_v5_packages": 8,
+    "regular_payload_entries_verified": 284,
+    "changed_regular_payload_files": [
+      "lib/modules/6.18.28-mt81/extra/duet-camera/mt8183_p1.ko"
+    ],
+    "correspondence": "S1_PACKAGE_FIXES.json",
+    "public_key_spki_sha256": "94d05c05d71e63aa74b0a2f11a4f4e3d8138e701daf5fe4f95e980b8fef73cd9"
+  },
+  "installed_runtime": {
+    "installed_packages": [
+      "libcamera-0.7.2-r102.apk",
+      "libcamera-ipa-0.7.2-r102.apk",
+      "libcamera-tools-0.7.2-r102.apk",
+      "pipewire-libs-1.6.8-r103.apk",
+      "gst-plugin-pipewire-1.6.8-r103.apk",
+      "duet-camera-modules-0.2.4-r0.apk",
+      "duet-camera-config-0.1.3-r1.apk",
+      "duet-camera-0.2.6-r1.apk"
+    ],
+    "regular_files_checked": 203,
+    "payloads_match_signed_archive": true,
+    "loaded_p1_build_id_matches": true,
+    "p1_module_sha256": "81bfb2020f3e5f8a0a6f3a1435ba1b751db06b439db3620db91e28d98e375d41",
+    "loaded_build_id_note_sha256": "32bc3c972678b8a67f3846a5893d86ff7312c10d09576e2e8bac138ad270a1b3"
+  },
+  "host_tests": {
+    "actual_handoff_cases": 7,
+    "actual_stop_gate_cases": 15,
+    "asan_ubsan": true,
+    "hardware_proof_separate": true
+  },
+  "hardware": {
+    "direct_capture": {
+      "camera_selection": "Stable camera IDs rather than enumeration numbers",
+      "dimensions": "1536x864",
+      "requested_format": "RGB888, adjusted to XRGB8888",
+      "sessions": [
+        {
+          "label": "rear-2fps",
+          "camera": "rear",
+          "requested_frame_duration_us": 500000,
+          "frames": 48,
+          "actual_median_frame_duration_us": 499995.0000055833,
+          "actual_median_fps": 2.0000200001776682,
+          "elapsed_s": 24.549899001001904,
+          "normal_exit": 0,
+          "stop": {
+            "capture_error": 0,
+            "input_error": 0,
+            "inputs_idle": 1,
+            "finalized": 1,
+            "pending": 0,
+            "refs": 0
+          },
+          "scp": "offline"
+        },
+        {
+          "label": "rear-2fps-reopen",
+          "camera": "rear",
+          "requested_frame_duration_us": 500000,
+          "frames": 12,
+          "actual_median_frame_duration_us": 499994.9999983073,
+          "actual_median_fps": 2.000020000206773,
+          "elapsed_s": 6.5783058460001484,
+          "normal_exit": 0,
+          "stop": {
+            "capture_error": 0,
+            "input_error": 0,
+            "inputs_idle": 1,
+            "finalized": 1,
+            "pending": 0,
+            "refs": 0
+          },
+          "scp": "offline"
+        },
+        {
+          "label": "rear-near-min-fps",
+          "camera": "rear",
+          "requested_frame_duration_us": 850000,
+          "frames": 32,
+          "actual_median_frame_duration_us": 849976.9999980344,
+          "actual_median_fps": 1.1765024230094607,
+          "elapsed_s": 27.780812924997008,
+          "normal_exit": 0,
+          "stop": {
+            "capture_error": 0,
+            "input_error": 0,
+            "inputs_idle": 1,
+            "finalized": 1,
+            "pending": 0,
+            "refs": 0
+          },
+          "scp": "offline"
+        },
+        {
+          "label": "rear-30fps",
+          "camera": "rear",
+          "requested_frame_duration_us": 33333,
+          "frames": 60,
+          "actual_median_frame_duration_us": 33319.00000193855,
+          "actual_median_fps": 30.01290554764004,
+          "elapsed_s": 2.5861167699986254,
+          "normal_exit": 0,
+          "stop": {
+            "capture_error": 0,
+            "input_error": 0,
+            "inputs_idle": 1,
+            "finalized": 1,
+            "pending": 0,
+            "refs": 0
+          },
+          "scp": "offline"
+        },
+        {
+          "label": "front-15fps",
+          "camera": "front",
+          "requested_frame_duration_us": 66667,
+          "frames": 30,
+          "actual_median_frame_duration_us": 66593.0000031949,
+          "actual_median_fps": 15.016593334915433,
+          "elapsed_s": 2.8389930769990315,
+          "normal_exit": 0,
+          "stop": {
+            "capture_error": 0,
+            "input_error": 0,
+            "inputs_idle": 1,
+            "finalized": 1,
+            "pending": 0,
+            "refs": 0
+          },
+          "scp": "offline"
+        },
+        {
+          "label": "rear-early-stop-reopen",
+          "camera": "rear",
+          "requested_frame_duration_us": 500000,
+          "frames": 12,
+          "actual_median_frame_duration_us": 499995.99999864586,
+          "actual_median_fps": 2.0000160001334177,
+          "elapsed_s": 6.576738846997614,
+          "normal_exit": 0,
+          "stop": {
+            "capture_error": 0,
+            "input_error": 0,
+            "inputs_idle": 1,
+            "finalized": 1,
+            "pending": 0,
+            "refs": 0
+          },
+          "scp": "offline"
+        }
+      ],
+      "total_completed_frames": 194
+    },
+    "early_stop": {
+      "before_first_late_publication": true,
+      "sof_count": 1,
+      "archived": 0,
+      "normal_SIGINT_stop_s": 0.06450099999347003,
+      "stop": {
+        "capture_error": 0,
+        "input_error": 0,
+        "inputs_idle": 1,
+        "finalized": 1,
+        "pending": 0,
+        "refs": 0
+      },
+      "scp": "offline",
+      "subsequent_2fps_reopen_passed": true
+    },
+    "ordinary_snapshot": {
+      "sessions": [
+        {
+          "photos": 2,
+          "sensors": [
+            "ov02a10 4-003d",
+            "ov8856 2-0010"
+          ],
+          "switches": 1,
+          "live_progress_before_and_after_switch": true,
+          "normal_exit": 0,
+          "actual_process_gone": true
+        },
+        {
+          "photos": 3,
+          "sensors": [
+            "ov02a10 4-003d",
+            "ov8856 2-0010"
+          ],
+          "switches": 2,
+          "live_progress_before_and_after_switch": true,
+          "normal_exit": 0,
+          "actual_process_gone": true
+        }
+      ],
+      "distinct_processes": true,
+      "total_photos": 5,
+      "total_switches": 3,
+      "managers_running_between_sessions": true
+    },
+    "final_state": {
+      "capture_error": 0,
+      "input_error": 0,
+      "inputs_idle": 1,
+      "finalized": 1,
+      "pending": 0,
+      "refs": 0,
+      "scp": "offline",
+      "camera_apps_closed": true,
+      "pipewire_wireplumber_running": true,
+      "emmc_os_partition_ro": 1,
+      "whole_emmc_ro": 0,
+      "emmc_os_boot_firmware_written": false,
+      "photos_kept_on_device_RAM_only": true
+    }
+  },
+  "limits": [
+    "Fresh compile of P1 only using the matched prepared kernel; no full clean kernel/userspace rebuild this revision",
+    "No new canonical DT boot, external OS cold boot, sleep, high-resolution, endurance or coexistence tests",
+    "Image acquisition and live frame progress confirmed; calibrated image quality and complete AF range remain unaccepted",
+    "No private keys, credentials, device identifiers or photos included in public records"
+  ],
+  "scope": "Historical S1/v6 P1 build, packaging and scoped RAM capture/STOP/reuse checks"
+}

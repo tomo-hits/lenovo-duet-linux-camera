@@ -1,0 +1,17 @@
+{
+  "kernel_apk_url": "https://mirror.postmarketos.org/postmarketos/v26.06/aarch64/linux-postmarketos-mediatek-mt81-6.18.28-r0.apk",
+  "kernel_apk_sha256": "7729c6db0bff84ace07dd55e6f67afc8c3f82982989528d0a055631afb5afd4d",
+  "repository_index_url": "https://mirror.postmarketos.org/postmarketos/v26.06/aarch64/APKINDEX.tar.gz",
+  "downloaded_index_sha256": "846c7ffcadf36bf2bc373156a1d34d1a075c6f997577162bbc55f9dd6980fc17",
+  "repository_trust_key": "build.postmarketos.org.rsa.pub",
+  "trust": "Official repository index RSA/SHA1 signature verified with installed distribution key; APK control SHA1 matched signed index; payload SHA256 matched verified control. Embedded APK key is not in default trust store.",
+  "kernel_source_url": "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.18.28.tar.xz",
+  "kernel_source_sha512": "5acc1a97ae0bca7aeb7fcac04fd3b7bafea5ff976dfe5d42c7015e084d9ee3104c3945880846dfb185a1010d0bad8c7a229b23febdef44306d19fb494a03b1a6",
+  "separately_downloaded_inputs_match": {
+    "Image": true,
+    "System.map": true,
+    "boot_config": true,
+    "public_module_providers": 10
+  },
+  "kernel_firmware_and_os_inputs_bundled": false
+}

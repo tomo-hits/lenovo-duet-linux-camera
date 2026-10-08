@@ -1,0 +1,92 @@
+{
+  "date": "2026-10-06",
+  "scope": "Optional decompressor dependency in the internal-OS experimental bundle; separate from the 11 camera APKs",
+  "package": {
+    "name": "zstd",
+    "version": "1.5.7-r2",
+    "arch": "aarch64",
+    "distribution": "Alpine Linux v3.24",
+    "repository": "main",
+    "bundle_path": "packages/official-zstd/zstd-1.5.7-r2.apk",
+    "bytes": 124718,
+    "sha256": "0e4d6b9bcb7db12e3fcd580c6226a88884ddfa561ebc7f64285baef5e789b541",
+    "original_apk_unmodified": true,
+    "project_rebuild_or_resign": false,
+    "declared_license": "BSD-3-Clause OR GPL-2.0-or-later",
+    "regular_program_payloads": [
+      "usr/bin/pzstd",
+      "usr/bin/zstd",
+      "usr/bin/zstdgrep",
+      "usr/bin/zstdless"
+    ],
+    "dependencies": [
+      "so:libc.musl-aarch64.so.1",
+      "so:libgcc_s.so.1",
+      "so:libstdc++.so.6",
+      "so:libzstd.so.1"
+    ],
+    "dependency_scope": "Only this zstd APK is additionally redistributed; its existing OS library dependencies are not added to this supplement."
+  },
+  "signed_index": {
+    "bundle_path": "packages/official-zstd/APKINDEX.tar.gz",
+    "sha256": "fd05c717626c3de4c171f325d6b400397155d04713059b4a0d1ca8e11293d4a5",
+    "key_name": "alpine-devel@lists.alpinelinux.org-616ae350.rsa.pub",
+    "key_file_sha256": "d11f6b21c61b4274e182eb888883a8ba8acdbf820dcc7a6d82a7d9fc2fd2836d",
+    "key_policy": "Updater requires this original official key already trusted by the OS; no new trust anchor is installed."
+  },
+  "source": {
+    "upstream": "https://github.com/facebook/zstd",
+    "version": "1.5.7",
+    "tag": "v1.5.7",
+    "archive_url": "https://github.com/facebook/zstd/archive/v1.5.7.tar.gz",
+    "archive_bytes": 2451884,
+    "archive_sha256": "37d7284556b20954e56e1ca85b80226768902e2edabd3b649e9e72c0c9012ee3",
+    "archive_sha512": "26e441267305f6e58080460f96ab98645219a90d290a533410b1b0b1d2f870721c95f8384e342ee647c5e968385a5b7e30c2d04340c37f59b3e6d86762c3260c",
+    "archive_sha512_matches_aports_recipe": true,
+    "archive_in_camera_complete_sources": false,
+    "aports_commit": "3c6e2ee2b16f403d53eab39c4426eb61f003c322",
+    "aports_recipe_url": "https://github.com/alpinelinux/aports/blob/3c6e2ee2b16f403d53eab39c4426eb61f003c322/main/zstd/APKBUILD",
+    "aports_recipe_sha256": "635134417b866a71fc0684bfbc1f8b5ff660c3edcd68f1b0b1335f04963ef5c1",
+    "aports_recipe_has_source_patches": false
+  },
+  "license_choice": {
+    "dual_licensed_zstandard_code": "BSD-3-Clause",
+    "upstream_gpl_alternative_preserved": true,
+    "additional_notices": [
+      {
+        "component": "programs/zstdgrep",
+        "license": "BSD-2-Clause",
+        "copyright": "Copyright (c) 2003 Thomas Klausner.",
+        "apk_script_byte_identical_to_upstream": true
+      },
+      {
+        "component": "lib/dictBuilder/divsufsort.c and divsufsort.h",
+        "license": "MIT",
+        "copyright": "Copyright (c) 2003-2008 Yuta Mori All Rights Reserved."
+      }
+    ],
+    "original_attributions_retained": "Meta Platforms, Inc. and affiliates; Yann Collet; Tino Reichardt; Thomas Klausner; Yuta Mori. See complete reproduced source headers."
+  },
+  "preserved_texts": [
+    {
+      "path": "developer/LICENSES/ZSTD-1.5.7-LICENSE.txt",
+      "sha256": "7055266497633c9025b777c78eb7235af13922117480ed5c674677adc381c9d8",
+      "upstream_url": "https://raw.githubusercontent.com/facebook/zstd/v1.5.7/LICENSE",
+      "byte_identical_to_upstream_raw_and_source_archive": true
+    },
+    {
+      "path": "developer/LICENSES/ZSTD-1.5.7-COPYING.txt",
+      "sha256": "f9c375a1be4a41f7b70301dd83c91cb89e41567478859b77eef375a52d782505",
+      "upstream_url": "https://raw.githubusercontent.com/facebook/zstd/v1.5.7/COPYING",
+      "byte_identical_to_upstream_raw_and_source_archive": true
+    },
+    {
+      "path": "developer/LICENSES/ZSTD-1.5.7-NOTICES.txt",
+      "sha256": "9eb4ab86d2858a35d8a2f6938dabaf83713a450c5f2bf58211d9f95478e86ad0",
+      "distinct_header_blocks": 19,
+      "source_files_represented": 144,
+      "method": "Exact opening copyright/licensing comments from all .c/.h/.cpp/.S in lib, programs, contrib/pzstd, deduplicated with file paths; exact complete zstdgrep header appended."
+    }
+  ],
+  "distribution_requirement": "Retain the listed license texts, original source notices and this provenance record with the supplemental APK in the source kit and assembled bundle."
+}

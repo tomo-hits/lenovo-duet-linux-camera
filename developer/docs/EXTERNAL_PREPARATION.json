@@ -1,0 +1,86 @@
+{
+  "scope": "Historical external OS preparation and original modules0.2.4-r1/meta0.2.8 package evidence. See P1_USB_FIX.json and UPDATE_VALIDATION.json for the subsequent USB activation fix.",
+  "target": {
+    "board": "google,krane-sku176",
+    "distribution": "postmarketOS v26.06 / Alpine v3.24",
+    "desktop": "Phosh/systemd",
+    "kernel": "6.18.28-mt81",
+    "pmbootstrap_commit": "edb3097c7307216b088478b7c424ee07d636f41b",
+    "pmaports_commit": "368093c7a882637ee00d32932fb0dafd24cfc4d4"
+  },
+  "versions": {
+    "modules": "0.2.4-r1",
+    "meta": [
+      "0.2.8-r0",
+      "0.2.8-r1"
+    ],
+    "config": [
+      "0.1.3-r0",
+      "0.1.3-r1"
+    ],
+    "libcamera": "0.7.2-r102",
+    "pipewire_gstreamer": "1.6.8-r104"
+  },
+  "firmware": {
+    "packaged_form": "scp.img.zst",
+    "decompressed_sha256": "401e9c027b0e105efa9eb9b31683924a8d5f5ab3b1654f0915b174effe2df33d",
+    "rewritten": false
+  },
+  "checks": {
+    "compressed_firmware_cli_cases": 14,
+    "compressed_firmware_normal_and_optimized": true,
+    "usb_guard_fixture_scenarios": 9,
+    "usb_guard_normal_and_optimized": true,
+    "direct_passwd_parser_native_cases": 8,
+    "direct_passwd_native_locked_prepare": "PASS",
+    "direct_passwd_interactive_operator_setup": "PASS_ON_LOCAL_IMAGE",
+    "native_signed_packages": 11,
+    "index_signature": "PASS",
+    "extracted_payload_hashes": "PASS",
+    "unchanged_ELF_files": 63,
+    "fresh_distribution_apk_simulation": "PASS",
+    "fresh_distribution_audio_runtime": "NOT_TESTED",
+    "external_scp_init_fixture_tests": 8,
+    "external_scp_init_normal_and_optimized": true
+  },
+  "fresh_apk_simulation": {
+    "runtime_packages_changed": 8,
+    "dependencies_removed": [
+      "gtest",
+      "libpisp",
+      "roc-toolkit-libs",
+      "libunwind",
+      "libuv",
+      "webrtc-audio-processing-2"
+    ],
+    "kernel_updated": false
+  },
+  "image_preparation": {
+    "signature_and_filesystem_checks_v2": "PASS",
+    "embedded_canonical_DTB_sha256": "4b8375c089c0aa000292cca5e16a4d2ed0a038852570acc131d2ad5046d3aa8d",
+    "guard_requires_detected_eMMC_v3": "SIGNATURE_AND_FILESYSTEM_CHECKS_PASS",
+    "physical_media_written": true,
+    "configured_image_signature_and_filesystems": "PASS",
+    "initramfs_guard_phase": "stage2_before_root_or_writable_boot_mount",
+    "split_initramfs_initial_boot_mount": "read_only_explicit_UUID_before_guard",
+    "three_partition_readback": "PASS",
+    "USB_filesystem_checks": "PASS",
+    "SCP_isolation_fix": "The corrected external-rootfs service passed on the subsequent USB boot and left SCP offline. A separate regular-file image passed validation but was not written to physical media."
+  },
+  "hardware": {
+    "canonical_DTB_boot": true,
+    "initial_USB_boot": true,
+    "first_camera_install": true,
+    "front_rear_photos": false,
+    "reboot_reuse": false,
+    "restore_pre_camera_image": false,
+    "all_eMMC_block_devices_readonly": true,
+    "first_install_gate": "PASS after cold-boot SCP isolation; eight camera runtime packages applied and 206 files verified",
+    "SCP_initialization_service": "PASS"
+  },
+  "protection": {
+    "working_eMMC_contents_modified": false,
+    "firmware_or_GBB_modified": false
+  },
+  "prior_evidence": "S1_VALIDATION.json records separate RAM-device results. This record covers the original external preparation versions; USB loading and runtime results are in P1_USB_FIX.json and UPDATE_VALIDATION.json."
+}

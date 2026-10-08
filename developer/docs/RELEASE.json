@@ -1,0 +1,14 @@
+{
+  "repository_name": "lenovo-duet-linux-camera",
+  "github_owner": "tomo-hits",
+  "repository_url": "https://github.com/tomo-hits/lenovo-duet-linux-camera",
+  "package_set_version": "v1.0.2",
+  "package_manifest": "PUBLIC_PACKAGES.json",
+  "complete_source_manifest": "COMPLETE_SOURCES.json",
+  "scope": "Rear gamma 2.4 tuning; six APKs update tuning, versions or dependencies, five APKs and all 63 ELF payloads retain their v1.0.1 bytes",
+  "acceptance_record": "ACCEPTANCE_2026-10-08.json",
+  "packaging_record": "REAR_BRIGHTNESS_PACKAGING.json",
+  "package_set_installation_and_restoration_tested": false,
+  "legacy_package_backup_auto_restore": false,
+  "download_index": "https://github.com/tomo-hits/lenovo-duet-linux-camera/releases"
+}

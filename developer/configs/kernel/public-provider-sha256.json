@@ -1,0 +1,12 @@
+{
+  "kernel/drivers/media/v4l2-core/videodev.ko.zst": "99cc4cbb3268be06af15ee1ac30f338e6a91fc5bd694b6352832c6bfdfb4d52d",
+  "kernel/drivers/media/v4l2-core/v4l2-async.ko.zst": "d8b396ff44a600974bedcaa7873073aaebe26152af4700842c513233575b5f9e",
+  "kernel/drivers/media/v4l2-core/v4l2-fwnode.ko.zst": "a1896fc8848e6fb715f768bb673e0a2dcf03e21b5824e2fbfa1ad7aaede849ce",
+  "kernel/drivers/media/mc/mc.ko.zst": "084c4828443b5a83600d4ecc0ff8ed1ef13d30a3e18115f7c18e02cf9f1ff0fd",
+  "kernel/drivers/media/common/videobuf2/videobuf2-common.ko.zst": "d2763fa2756d417e890fa4e72cfe3963aab0bd830d3619b4c4b2ccaf446e059f",
+  "kernel/drivers/media/common/videobuf2/videobuf2-v4l2.ko.zst": "9c77ce95fe24bf386cfbbdefd80474b55f1031a2b0d1e4ed7e83a2edb52e740d",
+  "kernel/drivers/media/common/videobuf2/videobuf2-vmalloc.ko.zst": "e9f8d06ea36183990eec7550b6400b70963cd71396dd42c6057ef13f36277c0a",
+  "kernel/drivers/media/common/videobuf2/videobuf2-memops.ko.zst": "63dcb94a11a2238c24955e0bc00df4198868e0a6ae0572faad9b1d8463530bbe",
+  "kernel/drivers/remoteproc/mtk_scp.ko.zst": "d54a57c44ae3ea235607a69abb601f584c0c32d83f6343328e17046f01ff3efc",
+  "kernel/drivers/remoteproc/mtk_scp_ipi.ko.zst": "76eaae28b825b9fafc15f58184ef708decfc1fc5d1f236a37a1958b88df61d34"
+}

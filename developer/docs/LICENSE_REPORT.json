@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-05",
+  "scope": "Historical 2026-10-05 v6 signed APK and corresponding-source checks",
+  "bilingual_guide_pairs": 14,
+  "bilingual_command_blocks_identical": true,
+  "bilingual_hash_values_identical": true,
+  "relative_links_missing": [],
+  "current_apk_archive_unchanged_since_acceptance": false,
+  "current_signed_apks_match_packages_manifest": 11,
+  "actual_component_notice_and_copying_in_apks": "All 11 signed APK payloads retain actual component licenses and camera PROJECT-MIT notices; three S1 packages reissued, eight v5 APKs byte-identical",
+  "source_materials": [
+    "Full current module sources, build/install/config/patches in public kit",
+    "Full patched libcamera/PipeWire, original upstream licenses/build scripts/.reuse, original Linux source tarball in complete-source archive"
+  ],
+  "date_comments_added_after_acceptance": {
+    "module_code_files": 83,
+    "userspace_code_or_build_files": 31,
+    "executable_algorithm_changes": false,
+    "scope": "Historical initial notice-only revision; current P1 was rebuilt from dated distribution files, with S1 handoff algorithm change separately recorded"
+  },
+  "preserved_licenses": "Per-file original SPDX/copyright and individual license texts; no blanket replacement",
+  "new_guides_and_translations": "CC0-1.0, excluding third-party quoted texts/licensing",
+  "excluded": "Generated private signing/IPA keys, device images/firmware, private user camera captures, credentials, unselected logs",
+  "complete_source_regular_files_hash_checked": 2872,
+  "complete_source_reuse_metadata": "libcamera/REUSE.toml",
+  "complete_source_license_presence_checked": true,
+  "publication_review_record": "PUBLICATION_REVIEW.json (v5); S1_VALIDATION.json (v6)",
+  "reissued_packages": 3,
+  "byte_identical_accepted_packages": 8,
+  "accepted_elf_and_config_payloads_unchanged": false,
+  "all_public_c_h_py_sh_have_explicit_spdx": true,
+  "revised_packages_hardware_retested": true,
+  "only_p1_elf_changed": true,
+  "current_hardware_record": "S1_VALIDATION.json",
+  "packaging_helper_followup": {
+    "record": "S2_VALIDATION.json",
+    "new_self_contained_test_license": "MIT",
+    "current_apk_archive_unchanged": true
+  }
+}

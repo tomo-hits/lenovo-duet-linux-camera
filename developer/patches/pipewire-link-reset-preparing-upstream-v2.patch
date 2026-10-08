@@ -1,0 +1,18 @@
+--- a/src/pipewire/impl-link.c
++++ b/src/pipewire/impl-link.c
+@@ -1069,13 +1069,13 @@
+ 			old = PW_IMPL_PORT_STATE_READY;
+ 		}
+ 		if (this->prepared || state < old) {
+-			this->prepared = false;
++			this->prepared = this->preparing = false;
+ 			link_update_state(this, PW_LINK_STATE_INIT, 0, NULL);
+ 		}
+ 		break;
+ 	case PW_IMPL_PORT_STATE_READY:
+ 		if (this->prepared || state < old) {
+-			this->prepared = false;
++			this->prepared = this->preparing = false;
+ 			link_update_state(this, PW_LINK_STATE_NEGOTIATING, 0, NULL);
+ 		}
+ 		break;

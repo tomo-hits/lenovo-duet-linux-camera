@@ -1,0 +1,1189 @@
+{
+  "date": "2026-10-05",
+  "scope": "Historical notices and pre-S1 publication fixes retained. S1 modifies P1 idle publisher waiting, freshly compiles the current public P1 subtree, and replaces only the P1 module ELF in three reissued APKs. Eight v5 APKs are unchanged. See S1_VALIDATION.json. S2 modifies only the preserved-input packaging helper and adds path/snapshot regression coverage; selected v6 binaries unchanged. See S2_VALIDATION.json.",
+  "module_files": {
+    "modules/dw9768-upstream/dw9768.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "8e5a0af8db5507f71a296171c4c971e0f1d5541a435bf5833603469e930f259d",
+      "distributed_sha256": "f638a63889a83a83771383cece1638c7c00969ccb98eadf55866d304cac25d83",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-community-cleanup/camera_raw.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "cf979ffedfd11481895dc6fe1088b202e6cd3ae5131367de3460351a2fcc201d",
+      "distributed_sha256": "5d40c19d97329c214dbb7decbe58f7cc195cf93dc63650143d43f0875968881e",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-community-cleanup/camera_raw.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "fe91c41a140194f596eac01c80972f1b3653e1cee0e56e993007903f5a84495a",
+      "distributed_sha256": "409ea5a6426d053680a8153169ba33189693c5d3b29fda084355b3b74c4adb83",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-community-cleanup/camera_video.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "c3b8eba7717298616f9b30d80d981f0eb6804d5628d2b6dc2890d2fa4307d92b",
+      "distributed_sha256": "1b063deb78ac5c2a3aee6b8ab4065e19ed717e7c3ce0e0b77965d8cf7b968216",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-community-cleanup/camera_video.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "bee104396ff1146a61b21669b1262a7e2ce97f0cafeaf09ad74dac7fa7b21510",
+      "distributed_sha256": "a54968f56c424fc46913536388d8f0f7cd631357edc92e4cb2e10d36d1a6d4e0",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-community-cleanup/duet_p1_abi.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "1ec746472a49e88b68c25cf97088146d6c4618168b16baf79e5d2697e8b0cd11",
+      "distributed_sha256": "3c26a1dbff496ed9f7434f0cc4614686c2f3b65d9c3a7310f7b2203cc1c5797e",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-community-cleanup/duet_p1_abi.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "701c9501c593552501e2b507be91f29518648deaa17712f385d5cb99984b37a0",
+      "distributed_sha256": "504f4bd436f9912f5b1d8c3eb809812c69ed2a2f5b7356b49117cb1d6c5cf502",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-community-cleanup/duet_p1_adapter.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "0671c49d36fbfe1efb42478b559d38c1120464ddaad38b548740eb013bb31cbb",
+      "distributed_sha256": "923d95a4ba2d64a22105c8a6115cfce3861a1531952ca7105daa73fc1e976e33",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-community-cleanup/duet_p1_adapter.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "fe54ce298726a657c9f5bc849848b0491f9f82f05fb272c4fb1ae1cd53116aba",
+      "distributed_sha256": "25234a8f7711b185bc6a674f74c6e19c75de8187a20669dc86ff8e92dc0d1acd",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-community-cleanup/duet_p1_bqueue.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "54b02040aa9e2f36e9037f8ba3a5629bb8a5e6a75eabc990e1da92c8fc9a1a13",
+      "distributed_sha256": "69aaef0a2863a73c56a473f0ab2cfea9e24d65e68b4273cbb117bbaac4dc8b41",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-community-cleanup/duet_p1_bqueue.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "1503d76ffd433aca60a952019b718b73750c0c937c1bab017222f8f8aa0241c3",
+      "distributed_sha256": "c956a7b83ec9d62957edfbbfa0618cbfda6293ddc05e2b8d5e1804906077f8e2",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-community-cleanup/duet_p1_continuous.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "a199668f75bbcff84c231c305df53b433607bd882162d733c2314624b057331b",
+      "distributed_sha256": "3205fa4221c27231a529a5084f6d96abadfc2b46f642574e81e7479c49569011",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-community-cleanup/duet_p1_handoff.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "2578a08ab777e11aa41ab023e55385e63c6b28e537525d9196044d81830287d2",
+      "distributed_sha256": "de90cc7ab1ba979a7eee961db6bfae6df30f2fd9270552de8723e49322d2ec65",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-community-cleanup/duet_p1_handoff.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "7de976cd93f4d6a5cf61b20815647d6e070a1f85c046e3ef37518191ca8c98b3",
+      "distributed_sha256": "0271e5c73d8a0ffb600f92969deb00cd22cce8a5af6daa3a0ca16eeecc5d8c0f",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-community-cleanup/duet_p1_hw.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "875822faf325ee63f17b8843a6b380e9daa6237decd3da603c40e4c3cf0f8f76",
+      "distributed_sha256": "1cbc636a905a28b0938962e3a9d6fbbabcba4e7337dc108d82d7e92c4e3a97e7",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-community-cleanup/duet_p1_hw.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "c681caf404226a02abae3156626626d7057e73f6c21f437bedbf73b8126a3431",
+      "distributed_sha256": "71f7d302f573ab7168542e6f2945e8617f17c9df19cca407cb965a5f30507b7d",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-community-cleanup/duet_p1_stop.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "123c23b3423f09d87052cac6881e717cbee5128c6c9c47c34eb67504700d4b03",
+      "distributed_sha256": "c038be05e5529279ed9407f04d6cec192be85dda7686cecbf9e1d939e727fb5a",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-community-cleanup/duet_p1_stop.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "c985d2111d4d59c60c2d897727c3f5c2e21142f9ac4fda8ff539b392a69cf566",
+      "distributed_sha256": "1e72d11343c4147a23e52dc660cd62da1ac4c59d6b09f36ab7075b3c9744e41d",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-community-cleanup/duet_p1_stream.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "2bf1c3cada835a5c17159918801dce35d572798c46525d23da21d38ad2057895",
+      "distributed_sha256": "e20ab01c8200f7d1a557337318b605e2d175ee07a665594f4cce598a6d8fde33",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-community-cleanup/duet_p1_stream.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "ee2daf86f5967dc4c37cea9b578930b3e102aa0d2663b1af169c2024714e00ed",
+      "distributed_sha256": "04e22b20649303852e9d7d64e042934cfe106cfe53bdf6c4cb72c500263a7493",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-community-cleanup/duet_p1_stream_codec.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "c0489c781d19f1269b270dfedf6ec8513fa67e884cbcb99566d074a907c7497d",
+      "distributed_sha256": "5d746df2827266124bb7322f39f2ba5c51205961df17189a65adce764fe2698f",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-community-cleanup/duet_p1_stream_codec.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "f971aa8f68e14cadd6bc149bba068d884b5d05ad7065bd1a69fc83f7b649f954",
+      "distributed_sha256": "fcebed5e029ab8bb82c0e2f5fb30869ad1f37834023f2d2fe6ed0e8aa2e87638",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-community-cleanup/duet_p1_workers.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "a26736f6ce04a0d874bfd0d89a4c40d6c7ca72004a57b7c8a8a730ededec8e43",
+      "distributed_sha256": "881db10b437bf6901784892dc67fac95b67d4208aa45f88077f88407e5e9de68",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-community-cleanup/duet_p1_workers.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "38543a372b82ca2e94037e4d5804cd55e0703ca1cf0c227656e8a8d934208a72",
+      "distributed_sha256": "5500d31ab1cc0464a3a5244bbbbed1582657b15fb500bf2bf6f1ddcdba6ca2f4",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-community-cleanup/mtk_cam-ipi.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "0be12d436a0b936471d8d35fa9ffaf77665369bfb806dd36a90f7e54c68bb716",
+      "distributed_sha256": "44c0d23cde88c5af87c812c4065be16f909e9936fccacf6db63b8b959cbe1c6e",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-public/camera_raw.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "5d40c19d97329c214dbb7decbe58f7cc195cf93dc63650143d43f0875968881e",
+      "distributed_sha256": "5d40c19d97329c214dbb7decbe58f7cc195cf93dc63650143d43f0875968881e",
+      "notice_only_added_after_build": false,
+      "pre_s1": {
+        "date": "2026-10-05",
+        "build_input_sha256": "cf979ffedfd11481895dc6fe1088b202e6cd3ae5131367de3460351a2fcc201d",
+        "distributed_sha256": "5d40c19d97329c214dbb7decbe58f7cc195cf93dc63650143d43f0875968881e",
+        "notice_only_added_after_build": true
+      }
+    },
+    "modules/mt8183-p1-public/camera_raw.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "409ea5a6426d053680a8153169ba33189693c5d3b29fda084355b3b74c4adb83",
+      "distributed_sha256": "409ea5a6426d053680a8153169ba33189693c5d3b29fda084355b3b74c4adb83",
+      "notice_only_added_after_build": false,
+      "pre_s1": {
+        "date": "2026-10-05",
+        "build_input_sha256": "fe91c41a140194f596eac01c80972f1b3653e1cee0e56e993007903f5a84495a",
+        "distributed_sha256": "409ea5a6426d053680a8153169ba33189693c5d3b29fda084355b3b74c4adb83",
+        "notice_only_added_after_build": true
+      }
+    },
+    "modules/mt8183-p1-public/camera_video.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "1b063deb78ac5c2a3aee6b8ab4065e19ed717e7c3ce0e0b77965d8cf7b968216",
+      "distributed_sha256": "1b063deb78ac5c2a3aee6b8ab4065e19ed717e7c3ce0e0b77965d8cf7b968216",
+      "notice_only_added_after_build": false,
+      "pre_s1": {
+        "date": "2026-10-05",
+        "build_input_sha256": "c3b8eba7717298616f9b30d80d981f0eb6804d5628d2b6dc2890d2fa4307d92b",
+        "distributed_sha256": "1b063deb78ac5c2a3aee6b8ab4065e19ed717e7c3ce0e0b77965d8cf7b968216",
+        "notice_only_added_after_build": true
+      }
+    },
+    "modules/mt8183-p1-public/camera_video.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "c2273fb8138ec200dd242adc36329103b400aa75ee729f3a8a43160453b0d126",
+      "distributed_sha256": "c2273fb8138ec200dd242adc36329103b400aa75ee729f3a8a43160453b0d126",
+      "notice_only_added_after_build": false,
+      "pre_s1": {
+        "date": "2026-10-05",
+        "build_input_sha256": "87bf9743d0b51bd00b4593bdbf4ad1f0dd8a405f20b1b2396777483a7170d85e",
+        "distributed_sha256": "c2273fb8138ec200dd242adc36329103b400aa75ee729f3a8a43160453b0d126",
+        "notice_only_added_after_build": true
+      }
+    },
+    "modules/mt8183-p1-public/mt8183_p1_abi.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "54a76c5b9ca2731f1e03905df8584f68a2f7b315069a19eea3e09dbae562336c",
+      "distributed_sha256": "54a76c5b9ca2731f1e03905df8584f68a2f7b315069a19eea3e09dbae562336c",
+      "notice_only_added_after_build": false,
+      "pre_s1": {
+        "date": "2026-10-05",
+        "build_input_sha256": "e2ad181079277b2b082da478dd843f6598311a9bdc221f2d92bc2c207090293c",
+        "distributed_sha256": "54a76c5b9ca2731f1e03905df8584f68a2f7b315069a19eea3e09dbae562336c",
+        "notice_only_added_after_build": true
+      }
+    },
+    "modules/mt8183-p1-public/mt8183_p1_abi.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "f27961493158a91c4412f32f200f82ebb38e933e9c14750ff52d2628ff4c90cc",
+      "distributed_sha256": "f27961493158a91c4412f32f200f82ebb38e933e9c14750ff52d2628ff4c90cc",
+      "notice_only_added_after_build": false,
+      "pre_s1": {
+        "date": "2026-10-05",
+        "build_input_sha256": "b18fb6acd1c6a9e72c76bf59a4a18cbf9bee878d495765ca9a81d1f58c5111ab",
+        "distributed_sha256": "f27961493158a91c4412f32f200f82ebb38e933e9c14750ff52d2628ff4c90cc",
+        "notice_only_added_after_build": true
+      }
+    },
+    "modules/mt8183-p1-public/mt8183_p1_adapter.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "ca45372ea0d3f6b8c876ea2d510195991837473de7349392c35abf9e1c8bead5",
+      "distributed_sha256": "ca45372ea0d3f6b8c876ea2d510195991837473de7349392c35abf9e1c8bead5",
+      "notice_only_added_after_build": false,
+      "pre_s1": {
+        "date": "2026-10-05",
+        "build_input_sha256": "a8f3f5f8fe6781a7588213af100e63358c83ba45cd1aae59e41e237c82112624",
+        "distributed_sha256": "ca45372ea0d3f6b8c876ea2d510195991837473de7349392c35abf9e1c8bead5",
+        "notice_only_added_after_build": true
+      }
+    },
+    "modules/mt8183-p1-public/mt8183_p1_adapter.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "72d267217e6812497eadac8d74f9279805f0b9df0dd30a369d434754717b596a",
+      "distributed_sha256": "72d267217e6812497eadac8d74f9279805f0b9df0dd30a369d434754717b596a",
+      "notice_only_added_after_build": false,
+      "pre_s1": {
+        "date": "2026-10-05",
+        "build_input_sha256": "1f4bab53b67b5fc999dbe018d58521c5361510bcff944fc8a37534907ea1dc38",
+        "distributed_sha256": "72d267217e6812497eadac8d74f9279805f0b9df0dd30a369d434754717b596a",
+        "notice_only_added_after_build": true
+      }
+    },
+    "modules/mt8183-p1-public/mt8183_p1_bqueue.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "f76e27d5720d16b99bb66565fca3899a262490f463f519a94c3e36b4f213d0ea",
+      "distributed_sha256": "f76e27d5720d16b99bb66565fca3899a262490f463f519a94c3e36b4f213d0ea",
+      "notice_only_added_after_build": false,
+      "pre_s1": {
+        "date": "2026-10-05",
+        "build_input_sha256": "a710a1a49d946b48d0554ccf6678bac62fba5152de969a598b261d9d51f58204",
+        "distributed_sha256": "f76e27d5720d16b99bb66565fca3899a262490f463f519a94c3e36b4f213d0ea",
+        "notice_only_added_after_build": true
+      }
+    },
+    "modules/mt8183-p1-public/mt8183_p1_bqueue.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "938f0c432d622d009a7c94945466e80bd6a333b0118c0a9224e92254174fd29d",
+      "distributed_sha256": "938f0c432d622d009a7c94945466e80bd6a333b0118c0a9224e92254174fd29d",
+      "notice_only_added_after_build": false,
+      "pre_s1": {
+        "date": "2026-10-05",
+        "build_input_sha256": "4fbf32269d7b16dbb90c9ab27af06fb55f05d85b4398f2ad8292152581759a8f",
+        "distributed_sha256": "938f0c432d622d009a7c94945466e80bd6a333b0118c0a9224e92254174fd29d",
+        "notice_only_added_after_build": true
+      }
+    },
+    "modules/mt8183-p1-public/mt8183_p1_continuous.c": {
+      "date": "2026-10-07",
+      "build_input_sha256": "1fc636575e3ba51c61c7978bdbe53d98d3b8bcf30ccc466b59d82a29e043a61b",
+      "distributed_sha256": "1fc636575e3ba51c61c7978bdbe53d98d3b8bcf30ccc466b59d82a29e043a61b",
+      "notice_only_added_after_build": false,
+      "historical_pre_v1_0_0": {
+        "date": "2026-10-06",
+        "build_input_sha256": "9ac6278afc8c1bbd91ba719acdbb4b6afb7ecd8db4ffa3672ecb2e5499d27263",
+        "distributed_sha256": "9ac6278afc8c1bbd91ba719acdbb4b6afb7ecd8db4ffa3672ecb2e5499d27263",
+        "notice_only_added_after_build": false,
+        "pre_internal_opt_in": {
+          "date": "2026-10-06",
+          "build_input_sha256": "50dfa487fe9542da20d309d0288505d969035198867d886fb5ca9d4bc980b153",
+          "distributed_sha256": "50dfa487fe9542da20d309d0288505d969035198867d886fb5ca9d4bc980b153",
+          "notice_only_added_after_build": false,
+          "pre_s1": {
+            "date": "2026-10-05",
+            "build_input_sha256": "371e2055edde387441d895939e261caceb6079be7090aa6942242a925fab1c0f",
+            "distributed_sha256": "f802261f860207411a1d23e0702fce57204db1f9787c6d7a666e4af6eca8ac08",
+            "notice_only_added_after_build": true
+          },
+          "pre_usb_fix": {
+            "date": "2026-10-05",
+            "build_input_sha256": "f802261f860207411a1d23e0702fce57204db1f9787c6d7a666e4af6eca8ac08",
+            "distributed_sha256": "f802261f860207411a1d23e0702fce57204db1f9787c6d7a666e4af6eca8ac08",
+            "notice_only_added_after_build": false
+          }
+        }
+      }
+    },
+    "modules/mt8183-p1-public/mt8183_p1_handoff.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "e4f6bfeae6b157a1992bcbbb2a7e279b645de0d9c3393536c7baff3c2b137cb3",
+      "distributed_sha256": "e4f6bfeae6b157a1992bcbbb2a7e279b645de0d9c3393536c7baff3c2b137cb3",
+      "notice_only_added_after_build": false,
+      "pre_s1": {
+        "date": "2026-10-05",
+        "build_input_sha256": "cd7968ed3e430496d53a87e9573e7d19ab9bf7d709a29e7d75fb4a218b4d7670",
+        "distributed_sha256": "0ea760296f7e5f3ae2f33237c86ad1eae6d33cc0a3e70b9c7ca31dfafcfaaf7b",
+        "notice_only_added_after_build": true
+      }
+    },
+    "modules/mt8183-p1-public/mt8183_p1_handoff.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "83b861f98e0a741a5716667a72414fde28178872f5a2fe5b228b7dadb6f677a1",
+      "distributed_sha256": "83b861f98e0a741a5716667a72414fde28178872f5a2fe5b228b7dadb6f677a1",
+      "notice_only_added_after_build": false,
+      "pre_s1": {
+        "date": "2026-10-05",
+        "build_input_sha256": "f51ccf410743e160031ca1c61e08833f449266458d978882b2c9191f62e6e53a",
+        "distributed_sha256": "83b861f98e0a741a5716667a72414fde28178872f5a2fe5b228b7dadb6f677a1",
+        "notice_only_added_after_build": true
+      }
+    },
+    "modules/mt8183-p1-public/mt8183_p1_hw.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "409383e1525252940794d97ceea74575bf49c53ee28cdab0ff361f35df98774f",
+      "distributed_sha256": "409383e1525252940794d97ceea74575bf49c53ee28cdab0ff361f35df98774f",
+      "notice_only_added_after_build": false,
+      "pre_s1": {
+        "date": "2026-10-05",
+        "build_input_sha256": "488542eeece981e0a2f35c0b650ac372ebeb3f78888e0ff756f56a210c7390c2",
+        "distributed_sha256": "409383e1525252940794d97ceea74575bf49c53ee28cdab0ff361f35df98774f",
+        "notice_only_added_after_build": true
+      }
+    },
+    "modules/mt8183-p1-public/mt8183_p1_hw.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "b785316c1992987ad92b60eb1ad6499f92f39921b2a815aaebc2e3edc8e117d7",
+      "distributed_sha256": "b785316c1992987ad92b60eb1ad6499f92f39921b2a815aaebc2e3edc8e117d7",
+      "notice_only_added_after_build": false,
+      "pre_s1": {
+        "date": "2026-10-05",
+        "build_input_sha256": "b2477b12276bd81a235e6e1f6f8e396e63bf561e6f4f93575dfa2650f7d80df5",
+        "distributed_sha256": "b785316c1992987ad92b60eb1ad6499f92f39921b2a815aaebc2e3edc8e117d7",
+        "notice_only_added_after_build": true
+      }
+    },
+    "modules/mt8183-p1-public/mt8183_p1_legacy.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "386b15483a388073bbefcb84d700a6c665bd02705bab3f7485a05805e706f643",
+      "distributed_sha256": "386b15483a388073bbefcb84d700a6c665bd02705bab3f7485a05805e706f643",
+      "notice_only_added_after_build": false,
+      "pre_s1": {
+        "date": "2026-10-05",
+        "build_input_sha256": "a1d9cf39f0ddb55b7d0f645fe101d69bc39775b1702ae1ab52069c7f758e3e16",
+        "distributed_sha256": "386b15483a388073bbefcb84d700a6c665bd02705bab3f7485a05805e706f643",
+        "notice_only_added_after_build": true
+      }
+    },
+    "modules/mt8183-p1-public/mt8183_p1_stop.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "7e555c3fbca81a578ca3c3a67963a450f4a484bfbfa758b3a4d35ffe2c14de3f",
+      "distributed_sha256": "7e555c3fbca81a578ca3c3a67963a450f4a484bfbfa758b3a4d35ffe2c14de3f",
+      "notice_only_added_after_build": false,
+      "pre_s1": {
+        "date": "2026-10-05",
+        "build_input_sha256": "6ba71837036a2e22554b803d3ec0120f7f151c66d01ce0af8bb4450a333d77be",
+        "distributed_sha256": "7e555c3fbca81a578ca3c3a67963a450f4a484bfbfa758b3a4d35ffe2c14de3f",
+        "notice_only_added_after_build": true
+      }
+    },
+    "modules/mt8183-p1-public/mt8183_p1_stop.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "1414fd01442de27b0d41e94b6cce583ec8219cbf9bd751d3389724d3b6ef4f8d",
+      "distributed_sha256": "1414fd01442de27b0d41e94b6cce583ec8219cbf9bd751d3389724d3b6ef4f8d",
+      "notice_only_added_after_build": false,
+      "pre_s1": {
+        "date": "2026-10-05",
+        "build_input_sha256": "51669ba75dfbcf5eb889b980b8475143898a93766c86c140f090e0652c152548",
+        "distributed_sha256": "1414fd01442de27b0d41e94b6cce583ec8219cbf9bd751d3389724d3b6ef4f8d",
+        "notice_only_added_after_build": true
+      }
+    },
+    "modules/mt8183-p1-public/mt8183_p1_stream.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "e121b15b35b775f0bae4effb0a5b07cc4533b1bcfffe7789abff6eca63f5456a",
+      "distributed_sha256": "e121b15b35b775f0bae4effb0a5b07cc4533b1bcfffe7789abff6eca63f5456a",
+      "notice_only_added_after_build": false,
+      "pre_s1": {
+        "date": "2026-10-05",
+        "build_input_sha256": "1553bf679c51d151deb890aa04a5fc6a99dd8b5a317fc52ede1eae1cd04f8762",
+        "distributed_sha256": "e121b15b35b775f0bae4effb0a5b07cc4533b1bcfffe7789abff6eca63f5456a",
+        "notice_only_added_after_build": true
+      }
+    },
+    "modules/mt8183-p1-public/mt8183_p1_stream.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "367092317f885a0310e6d5432a215cb122613cab082d387d9502059570a4093c",
+      "distributed_sha256": "367092317f885a0310e6d5432a215cb122613cab082d387d9502059570a4093c",
+      "notice_only_added_after_build": false,
+      "pre_s1": {
+        "date": "2026-10-05",
+        "build_input_sha256": "d9a5bbc189e1a95c7f135b89341d928733dee5eb373b44c8721d52c9909d6a57",
+        "distributed_sha256": "367092317f885a0310e6d5432a215cb122613cab082d387d9502059570a4093c",
+        "notice_only_added_after_build": true
+      }
+    },
+    "modules/mt8183-p1-public/mt8183_p1_stream_codec.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "62eab70b45435bc426a85439dc098d82cf6da2c27cb2bc583028de37258157a2",
+      "distributed_sha256": "62eab70b45435bc426a85439dc098d82cf6da2c27cb2bc583028de37258157a2",
+      "notice_only_added_after_build": false,
+      "pre_s1": {
+        "date": "2026-10-05",
+        "build_input_sha256": "24bebbaba8b6c44e500c7d17368b887c02f11fddde114ff7b12f13025d3adf53",
+        "distributed_sha256": "62eab70b45435bc426a85439dc098d82cf6da2c27cb2bc583028de37258157a2",
+        "notice_only_added_after_build": true
+      }
+    },
+    "modules/mt8183-p1-public/mt8183_p1_stream_codec.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "97b0b33adbee6938a5b3d688992452df249c20a45da9927b8d6392467e71ea1e",
+      "distributed_sha256": "97b0b33adbee6938a5b3d688992452df249c20a45da9927b8d6392467e71ea1e",
+      "notice_only_added_after_build": false,
+      "pre_s1": {
+        "date": "2026-10-05",
+        "build_input_sha256": "320eeb95101a192742b8e4bab1535b15285520c3c79e6781b0f4bef57a86ae4d",
+        "distributed_sha256": "97b0b33adbee6938a5b3d688992452df249c20a45da9927b8d6392467e71ea1e",
+        "notice_only_added_after_build": true
+      }
+    },
+    "modules/mt8183-p1-public/mt8183_p1_workers.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "322f8b4b9e7b84e1b59604642e55b46f480a853b52879b8c1b06cad040358468",
+      "distributed_sha256": "322f8b4b9e7b84e1b59604642e55b46f480a853b52879b8c1b06cad040358468",
+      "notice_only_added_after_build": false,
+      "pre_s1": {
+        "date": "2026-10-05",
+        "build_input_sha256": "675d25f753aa1387f56e7e38af9a9833f8eaddfa8bc092a4df87d005c4518c41",
+        "distributed_sha256": "322f8b4b9e7b84e1b59604642e55b46f480a853b52879b8c1b06cad040358468",
+        "notice_only_added_after_build": true
+      }
+    },
+    "modules/mt8183-p1-public/mt8183_p1_workers.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "0107dfd81cadc6c45ce7797ad91e4145238e69ab836c3e617f899c0a60a5b4cb",
+      "distributed_sha256": "0107dfd81cadc6c45ce7797ad91e4145238e69ab836c3e617f899c0a60a5b4cb",
+      "notice_only_added_after_build": false,
+      "pre_s1": {
+        "date": "2026-10-05",
+        "build_input_sha256": "24a9a453f6a137826333f6ed7d35001e845da1c1d22e4055ff3dde66a067bc8a",
+        "distributed_sha256": "0107dfd81cadc6c45ce7797ad91e4145238e69ab836c3e617f899c0a60a5b4cb",
+        "notice_only_added_after_build": true
+      }
+    },
+    "modules/mt8183-p1-public/mtk_cam-ipi.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "44c0d23cde88c5af87c812c4065be16f909e9936fccacf6db63b8b959cbe1c6e",
+      "distributed_sha256": "44c0d23cde88c5af87c812c4065be16f909e9936fccacf6db63b8b959cbe1c6e",
+      "notice_only_added_after_build": false,
+      "pre_s1": {
+        "date": "2026-10-05",
+        "build_input_sha256": "0be12d436a0b936471d8d35fa9ffaf77665369bfb806dd36a90f7e54c68bb716",
+        "distributed_sha256": "44c0d23cde88c5af87c812c4065be16f909e9936fccacf6db63b8b959cbe1c6e",
+        "notice_only_added_after_build": true
+      }
+    },
+    "modules/mt8183-p1-standard-fps/camera_raw.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "cf979ffedfd11481895dc6fe1088b202e6cd3ae5131367de3460351a2fcc201d",
+      "distributed_sha256": "5d40c19d97329c214dbb7decbe58f7cc195cf93dc63650143d43f0875968881e",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-standard-fps/camera_raw.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "fe91c41a140194f596eac01c80972f1b3653e1cee0e56e993007903f5a84495a",
+      "distributed_sha256": "409ea5a6426d053680a8153169ba33189693c5d3b29fda084355b3b74c4adb83",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-standard-fps/camera_softisp.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "7b9b6a2cab7154241cd4bf88847e0a2e2d650e4b7242fde0b8fb3361c1d4532c",
+      "distributed_sha256": "979f55cf6e23620ca9861c269655f32a2559b626b48015dc8e6b70c87e05c1c4",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-standard-fps/camera_softisp.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "8f1bc5fdf26149d162a5ea04e14cbf4e32fc39b26f66c95f6117d4faef6f6f8d",
+      "distributed_sha256": "f315e4e862d178229844eaa3f2c852241330fd4248620862645389df4ebd7f53",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-standard-fps/camera_video.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "c3b8eba7717298616f9b30d80d981f0eb6804d5628d2b6dc2890d2fa4307d92b",
+      "distributed_sha256": "1b063deb78ac5c2a3aee6b8ab4065e19ed717e7c3ce0e0b77965d8cf7b968216",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-standard-fps/camera_video.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "bee104396ff1146a61b21669b1262a7e2ce97f0cafeaf09ad74dac7fa7b21510",
+      "distributed_sha256": "a54968f56c424fc46913536388d8f0f7cd631357edc92e4cb2e10d36d1a6d4e0",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-standard-fps/duet_p1_abi.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "1ec746472a49e88b68c25cf97088146d6c4618168b16baf79e5d2697e8b0cd11",
+      "distributed_sha256": "3c26a1dbff496ed9f7434f0cc4614686c2f3b65d9c3a7310f7b2203cc1c5797e",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-standard-fps/duet_p1_abi.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "701c9501c593552501e2b507be91f29518648deaa17712f385d5cb99984b37a0",
+      "distributed_sha256": "504f4bd436f9912f5b1d8c3eb809812c69ed2a2f5b7356b49117cb1d6c5cf502",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-standard-fps/duet_p1_adapter.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "0671c49d36fbfe1efb42478b559d38c1120464ddaad38b548740eb013bb31cbb",
+      "distributed_sha256": "923d95a4ba2d64a22105c8a6115cfce3861a1531952ca7105daa73fc1e976e33",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-standard-fps/duet_p1_adapter.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "fe54ce298726a657c9f5bc849848b0491f9f82f05fb272c4fb1ae1cd53116aba",
+      "distributed_sha256": "25234a8f7711b185bc6a674f74c6e19c75de8187a20669dc86ff8e92dc0d1acd",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-standard-fps/duet_p1_bqueue.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "54b02040aa9e2f36e9037f8ba3a5629bb8a5e6a75eabc990e1da92c8fc9a1a13",
+      "distributed_sha256": "69aaef0a2863a73c56a473f0ab2cfea9e24d65e68b4273cbb117bbaac4dc8b41",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-standard-fps/duet_p1_bqueue.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "1503d76ffd433aca60a952019b718b73750c0c937c1bab017222f8f8aa0241c3",
+      "distributed_sha256": "c956a7b83ec9d62957edfbbfa0618cbfda6293ddc05e2b8d5e1804906077f8e2",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-standard-fps/duet_p1_continuous.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "ae4b2c0c398102fd51f0489350bc142bb169139a953875534fc73dd9962e0640",
+      "distributed_sha256": "e7ec7c56c0fc81ceff6803e5b6565140981146f03726b983b1000ed373f7a69c",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-standard-fps/duet_p1_handoff.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "2578a08ab777e11aa41ab023e55385e63c6b28e537525d9196044d81830287d2",
+      "distributed_sha256": "de90cc7ab1ba979a7eee961db6bfae6df30f2fd9270552de8723e49322d2ec65",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-standard-fps/duet_p1_handoff.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "7de976cd93f4d6a5cf61b20815647d6e070a1f85c046e3ef37518191ca8c98b3",
+      "distributed_sha256": "0271e5c73d8a0ffb600f92969deb00cd22cce8a5af6daa3a0ca16eeecc5d8c0f",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-standard-fps/duet_p1_hw.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "875822faf325ee63f17b8843a6b380e9daa6237decd3da603c40e4c3cf0f8f76",
+      "distributed_sha256": "1cbc636a905a28b0938962e3a9d6fbbabcba4e7337dc108d82d7e92c4e3a97e7",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-standard-fps/duet_p1_hw.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "c681caf404226a02abae3156626626d7057e73f6c21f437bedbf73b8126a3431",
+      "distributed_sha256": "71f7d302f573ab7168542e6f2945e8617f17c9df19cca407cb965a5f30507b7d",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-standard-fps/duet_p1_stop.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "123c23b3423f09d87052cac6881e717cbee5128c6c9c47c34eb67504700d4b03",
+      "distributed_sha256": "c038be05e5529279ed9407f04d6cec192be85dda7686cecbf9e1d939e727fb5a",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-standard-fps/duet_p1_stop.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "c985d2111d4d59c60c2d897727c3f5c2e21142f9ac4fda8ff539b392a69cf566",
+      "distributed_sha256": "1e72d11343c4147a23e52dc660cd62da1ac4c59d6b09f36ab7075b3c9744e41d",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-standard-fps/duet_p1_stream.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "2bf1c3cada835a5c17159918801dce35d572798c46525d23da21d38ad2057895",
+      "distributed_sha256": "e20ab01c8200f7d1a557337318b605e2d175ee07a665594f4cce598a6d8fde33",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-standard-fps/duet_p1_stream.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "ee2daf86f5967dc4c37cea9b578930b3e102aa0d2663b1af169c2024714e00ed",
+      "distributed_sha256": "04e22b20649303852e9d7d64e042934cfe106cfe53bdf6c4cb72c500263a7493",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-standard-fps/duet_p1_stream_codec.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "c0489c781d19f1269b270dfedf6ec8513fa67e884cbcb99566d074a907c7497d",
+      "distributed_sha256": "5d746df2827266124bb7322f39f2ba5c51205961df17189a65adce764fe2698f",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-standard-fps/duet_p1_stream_codec.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "f971aa8f68e14cadd6bc149bba068d884b5d05ad7065bd1a69fc83f7b649f954",
+      "distributed_sha256": "fcebed5e029ab8bb82c0e2f5fb30869ad1f37834023f2d2fe6ed0e8aa2e87638",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-standard-fps/duet_p1_workers.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "a26736f6ce04a0d874bfd0d89a4c40d6c7ca72004a57b7c8a8a730ededec8e43",
+      "distributed_sha256": "881db10b437bf6901784892dc67fac95b67d4208aa45f88077f88407e5e9de68",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-standard-fps/duet_p1_workers.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "38543a372b82ca2e94037e4d5804cd55e0703ca1cf0c227656e8a8d934208a72",
+      "distributed_sha256": "5500d31ab1cc0464a3a5244bbbbed1582657b15fb500bf2bf6f1ddcdba6ca2f4",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-p1-standard-fps/mtk_cam-ipi.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "0be12d436a0b936471d8d35fa9ffaf77665369bfb806dd36a90f7e54c68bb716",
+      "distributed_sha256": "44c0d23cde88c5af87c812c4065be16f909e9936fccacf6db63b8b959cbe1c6e",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-seninf-dual-highres/mtk_seninf.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "26ecf4ee3ecc0f4917117601ee8358f070f602a4f155e877887708ed87dfb929",
+      "distributed_sha256": "cb048566d81f563203be7e3e426a8bab23ce34d82b58d5ab21e2bafca7f00c07",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-seninf-dual-highres/mtk_seninf_def.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "7a8b910af219f1007ebfbbf6ae08dc821f5128720116c6c9228c26af42af317c",
+      "distributed_sha256": "6a1fdc692e1d14fe57d381925c70e45081598c0b9538f72979780e9e735ce953",
+      "notice_only_added_after_build": true
+    },
+    "modules/mt8183-seninf-dual-highres/mtk_seninf_reg.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "316b67516f86bed0bb0bcde13ddb7d1cd86e6283070cad46c96ccc826d1894c0",
+      "distributed_sha256": "b2291dc6e2bfc81a86fcf719f8006c123b3a20b490235d746cc78caa1284cdfb",
+      "notice_only_added_after_build": true
+    },
+    "modules/ov02a10-standard-fps-range/ov02a10-pace.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "a9b981f502a39cddce10ca488af969b9a0f6ed9f1a1509feabdd352ad0800bd1",
+      "distributed_sha256": "9242d27835e5fd5d23ad7824e2805301970e4fb7fdb804a5d04ce930271728c9",
+      "notice_only_added_after_build": true
+    },
+    "modules/ov02a10-standard-fps-range/ov02a10-telemetry.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "b7b71571001d115aa74219d849879e931ddfffe4dac71db215acbf8190875a15",
+      "distributed_sha256": "db96c421056b3e02445f6ae7f69f32c15c79b49dbe91127ae34a393b1af9f994",
+      "notice_only_added_after_build": true
+    },
+    "modules/ov02a10-standard-fps-range/ov02a10.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "860a34ab525617c62ad8fb75d942aa21adbf7d0adbe39bd67dd3d9bcde20d443",
+      "distributed_sha256": "3db63f887a115eeaec5949acca84e718a6b044ec2a058f8583dfe775b96f4931",
+      "notice_only_added_after_build": true
+    },
+    "modules/ov8856-standard-balanced-fps/ov8856.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "79060b2284e51bfcc175bbb6e199ad5fde65161966030c5af4d7bbbcece31a2e",
+      "distributed_sha256": "d1881d63f508b99a7e5fc9153b2570358e0d21af3d3970bef0f91fc2d434c723",
+      "notice_only_added_after_build": true
+    }
+  },
+  "userspace_files": {
+    "libcamera/include/libcamera/internal/ipa_manager.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "4944b939123832fb5e50750cb7d2796eea38adb630755c7630bfa5ed69e1977f",
+      "distributed_sha256": "c2c36373722d2899462ed1bc06c1a519769b7a712e9611777b330b02f172985d",
+      "notice_only_added_after_build": true
+    },
+    "libcamera/include/libcamera/internal/pub_key.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "4a07fa57dc380d0161854a0fa5ecf16fdec82b526cdda5fc117bb4814b36a7cc",
+      "distributed_sha256": "8f9257ebdc01e5ea765f1a535c6fb5d881809a46abe49184e6f6bb4085aaa9df",
+      "notice_only_added_after_build": true
+    },
+    "libcamera/include/libcamera/internal/software_isp/focus_stats.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "49cf9696d16461e61f4e1b710c4ef36d820206ec07786919f81f19d44aa900c6",
+      "distributed_sha256": "0fc9c4d736880008019ee005e4275f76669d3622205e649a2ff5f893292ab9d3",
+      "notice_only_added_after_build": true
+    },
+    "libcamera/include/libcamera/internal/software_isp/software_isp.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "7b6958bfa9423de8c74fea74cf5e5a9d774c1b48ad71c1ecce92d53f28c6f872",
+      "distributed_sha256": "844e0740d89198fb1a4ab5c8234fc158075089a3fa8dc164355c73d5c9118b17",
+      "notice_only_added_after_build": true
+    },
+    "libcamera/include/libcamera/internal/software_isp/swisp_stats.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "a929663aa0ba4aa2778fa967db2031055c2095c63693533e0f9472e1454ef7a5",
+      "distributed_sha256": "0e14c107bd5eecec571c5c4e71f27c1487b4f1379ee5509eb9b051a1b225062a",
+      "notice_only_added_after_build": true
+    },
+    "libcamera/include/libcamera/internal/software_isp/swstats_cpu.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "e7a697582802db033974798c395bc8a892e437c1a9cb36fc976ee8650f8832f4",
+      "distributed_sha256": "8c7653a94ce7cd56da3fbf21637e89ddaaa5b13337cfdc2482addb5ba615ad58",
+      "notice_only_added_after_build": true
+    },
+    "libcamera/include/libcamera/ipa/softisp.mojom": {
+      "date": "2026-10-05",
+      "build_input_sha256": "6c4812c3d7a3f0cd0352c5d067f7ec9fadd36ed52206b29637f14837414ca8f0",
+      "distributed_sha256": "75ce4d8c7830286d2c3cfde46d6888d1af718f9e24a0f1e74478deed06f56660",
+      "notice_only_added_after_build": true
+    },
+    "libcamera/src/apps/cam/camera_session.cpp": {
+      "date": "2026-10-05",
+      "build_input_sha256": "a8a6fd31a808eadfd92299a6e86c889e2d99738de647324620d354e4ec3ca2fa",
+      "distributed_sha256": "2a9728b6461b7569e27fd812543c3085a4795255bac4095e5ad54a092e63d945",
+      "notice_only_added_after_build": true
+    },
+    "libcamera/src/ipa/libipa/agc.cpp": {
+      "date": "2026-10-05",
+      "build_input_sha256": "e7518ee35efbf1c062fbb078a2b1f31a71e8b5a20c8ecab7625dd44041cdece6",
+      "distributed_sha256": "aa705183a3f6340b193007591492ad0ee0428b24f46584050eb7fe5a3aff83f8",
+      "notice_only_added_after_build": true
+    },
+    "libcamera/src/ipa/libipa/agc.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "4c6b90714f69a2017a1c1cee84d2b0d267323728efe77c51d4d022e41c33f1c7",
+      "distributed_sha256": "221dec7516f315bea1d592c22630483c04e40f25746d209eda6433ac2d10dea9",
+      "notice_only_added_after_build": true
+    },
+    "libcamera/src/ipa/libipa/agc_flicker.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "27f6bbb62a55a0c06411f312b170360b44c492e118fc816fcd4600d8edfc185f",
+      "distributed_sha256": "a03b88c7ad7550c05748765c7075be415e58198fd1dbc6e904a5c15909eb2973",
+      "notice_only_added_after_build": true
+    },
+    "libcamera/src/ipa/libipa/camera_sensor_helper.cpp": {
+      "date": "2026-10-05",
+      "build_input_sha256": "f66f59f25ea55e9e162727b2cb47e71a940f2a8fd25a81e59926bc87f82b22e8",
+      "distributed_sha256": "de0e1fe8f654f383b08cedc33f791e1066173c1ae181742320a98cc370eb1462",
+      "notice_only_added_after_build": true
+    },
+    "libcamera/src/ipa/rpi/controller/rpi/af.cpp": {
+      "date": "2026-10-05",
+      "build_input_sha256": "7ceb0aa8dd3da743d9d75f822267e5f964246eaf5e8727b82107e5c2d3290a20",
+      "distributed_sha256": "10ca76541a63631af9c68ca97c21fb500c5e470d9b9f90868a84e6292da3b4cb",
+      "notice_only_added_after_build": true
+    },
+    "libcamera/src/ipa/softisp/algorithms/adjust.cpp": {
+      "date": "2026-10-05",
+      "build_input_sha256": "e1b2847d30c1ae9f32dae316c9ac77cd709bec66ca71eacd73b40f28235fe7d2",
+      "distributed_sha256": "09500d40029f1491142978dd8eb3bc4547e0c35dd96625400b84daf2414d864f",
+      "notice_only_added_after_build": true
+    },
+    "libcamera/src/ipa/softisp/algorithms/adjust.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "f2a234f7dc4b532db8dc0d6c336c5d58d21ddee03922c086180fbc7aed86d871",
+      "distributed_sha256": "c1598efa8d312956d4897cfaf6a4c3cd286d81afe2cb0160d803a05c6db4e0fb",
+      "notice_only_added_after_build": true
+    },
+    "libcamera/src/ipa/softisp/algorithms/af.cpp": {
+      "date": "2026-10-05",
+      "build_input_sha256": "b4c95645011fb04875377df239e6bfda7e1bd19fcf4df57a6fa32cff11912ce1",
+      "distributed_sha256": "91cbb42e22386f03fcf40a866422485f274d2b460df52b2ae9f8f594f4db3f95",
+      "notice_only_added_after_build": true
+    },
+    "libcamera/src/ipa/softisp/algorithms/af.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "5a865b422e38bf3bb7bc5839431fce7d557c44897e2eaa7f0875381ec9400599",
+      "distributed_sha256": "41df57d8f60eec214c6ab5d3ef2816346abb5a73ade629bcde75b8a485fc6d58",
+      "notice_only_added_after_build": true
+    },
+    "libcamera/src/ipa/softisp/algorithms/meson.build": {
+      "date": "2026-10-05",
+      "build_input_sha256": "89b974de135fcd055a15081d62c0a3a694a293d1065ce24ee386289a6e74966d",
+      "distributed_sha256": "c039443e661083fb7356a4ffca25106c8bf61f54f6dff726e2c6e91028936594",
+      "notice_only_added_after_build": true
+    },
+    "libcamera/src/ipa/softisp/ipa_context.h": {
+      "date": "2026-10-05",
+      "build_input_sha256": "44fb90d086776817a762b2e644f53116a504adb9d1cac44a3fd6ec8aaffaa21c",
+      "distributed_sha256": "6ba0df826e6d77fec9db63bc9c1489c6c2a7e31c3a2b9d2c3646808831f6a4a1",
+      "notice_only_added_after_build": true
+    },
+    "libcamera/src/ipa/softisp/meson.build": {
+      "date": "2026-10-05",
+      "build_input_sha256": "7e09685f2475350463de7b426cb2ccff2c543feeb37a7c64ee16cbfcdc07e7ed",
+      "distributed_sha256": "36cbef70cfa37bcc07f9702062e70d28388c68a680bf7f304bc616fffb27b23b",
+      "notice_only_added_after_build": true
+    },
+    "libcamera/src/ipa/softisp/softisp.cpp": {
+      "date": "2026-10-05",
+      "build_input_sha256": "b5b03e6187ffbbd45871e7ffdb56fc026381d8da1c369e8af89ac700305fd37c",
+      "distributed_sha256": "0fa5adb38163d3d0ab5bc9ec3b88484ad9dfa8af0c6dbb6c379e94b221ed5387",
+      "notice_only_added_after_build": true
+    },
+    "libcamera/src/libcamera/ipa_manager.cpp": {
+      "date": "2026-10-05",
+      "build_input_sha256": "f9a52e7541d5ba8104deaf30763aea2d4e7c6378aa0439b8e06277062400cac0",
+      "distributed_sha256": "776c2b35126ff2a6f6ecfd30fb1a7d25111d8c051c2d8b59ba8936d90f4ae7fb",
+      "notice_only_added_after_build": true
+    },
+    "libcamera/src/libcamera/ipa_pub_key.cpp.in": {
+      "date": "2026-10-05",
+      "build_input_sha256": "62ff639450cf63762f0515df1d49ebb02d377060455d0a6281d63dfc624d8d2b",
+      "distributed_sha256": "a519ac33d6743be8640a6370db28e3b63f5f067b15b65117187e21daa05e3a28",
+      "notice_only_added_after_build": true
+    },
+    "libcamera/src/libcamera/pipeline/simple/simple.cpp": {
+      "date": "2026-10-05",
+      "build_input_sha256": "571ad6eb214a025a2600489df7ee38cc27a82b49ce809877ad978d4117e599a6",
+      "distributed_sha256": "4228344d9fc1536df9eadec356335d1ab03f80ba0790f3b3e7f8769f757ecf99",
+      "notice_only_added_after_build": true
+    },
+    "libcamera/src/libcamera/pub_key.cpp": {
+      "date": "2026-10-05",
+      "build_input_sha256": "33e7fdf0f9e2bbd1d6bae7c444c27d8b3a1282f29329b1ce88d5d12a61eff93f",
+      "distributed_sha256": "4df04d1b046a94bdf93cf4b7f01aa5dcc21506b7f9530e920f954202e0cd830c",
+      "notice_only_added_after_build": true
+    },
+    "libcamera/src/libcamera/sensor/camera_sensor_properties.cpp": {
+      "date": "2026-10-05",
+      "build_input_sha256": "881a95379ec113708184ebdb504c6bae8b66bd69bf18f23341c0cbe63f45d692",
+      "distributed_sha256": "67e986b7c7b36e6c2a0396ebbc2c51ac194ee55725ad4b8f145f0243dc7b3dfd",
+      "notice_only_added_after_build": true
+    },
+    "libcamera/src/libcamera/software_isp/software_isp.cpp": {
+      "date": "2026-10-05",
+      "build_input_sha256": "dd3f0fcc7830c22647349cbfc94fdbcd0c863e38d73ebc6199ae45b019168dab",
+      "distributed_sha256": "0c1d49b1c45c018d13e95ca2032421b57743fc8d9b51b2a2ec980e8f5defff4f",
+      "notice_only_added_after_build": true
+    },
+    "libcamera/src/libcamera/software_isp/swstats_cpu.cpp": {
+      "date": "2026-10-05",
+      "build_input_sha256": "dc3419896c933248321671f57e361609f44e39175915c89377e65fcf4b390298",
+      "distributed_sha256": "67a1172c651ca44011ab3182ac4ce219ef8f92dfa75559ae9d7786dcbf366f65",
+      "notice_only_added_after_build": true
+    },
+    "pipewire/spa/plugins/libcamera/libcamera-source.cpp": {
+      "date": "2026-10-05",
+      "build_input_sha256": "e8e1373293e089adfa8eef5c8a697ecad826affd13275850039b2fcbbcb3369c",
+      "distributed_sha256": "4e6a9d37f9fb2ab17845951a013bcd3ac0d387e99500ec638033e41e167aea8e",
+      "notice_only_added_after_build": true
+    },
+    "pipewire/src/gst/gstpipewiresrc.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "fc9788fdfd1867ebdf67ca711c93c145978b4290077411a0143ea2429a95cf6a",
+      "distributed_sha256": "8c90b4f2559dca6e7192d03980ba5a6de8a9af1debb5c38fed5e3ed4af71552e",
+      "notice_only_added_after_build": true
+    },
+    "pipewire/src/pipewire/impl-link.c": {
+      "date": "2026-10-05",
+      "build_input_sha256": "162e65dd7843ac12976be6bfd9de360fb08c68f2510a046d3e3951b16e9e99d9",
+      "distributed_sha256": "64f0a1eb309d47e1fadc688deaf9909e32dc800ec07ecde619c69c85145c9f4d",
+      "notice_only_added_after_build": true
+    }
+  },
+  "publication_review": {
+    "record": "PUBLICATION_REVIEW.json",
+    "package_correspondence": "PACKAGE_FIXES.json",
+    "modified_or_new_program_files": {
+      "modules/mt8183-p1-community-cleanup/tests/run_stop_gate.py": {
+        "date": "2026-10-05",
+        "distributed_sha256": "09ae863462b64d0a512ca69d10fc7a25872a759cd995b8ca464a4e9e80d694a6",
+        "license": "GPL-2.0-only",
+        "camera_driver_algorithm_changed": false
+      },
+      "modules/mt8183-p1-public/tests/run_stop_gate.py": {
+        "date": "2026-10-05",
+        "distributed_sha256": "354b1a89dbceb58456c9b3a44eb4cc7017e5716a23d6c4166a9ec001aa030f96",
+        "license": "GPL-2.0-only",
+        "camera_driver_algorithm_changed": false
+      },
+      "modules/mt8183-p1-standard-fps/tests/run_capture_conditions.py": {
+        "date": "2026-10-05",
+        "distributed_sha256": "96218e6229f9552f145decd69c90130201165290c863e3325043e5a6c332e37a",
+        "license": "GPL-2.0-only",
+        "camera_driver_algorithm_changed": false
+      },
+      "modules/mt8183-p1-standard-fps/tests/run_format_control_preservation.py": {
+        "date": "2026-10-05",
+        "distributed_sha256": "c423053040797d3463bb4c0d820b9200c2ae1e18811ee8d52ba6004e30ae2654",
+        "license": "GPL-2.0-only",
+        "camera_driver_algorithm_changed": false
+      },
+      "modules/mt8183-p1-standard-fps/tests/run_frame_events.py": {
+        "date": "2026-10-05",
+        "distributed_sha256": "13cd08d2ad6210de9265c145cbb95b4c1c12f29934987721232d7ac2bb83f5f3",
+        "license": "GPL-2.0-only",
+        "camera_driver_algorithm_changed": false
+      },
+      "modules/mt8183-p1-standard-fps/tests/run_hw.py": {
+        "date": "2026-10-05",
+        "distributed_sha256": "6fc2ee6edb8e5d60bbfa5a7f3e69f9ac1267d2c8e2add76e5315b63ae5e8703e",
+        "license": "GPL-2.0-only",
+        "camera_driver_algorithm_changed": false
+      },
+      "modules/mt8183-p1-standard-fps/tests/run_hw_front.py": {
+        "date": "2026-10-05",
+        "distributed_sha256": "2f79bd094833717803da6086a584ad7ce82389aa0fdd2b667a8c3feb0cb11186",
+        "license": "GPL-2.0-only",
+        "camera_driver_algorithm_changed": false
+      },
+      "modules/mt8183-p1-standard-fps/tests/run_hw_highres.py": {
+        "date": "2026-10-05",
+        "distributed_sha256": "29648468fe1663d42e81cd17ca1b8398b72149e2f8a59feca825c8e82b164f99",
+        "license": "GPL-2.0-only",
+        "camera_driver_algorithm_changed": false
+      },
+      "modules/mt8183-p1-standard-fps/tests/run_latency.py": {
+        "date": "2026-10-05",
+        "distributed_sha256": "7ccc37905b63ce86407616cab43b21520c0cf06443efccf29e94059391f47c42",
+        "license": "GPL-2.0-only",
+        "camera_driver_algorithm_changed": false
+      },
+      "modules/mt8183-p1-standard-fps/tests/run_module_lifetime.py": {
+        "date": "2026-10-05",
+        "distributed_sha256": "4ac70204ad5bd3f3d50bd1e98d348c757cccbebfab0cebd1c720ba0f3b5daa3e",
+        "license": "GPL-2.0-only",
+        "camera_driver_algorithm_changed": false
+      },
+      "modules/mt8183-p1-standard-fps/tests/run_pipeline.py": {
+        "date": "2026-10-05",
+        "distributed_sha256": "f62c8082e7404930335e1dbf1b9457b9aee972537dfdfc70abf39b6324db6d28",
+        "license": "GPL-2.0-only",
+        "camera_driver_algorithm_changed": false
+      },
+      "modules/mt8183-p1-standard-fps/tests/run_pm_retire.py": {
+        "date": "2026-10-05",
+        "distributed_sha256": "cc7101b042de912009365723c8c394c2d46266c13d1bc73206bc42ba3f529c3b",
+        "license": "GPL-2.0-only",
+        "camera_driver_algorithm_changed": false
+      },
+      "modules/mt8183-p1-standard-fps/tests/run_raw_interfaces.py": {
+        "date": "2026-10-05",
+        "distributed_sha256": "5fb942a0b0b85f7cc395ba8ed9ac68255a5383fae39675e2eced4c016525f7aa",
+        "license": "GPL-2.0-only",
+        "camera_driver_algorithm_changed": false
+      },
+      "modules/mt8183-p1-standard-fps/tests/run_raw_lifetime.py": {
+        "date": "2026-10-05",
+        "distributed_sha256": "4afa828330651dbf2e7f381dcc804790fb305be4031a2c7876ac2cae162fbc2f",
+        "license": "GPL-2.0-only",
+        "camera_driver_algorithm_changed": false
+      },
+      "modules/mt8183-p1-standard-fps/tests/run_rearm.py": {
+        "date": "2026-10-05",
+        "distributed_sha256": "0c009a18c30b12694d789f954535b308d3c1d61a4fd7ef3c0344d8a00d012c5a",
+        "license": "GPL-2.0-only",
+        "camera_driver_algorithm_changed": false
+      },
+      "modules/mt8183-p1-standard-fps/tests/test_rearm_prefix.c": {
+        "date": "2026-10-05",
+        "distributed_sha256": "6725985ebc064dc2edf00742af8cfb00979f7ea3d031ef803879653b5e3b3823",
+        "license": "GPL-2.0-only */",
+        "camera_driver_algorithm_changed": false
+      },
+      "modules/mt8183-p1-standard-fps/tests/test_rearm_suffix.c": {
+        "date": "2026-10-05",
+        "distributed_sha256": "1bc7e0bf6e10e904272f9d89e166dcc13287af8d101dfd691a7c64c7c589ddd9",
+        "license": "GPL-2.0-only */",
+        "camera_driver_algorithm_changed": false
+      },
+      "modules/mt8183-seninf-dual-highres/test-state.py": {
+        "date": "2026-10-05",
+        "distributed_sha256": "618c5c055f7a7b55ef8dd25cfe77f60f040bdefc069ec23d4e13c386bd4bbee1",
+        "license": "GPL-2.0-only",
+        "camera_driver_algorithm_changed": false
+      },
+      "modules/mt8183-seninf-dual-highres/tests/run_formats.py": {
+        "date": "2026-10-05",
+        "distributed_sha256": "f1104e441a08e7270bc1b95496d636d78a64bf2bd1a6dd2d8f04d68d80a634f1",
+        "license": "GPL-2.0-only",
+        "camera_driver_algorithm_changed": false
+      },
+      "modules/ov02a10-standard-fps-range/tests/fixtures/ov02a10-telemetry.h": {
+        "date": "2026-10-05",
+        "distributed_sha256": "db96c421056b3e02445f6ae7f69f32c15c79b49dbe91127ae34a393b1af9f994",
+        "license": "GPL-2.0 */",
+        "camera_driver_algorithm_changed": false
+      },
+      "modules/ov02a10-standard-fps-range/tests/fixtures/ov02a10.c": {
+        "date": "2026-10-05",
+        "distributed_sha256": "defe43336120b37eb4f8249dc80324fa94965f0043dd7c6fb070e73f8b1852ca",
+        "license": "GPL-2.0",
+        "camera_driver_algorithm_changed": false
+      },
+      "modules/ov02a10-standard-fps-range/tests/host-shim.h": {
+        "date": "2026-10-05",
+        "distributed_sha256": "08727eb274abe367a064403f938b5893eb9c12392475c506e8c820f2ef321e49",
+        "license": "GPL-2.0-only */",
+        "camera_driver_algorithm_changed": false
+      },
+      "modules/ov02a10-standard-fps-range/tests/include/linux/types.h": {
+        "date": "2026-10-05",
+        "distributed_sha256": "f081d218d71b30504ca74d1b6721bc367bcb2d825e1ee524fabf72c5a2698177",
+        "license": "GPL-2.0-only */",
+        "camera_driver_algorithm_changed": false
+      },
+      "modules/ov02a10-standard-fps-range/tests/run.py": {
+        "date": "2026-10-05",
+        "distributed_sha256": "f1c86cad353d95e411c89d5e64865ad7b9d2b76e98215913a95f293f4e98a49b",
+        "license": "GPL-2.0-only",
+        "camera_driver_algorithm_changed": false
+      },
+      "modules/ov02a10-standard-fps-range/tests/test-standard.c": {
+        "date": "2026-10-05",
+        "distributed_sha256": "54cee4efcc20c553a4bb276f985e06d390205b493ed673a8c4ea2d216306157e",
+        "license": "GPL-2.0-only */",
+        "camera_driver_algorithm_changed": false
+      },
+      "modules/ov02a10-standard-fps-range/tests/test-telemetry.c": {
+        "date": "2026-10-05",
+        "distributed_sha256": "63bd7745c9a9a3592ee0d2e9329ea733f77e850bda1787ebf8c94d6ac299cde2",
+        "license": "GPL-2.0-only */",
+        "camera_driver_algorithm_changed": false
+      },
+      "modules/ov8856-standard-balanced-fps/tests/run_full_timing.py": {
+        "date": "2026-10-05",
+        "distributed_sha256": "1557cafa1efaf30b7468a3ecc8a63ca3f1354cb5b4699e608b43a1a974a89eb4",
+        "license": "GPL-2.0-only",
+        "camera_driver_algorithm_changed": false
+      },
+      "modules/ov8856-standard-balanced-fps/tests/run_state.py": {
+        "date": "2026-10-05",
+        "distributed_sha256": "6592a920579cf91a44168ffe40602a7118dd6bcd26482d87e8303d9ed973f3a2",
+        "license": "GPL-2.0-only",
+        "camera_driver_algorithm_changed": false
+      },
+      "modules/ov8856-standard-balanced-fps/tests/run_timing.py": {
+        "date": "2026-10-05",
+        "distributed_sha256": "1fa86ac0c11dbdf5f78a23a17db8d78c2add608524c0eb9ac1febaf29f659a9a",
+        "license": "GPL-2.0-only",
+        "camera_driver_algorithm_changed": false
+      },
+      "packaging/postmarketos/integrate-camera-dtb.py": {
+        "date": "2026-10-05",
+        "distributed_sha256": "fae4a2bb1ad9a8cc4da80cabf32564fc881669ac2061ddb2e0d38515bc8ad39d",
+        "license": "GPL-2.0-only",
+        "camera_driver_algorithm_changed": false
+      },
+      "packaging/postmarketos/legacy_bindings.py": {
+        "date": "2026-10-05",
+        "distributed_sha256": "62006602742a3514bed6cbd30bf0f213c59e3b04055ce89ebe90929a9a3d0530",
+        "license": "GPL-2.0-only",
+        "camera_driver_algorithm_changed": false
+      },
+      "packaging/postmarketos/prepare-boot-assets.py": {
+        "date": "2026-10-05",
+        "distributed_sha256": "32caf4e09cb21c7ae6f200c8a3a081a2e91f7b1620b8b7f208821b9807b023ae",
+        "license": "GPL-2.0-only",
+        "camera_driver_algorithm_changed": false
+      },
+      "packaging/postmarketos/test-dtb-integration.py": {
+        "date": "2026-10-05",
+        "distributed_sha256": "e6c74c623b6747c5feb8ad97e6190dbc7ca342aa0c8d08e04170892909ae55e5",
+        "license": "MIT",
+        "camera_driver_algorithm_changed": false
+      },
+      "scripts/audit-kernel-exports.py": {
+        "date": "2026-10-05",
+        "distributed_sha256": "26d73a9b71d2f11b75cee5b9e8b954388e7ff6ebc92c17ade3c1d66b0a0d1e55",
+        "license": "GPL-2.0-only",
+        "camera_driver_algorithm_changed": false
+      },
+      "scripts/audit-required-exports.py": {
+        "date": "2026-10-05",
+        "distributed_sha256": "3b296b60e97d1027836b47aa21fedcdfab986fb2cc917de10f8dabc9de4e72a8",
+        "license": "GPL-2.0-only",
+        "camera_driver_algorithm_changed": false
+      },
+      "scripts/build-kernel.sh": {
+        "date": "2026-10-05",
+        "distributed_sha256": "e1398a0792e6aab991b0e94552c4db540667a64fd90d81b5297489abdad21d06",
+        "license": "GPL-2.0-only",
+        "camera_driver_algorithm_changed": false
+      },
+      "scripts/build-userspace.sh": {
+        "date": "2026-10-05",
+        "distributed_sha256": "3db437bed186c56ed7ecc594a0843fff45b6dc3c9a201c982f8d3ec964f43854",
+        "license": "MIT",
+        "camera_driver_algorithm_changed": false
+      },
+      "scripts/package-fresh.py": {
+        "date": "2026-10-05",
+        "distributed_sha256": "9e549298bf106b63514b586da360fb0741dc91111ca9ee52ddca52083341cf79",
+        "license": "MIT",
+        "camera_driver_algorithm_changed": false
+      },
+      "scripts/package-release-fixes.py": {
+        "date": "2026-10-05",
+        "distributed_sha256": "2908b148c37329349ef119d0e28557ce60ee1d4dc5834aeaccb9393d9aabe73c",
+        "license": "MIT",
+        "camera_driver_algorithm_changed": false
+      },
+      "tests/test-gst-state.py": {
+        "date": "2026-10-05",
+        "distributed_sha256": "0afb0bbcc85b79438602b0e0b75ae5172b2c42e1f0a0065ac2e04cee086cffac",
+        "license": "MIT",
+        "camera_driver_algorithm_changed": false
+      },
+      "tests/test-link-state.py": {
+        "date": "2026-10-05",
+        "distributed_sha256": "21f5072610296cae53e059fed81243ff7bba397563f46ec6d7b9790bb24b0bc8",
+        "license": "MIT",
+        "camera_driver_algorithm_changed": false
+      },
+      "tests/test-release-safety.py": {
+        "date": "2026-10-05",
+        "distributed_sha256": "60ded5453ec03851218fac53054aedff71ee1ccf039a0399355c2e1a44d09b2e",
+        "license": "GPL-2.0-only",
+        "camera_driver_algorithm_changed": false
+      }
+    },
+    "historical_fixtures_provenance": "modules/ov02a10-standard-fps-range/tests/fixtures/sources.json",
+    "earlier_module_and_userspace_build_input_records_preserved": true
+  },
+  "s1_review": {
+    "date": "2026-10-05",
+    "record": "S1_VALIDATION.json",
+    "changed_driver_file": "modules/mt8183-p1-public/mt8183_p1_handoff.c",
+    "new_files": {
+      "tests/test-handoff-wait.py": {
+        "sha256": "1b06db4e2f8c2b22e9aaa967b6b927ea8d54666f638afe6f05f1e5c6435dbd1f",
+        "license": "GPL-2.0-only"
+      },
+      "scripts/package-low-fps-fix.py": {
+        "sha256": "38363b9d5e9a5d16a33dbb0f66f01c552b75b316a280956376e3c6dac979cc6c",
+        "license": "MIT"
+      }
+    }
+  },
+  "s2_review": {
+    "date": "2026-10-05",
+    "record": "S2_VALIDATION.json",
+    "files": {
+      "scripts/package-low-fps-fix.py": {
+        "sha256": "4590092b425f9d50fb5c1beefd0b40c910213536bdf2a2c67a3d21dd47016759",
+        "license": "MIT"
+      },
+      "tests/test-package-paths.py": {
+        "sha256": "0c1799e6d99a773ae60ade1dd0c7da91643aedcd6b2a4562b21e56a3e393c771",
+        "license": "MIT"
+      }
+    },
+    "camera_driver_and_isp_changed": false
+  },
+  "external_OS_preparation_followup": {
+    "date": "2026-10-06",
+    "scope": "Compressed SCP firmware checker, collision-free PipeWire packaging and isolated image preparation. No camera driver algorithms or ELF payloads changed; new hardware acceptance pending. See EXTERNAL_PREPARATION.json.",
+    "files": {
+      "packaging/postmarketos/duet-camera-check.py": "88e6361de34df62bb6686fd4f323baf75208820d4dd91fa6e75f821814b3a744",
+      "packaging/postmarketos/external-usb-guard.sh": "6a4099f7a2d522ee97b5f7d0b88245b124e347c13ad4b001a7165fbb785f52b2",
+      "packaging/postmarketos/prepare-external-rootfs.py": "32b12d419f200b59bb38e749dec9fa475b162148491fc0de5b02e3fa339049a0",
+      "scripts/apply-external-overlay-to-image.py": "bfb48eb09640da9c7d20b90819228987979e812f7e340c8c4f8c2abd37a291ab",
+      "scripts/pmbootstrap-install-direct-passwd.py": "5f1dfef6e25750bf112aa0abca862113d43cbdc0add72fb9179c0f743660734d",
+      "scripts/package-fresh.py": "b85da960517ec0409642807353642099d0cf34ed37197427c921eff966d5b1ad",
+      "tests/test-compressed-firmware.py": "15eb112839cf50cce6fdb17f14b3b017e0200264560e1f5744afff12060383cf",
+      "tests/test-external-usb-guard.py": "661a3854d3e6c0ce7c2ceb95d0dd030a688201b9e52c7fb5d89afc69d6af162d"
+    }
+  },
+  "external_usb_activation_fix_2026_10_06": {
+    "record": "P1_USB_FIX.json",
+    "build": "USB_P1_BUILD.json",
+    "packages": "USB_PACKAGES.json",
+    "correspondence": "USB_PACKAGE_FIXES.json",
+    "source_changed": [
+      "modules/mt8183-p1-public/mt8183_p1_continuous.c",
+      "packaging/postmarketos/duet-camera-activate.py"
+    ],
+    "scope": "Explicit protected external USB loading. Existing RAM path and all kernel/board/DT checks retained; no capture algorithm change."
+  },
+  "internal_emmc_candidate_2026_10_06": {
+    "record": "INTERNAL_P1_BUILD.json",
+    "packages": "INTERNAL_PACKAGES.json",
+    "correspondence": "INTERNAL_PACKAGE_FIXES.json",
+    "scope": "Explicit internal eMMC opt-in; existing USB/RAM and hardware/DT gates retained. No capture algorithm change. The native-build record and later scoped hardware acceptance are separate.",
+    "hardware_acceptance_record": "INTERNAL_ACCEPTANCE.json"
+  },
+  "public_release_v1_0_0": {
+    "record": "PUBLIC_P1_BUILD.json",
+    "packages": "PUBLIC_PACKAGES.json",
+    "correspondence": "PUBLIC_PACKAGE_FIXES.json",
+    "hardware_acceptance_record": "PUBLIC_ACCEPTANCE.json",
+    "scope": "Native P1 pre-capture asynchronous PM release and pre-system-sleep unpublished DMA retirement; standard capture and STOP safety retained. Boot preparation/restoration and selected desktop-user media autostart added. Existing libcamera/PipeWire package payloads unchanged."
+  }
+}

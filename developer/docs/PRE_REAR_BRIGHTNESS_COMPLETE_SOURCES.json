@@ -1,0 +1,24 @@
+{
+  "archive": "mt8183-camera-complete-sources-20261005-v1.tar.xz",
+  "bytes": 158776508,
+  "sha256": "540367cfcd9b33c8a958f7a7f7aa8185d7c71a2a3ba6be265f8d1f7e36263ae4",
+  "components": {
+    "libcamera": {
+      "upstream_commit": "c0049ea0605c1492c99b8f82bb04661a04cf1bf1",
+      "files": 1519,
+      "source": "Actual patched fresh-build input plus dated modification comments only; original input hashes in MODIFICATIONS.json. Includes full Meson/build scripts, original copyright, REUSE metadata and licenses"
+    },
+    "pipewire": {
+      "upstream_commit": "b741e0c74f5436f0c925f7741140db0efd32cf4e",
+      "files": 1348,
+      "source": "Actual patched fresh-build input plus dated modification comments only; original input hashes in MODIFICATIONS.json. Includes full Meson/build scripts, original copyright, REUSE metadata and licenses"
+    },
+    "linux": {
+      "version": "6.18.28",
+      "sha512": "5acc1a97ae0bca7aeb7fcac04fd3b7bafea5ff976dfe5d42c7015e084d9ee3104c3945880846dfb185a1010d0bad8c7a229b23febdef44306d19fb494a03b1a6",
+      "source": "Original full kernel source; matching config and seven patches are in the public kit. No kernel binary included."
+    }
+  },
+  "use_with": "Matching version-specific source kit: module sources, fixed configs, patches, build/install/package scripts and tuning.",
+  "source_comments_only_after_build": true
+}

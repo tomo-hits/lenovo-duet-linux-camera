@@ -1,0 +1,40 @@
+{
+  "commit": "c0049ea0605c1492c99b8f82bb04661a04cf1bf1",
+  "new_files": [
+    "include/libcamera/internal/software_isp/focus_stats.h",
+    "src/ipa/libipa/agc_flicker.h",
+    "src/ipa/softisp/algorithms/af.cpp",
+    "src/ipa/softisp/algorithms/af.h"
+  ],
+  "files": {
+    "include/libcamera/internal/ipa_manager.h": "4944b939123832fb5e50750cb7d2796eea38adb630755c7630bfa5ed69e1977f",
+    "include/libcamera/internal/pub_key.h": "4a07fa57dc380d0161854a0fa5ecf16fdec82b526cdda5fc117bb4814b36a7cc",
+    "include/libcamera/internal/software_isp/software_isp.h": "7b6958bfa9423de8c74fea74cf5e5a9d774c1b48ad71c1ecce92d53f28c6f872",
+    "include/libcamera/internal/software_isp/swisp_stats.h": "a929663aa0ba4aa2778fa967db2031055c2095c63693533e0f9472e1454ef7a5",
+    "include/libcamera/internal/software_isp/swstats_cpu.h": "e7a697582802db033974798c395bc8a892e437c1a9cb36fc976ee8650f8832f4",
+    "include/libcamera/ipa/softisp.mojom": "6c4812c3d7a3f0cd0352c5d067f7ec9fadd36ed52206b29637f14837414ca8f0",
+    "src/apps/cam/camera_session.cpp": "a8a6fd31a808eadfd92299a6e86c889e2d99738de647324620d354e4ec3ca2fa",
+    "src/ipa/libipa/agc.cpp": "e7518ee35efbf1c062fbb078a2b1f31a71e8b5a20c8ecab7625dd44041cdece6",
+    "src/ipa/libipa/agc.h": "4c6b90714f69a2017a1c1cee84d2b0d267323728efe77c51d4d022e41c33f1c7",
+    "src/ipa/libipa/camera_sensor_helper.cpp": "f66f59f25ea55e9e162727b2cb47e71a940f2a8fd25a81e59926bc87f82b22e8",
+    "src/ipa/rpi/controller/rpi/af.cpp": "7ceb0aa8dd3da743d9d75f822267e5f964246eaf5e8727b82107e5c2d3290a20",
+    "src/ipa/softisp/algorithms/adjust.cpp": "e1b2847d30c1ae9f32dae316c9ac77cd709bec66ca71eacd73b40f28235fe7d2",
+    "src/ipa/softisp/algorithms/adjust.h": "f2a234f7dc4b532db8dc0d6c336c5d58d21ddee03922c086180fbc7aed86d871",
+    "src/ipa/softisp/algorithms/meson.build": "89b974de135fcd055a15081d62c0a3a694a293d1065ce24ee386289a6e74966d",
+    "src/ipa/softisp/ipa_context.h": "44fb90d086776817a762b2e644f53116a504adb9d1cac44a3fd6ec8aaffaa21c",
+    "src/ipa/softisp/meson.build": "7e09685f2475350463de7b426cb2ccff2c543feeb37a7c64ee16cbfcdc07e7ed",
+    "src/ipa/softisp/softisp.cpp": "b5b03e6187ffbbd45871e7ffdb56fc026381d8da1c369e8af89ac700305fd37c",
+    "src/libcamera/ipa_manager.cpp": "f9a52e7541d5ba8104deaf30763aea2d4e7c6378aa0439b8e06277062400cac0",
+    "src/libcamera/ipa_pub_key.cpp.in": "62ff639450cf63762f0515df1d49ebb02d377060455d0a6281d63dfc624d8d2b",
+    "src/libcamera/pipeline/simple/simple.cpp": "571ad6eb214a025a2600489df7ee38cc27a82b49ce809877ad978d4117e599a6",
+    "src/libcamera/pub_key.cpp": "33e7fdf0f9e2bbd1d6bae7c444c27d8b3a1282f29329b1ce88d5d12a61eff93f",
+    "src/libcamera/sensor/camera_sensor_properties.cpp": "881a95379ec113708184ebdb504c6bae8b66bd69bf18f23341c0cbe63f45d692",
+    "src/libcamera/software_isp/software_isp.cpp": "dd3f0fcc7830c22647349cbfc94fdbcd0c863e38d73ebc6199ae45b019168dab",
+    "src/libcamera/software_isp/swstats_cpu.cpp": "dc3419896c933248321671f57e361609f44e39175915c89377e65fcf4b390298",
+    "include/libcamera/internal/software_isp/focus_stats.h": "49cf9696d16461e61f4e1b710c4ef36d820206ec07786919f81f19d44aa900c6",
+    "src/ipa/libipa/agc_flicker.h": "27f6bbb62a55a0c06411f312b170360b44c492e118fc816fcd4600d8edfc185f",
+    "src/ipa/softisp/algorithms/af.cpp": "b4c95645011fb04875377df239e6bfda7e1bd19fcf4df57a6fa32cff11912ce1",
+    "src/ipa/softisp/algorithms/af.h": "5a865b422e38bf3bb7bc5839431fce7d557c44897e2eaa7f0875381ec9400599"
+  },
+  "patch_sha256": "194c1c8c15e9aeb82b711bfe55b09fd4fb8168933ee9299c4543ac40340f345a"
+}

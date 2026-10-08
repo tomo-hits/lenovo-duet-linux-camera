@@ -1,0 +1,70 @@
+{
+  "scope": "Historical matched update on prepared external USB, with capture/reuse and recorded package restoration; restored USB boot and audible audio remain untested",
+  "date": "2026-10-06",
+  "target": "postmarketOS v26.06 / Alpine v3.24 / systemd / 6.18.28-mt81 / SKU176, canonical camera DT and matching SCP firmware",
+  "entrypoint": "scripts/apply-update.py",
+  "actions": [
+    "check",
+    "apply",
+    "restore"
+  ],
+  "profile": "1536x864/30fps",
+  "native_apk_roundtrip": {
+    "architecture": "aarch64",
+    "initial_packages": 838,
+    "applied_packages": 835,
+    "restored_packages": 838,
+    "original_package_versions_match": true,
+    "original_world_restored": true,
+    "original_signed_repository_indexes_used": 4,
+    "original_OS_modified": false,
+    "hardware_tested": false
+  },
+  "recovery_fixtures": {
+    "tests": 22,
+    "normal": "PASS",
+    "python_optimized": "PASS",
+    "coverage": [
+      "fresh versus completed camera capture",
+      "planned interrupted package changes",
+      "configuration bytes/modes/symlinks/absence",
+      "post-transaction failures and retry",
+      "original APK cache identity and independent copies",
+      "apk 3 exact-version URL resolution, downloading only required originals, rejecting ambiguous URLs"
+    ]
+  },
+  "hardware": {
+    "prepared_USB_boot": "PASS",
+    "kernel_DT_firmware_match": "PASS",
+    "all_eMMC_read_only": "PASS",
+    "new_SCP_startup_service": "PASS",
+    "apply_reboot_front_rear_capture_restore": "APPLY_REBOOT_FRONT_REAR_CAPTURE_REUSE_RESTORE_PASS_RESTORED_BOOT_NOT_TESTED",
+    "audio": "PLAY_COMMAND_PASS_OPERATOR_HEARING_NOT_CONFIRMED",
+    "updater_preflight": "PASS_BEFORE_APPLY",
+    "update_apply": "PASS",
+    "verified_runtime_payload_files": 206,
+    "restoration_original_APKs_saved": 11,
+    "camera_sensor_recognition": "PASS_FRONT_AND_REAR_WITH_FIXED_CANDIDATE",
+    "previous_candidate_restore": "PASS_EXACT_838_PACKAGES_WORLD_CONFIGS_WITHOUT_REBOOT",
+    "previous_candidate_post_update_P1": "FAIL_RAM_MARKER_REQUIRED",
+    "module_activation": "PASS_AUTOMATIC_AFTER_REBOOT_WITH_EXTERNAL_USB_FLAG",
+    "fixed_candidate_restore": "PASS_EXACT_838_PACKAGES_WORLD_CONFIGS",
+    "restored_boot": "NOT_TESTED"
+  },
+  "sources": "The modules 0.2.5 USB-loading fix used the complete-source inputs recorded by PRE_REAR_BRIGHTNESS_COMPLETE_SOURCES.json; only P1 was rebuilt for that change. Current tuning source correspondence is recorded separately by COMPLETE_SOURCES.json.",
+  "limits": [
+    "Requires an already prepared matching external USB OS",
+    "Restores only this camera update; does not undo separate OS/kernel updates",
+    "Original APKs and signed repository indexes must be available before apply",
+    "Reboot is an explicit operator action",
+    "Working internal eMMC and firmware are not written"
+  ],
+  "package_archive": {
+    "name": "mt8183-camera-usb-update-apk-20261006-v1.tar",
+    "bytes": 5959680,
+    "sha256": "0c8b238165720d0fc465d586454a786c313f1c0ead536c80bc03c696fd3ed27e"
+  },
+  "actual_backup_fix": "apk-tools 3 non-recursive fetch uses package-name queries. Missing original versions are resolved with recursive simulate/url mode; only exact requested APK URLs are downloaded, and the existing signed-index round trip verifies them before modifying the OS.",
+  "current_candidate": "Historical modules 0.2.5-r0 / meta 0.2.9 and corrected SCP initialization passed USB cold boot, 206 runtime-file checks, ordinary-app capture and new-process reuse. USB_ACCEPTANCE.json records its restoration and limits.",
+  "SCP_recovery_followup": "SCP_RECOVERY_FIX.json: the corrected cold-boot helper passed and actual front/rear capture and reuse succeeded."
+}

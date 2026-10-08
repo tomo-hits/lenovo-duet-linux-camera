@@ -1,0 +1,484 @@
+--- a/duet_p1_continuous.c
++++ b/duet_p1_continuous.c
+@@ -1,5 +1,5 @@
+ // SPDX-License-Identifier: GPL-2.0-only
+-/* Resident P1 communication and transfer experiment with explicit stop gate.
++/* MT8183 P1 RAW video backend with explicit DMA stop proof.
+  * Pinned Linux 6.18.28-mt81, SKU176, controlled single-owner RAM only.
+  * Derived from this project's separately reviewed no-IPI tests. Media graph
+  * pad identities and packed ABI originate from MediaTek (2019), GPL-2.0,
+@@ -12,7 +12,7 @@
+ #include "duet_p1_hw.h"
+ #include "duet_p1_workers.h"
+ #include "duet_p1_handoff.h"
+-#include <linux/cpu.h>
++#include <linux/debugfs.h>
+ #include <linux/completion.h>
+ #include <linux/atomic.h>
+ #include <linux/remoteproc.h>
+@@ -54,7 +54,7 @@
+ 
+ #if !defined(CONFIG_ARM64) || !defined(CONFIG_DMA_DECLARE_COHERENT) || \
+     !defined(CONFIG_IOMMU_DMA) || !defined(CONFIG_OF_RESERVED_MEM)
+-#error This diagnostic requires the fixed ARM64 coherent-pool/IOMMU configuration
++#error This driver requires the fixed ARM64 coherent-pool/IOMMU configuration
+ #endif
+ #ifdef CONFIG_ARCH_HAS_DMA_MAP_DIRECT
+ #error Architecture DMA bypass is not part of the audited target
+@@ -64,7 +64,7 @@
+ #error Media controller support is required
+ #endif
+ #if DUET_P1_BURST_FRAMES != 30 || DUET_P1_IMAGE_SPANS != 6
+-#error This parent is the finite thirty-frame worker diagnostic
++#error P1 firmware queue geometry does not match the validated ABI
+ #endif
+ #define COMPAT "codex,mt8183-p1-integrated"
+ #define NODE_PATH "/p1-integrated-test"
+@@ -146,6 +146,7 @@
+ 	struct composer_state composer;
+ 	struct duet_p1_graph graph;
+ 	struct mutex control_lock;
++	struct dentry *debug_dir;
+ 	spinlock_t rx_lock;
+ 	struct mtk_scp *scp_api;
+ 	struct rproc *rproc;
+@@ -179,12 +180,7 @@
+ 	int capture_error, input_error;
+ };
+ 
+-static bool release_hold;
+-module_param(release_hold, bool, 0644);
+-MODULE_PARM_DESC(release_hold, "Inject retained-memory stop after hardware OFF, before freeing");
+-static unsigned int fail_step;
+-module_param(fail_step, uint, 0444);
+-MODULE_PARM_DESC(fail_step, "0=hold; 1..3=composer; 4..8=CAM resources; 9..15=graph registration; 16=complete callback");
++static struct dentry *p1_debug_root;
+ static struct device_node *test_node;
+ static DEFINE_MUTEX(stats_lock);
+ static atomic_t irq_calls = ATOMIC_INIT(0);
+@@ -233,8 +229,7 @@
+ 	mutex_unlock(&stats_lock);
+ 	return ret;
+ }
+-static const struct kernel_param_ops stats_ops = { .get = get_stats };
+-module_param_cb(stats, &stats_ops, NULL, 0444);
++
+ 
+ static bool path_is(struct device_node *np, const char *path)
+ {
+@@ -528,8 +523,6 @@
+ 	if (!state->cpu)
+ 		return -ENOMEM;
+ 	COUNT(allocations);
+-	if (fail_step == 2)
+-		return -ECANCELED;
+ 	state->physical = dma_to_phys(scp, state->scp_dma);
+ 	if (!is_vmalloc_addr(state->cpu) || !IS_ALIGNED(state->physical, TEST_SIZE) ||
+ 	    state->physical < pool->base ||
+@@ -546,8 +539,6 @@
+ 		return -ENOMEM;
+ 	state->mapped = true;
+ 	COUNT(maps);
+-	if (fail_step == 3)
+-		return -ECANCELED;
+ 	if (!range32(state->cam_iova, TEST_SIZE) ||
+ 	    !IS_ALIGNED(state->cam_iova, PAGE_SIZE) ||
+ 	    state->cam_iova > domain->geometry.aperture_end ||
+@@ -960,11 +951,6 @@
+ 	}
+ out:
+ 	mutex_unlock(&graph->media.graph_mutex);
+-	/* Exercise nf_register's internal unwind after link creation. */
+-	if (!ret && fail_step == 16) {
+-		dev_info(graph->dev, "P1_INTEGRATED_COMPLETE_INJECTED\n");
+-		return -ECANCELED;
+-	}
+ 	if (!ret) {
+ 		graph->complete = true;
+ 		COUNT(graph_completes);
+@@ -1054,7 +1040,6 @@
+ 	media_device_init(&graph->media);
+ 	graph->media_initialized = true;
+ 	COUNT(media_inits);
+-	if (fail_step == 9) { ret = -ECANCELED; goto fail; }
+ 	graph->media.ops = &graph_media_ops;
+ 	init_completion(&graph->nodes_released);
+ 	graph->v4l2.release = graph_nodes_release;
+@@ -1064,7 +1049,6 @@
+ 		goto fail;
+ 	graph->v4l2_registered = true;
+ 	COUNT(v4l2_regs);
+-	if (fail_step == 10) { ret = -ECANCELED; goto fail; }
+ 	v4l2_subdev_init(&graph->subdev, &graph_subdev_ops);
+ 	graph->subdev.owner = THIS_MODULE;
+ 	graph->subdev.dev = dev;
+@@ -1085,13 +1069,11 @@
+ 	ret = v4l2_subdev_init_finalize(&graph->subdev);
+ 	if (ret) goto fail;
+ 	graph->subdev_finalized = true;
+-	if (fail_step == 11) { ret = -ECANCELED; goto fail; }
+ 	ret = v4l2_device_register_subdev(&graph->v4l2, &graph->subdev);
+ 	if (ret)
+ 		goto fail;
+ 	graph->subdev_registered = true;
+ 	COUNT(subdev_regs);
+-	if (fail_step == 12) { ret = -ECANCELED; goto fail; }
+ 	v4l2_async_nf_init(&graph->notifier, &graph->v4l2);
+ 	graph->notifier_initialized = true;
+ 	COUNT(notifier_inits);
+@@ -1099,17 +1081,14 @@
+ 	ret = graph_add_connection(graph);
+ 	if (ret)
+ 		goto fail;
+-	if (fail_step == 13) { ret = -ECANCELED; goto fail; }
+ 	ret = v4l2_async_nf_register(&graph->notifier);
+ 	if (ret)
+ 		goto fail;
+ 	graph->notifier_registered = true;
+ 	COUNT(notifier_regs);
+-	if (fail_step == 14) { ret = -ECANCELED; goto fail; }
+ 	/* Experiment load order requires the complete fixed sensor path. No
+ 	 * late notifier may publish new nodes after admission starts. */
+ 	if (!graph->complete) { ret = -EPROBE_DEFER; goto fail; }
+-	if (fail_step == 15) { ret = -ECANCELED; goto fail; }
+ 	return 0;
+ fail:
+ 	return ret;
+@@ -1133,13 +1112,11 @@
+ 		goto out;
+ 	}
+ 	COUNT(mmaps);
+-	if (fail_step == 4) { ret = -ECANCELED; goto out; }
+ 	ret = clk_bulk_get(dev, 2, s->clocks);
+ 	if (ret)
+ 		goto out;
+ 	s->clocks_owned = true;
+ 	COUNT(clk_gets);
+-	if (fail_step == 5) { ret = -ECANCELED; goto out; }
+ 	s->irq = platform_get_irq(pdev, 0);
+ 	if (s->irq < 0) { ret = s->irq; goto out; }
+ 	data = irq_get_irq_data(s->irq);
+@@ -1158,7 +1135,6 @@
+ 	s->irq_owned = true;
+ 	COUNT(irq_requests);
+ 	if (!irqd_irq_disabled(data)) { ret = -EINVAL; goto out; }
+-	if (fail_step == 6) { ret = -ECANCELED; goto out; }
+ 	if (dev->power.disable_depth != 1 || atomic_read(&dev->power.usage_count) ||
+ 	    !pm_runtime_status_suspended(dev)) {
+ 		ret = -EINVAL;
+@@ -1170,14 +1146,12 @@
+ 	pm_runtime_enable(dev);
+ 	s->pm_enabled = true;
+ 	COUNT(pm_enables);
+-	if (fail_step == 7) { ret = -ECANCELED; goto out; }
+ 	ret = pm_runtime_resume_and_get(dev);
+ 	if (ret < 0)
+ 		goto out;
+ 	s->pm_ref = true;
+ 	COUNT(pm_gets);
+ 	if (!s->clocks_on) { ret = -EIO; goto out; }
+-	if (fail_step == 8) { ret = -ECANCELED; goto out; }
+ 	return 0;
+ out:
+ 	return ret;
+@@ -1573,21 +1547,9 @@
+ 	if (ret)
+ 		return ret;
+ 	state->stop_verified = true;
+-	if (state->retain_capture || READ_ONCE(release_hold))
+-		return -EAGAIN;
+-	/* All gates are positive, and no controlled operation can restart SCP. */
+-	ret = integrated_release(state);
+-	/* A pre-free rejection retains the session, including composer memory. */
+-	if (state->composer.cpu)
+-		return ret ?: -EBUSY;
+-	/* Release is irreversible even if a PM put reports a cleanup error. */
+-	state->rproc = NULL;
+-	state->stopped = true;
+-	state->stage = 3;
+-	finish_stats(ret, false);
+-	dev_info(state->resources.dev, "P1_STOP_VERIFIED fw_exposed=%u buffers_released=1 cleanup_error=%d\n",
+-		state->fw_exposed, ret);
+-	return ret;
++	/* STREAMOFF stops the hardware. Session retirement and device remove
++	 * own allocation release after joined workers and the same OFF proof. */
++	return 0;
+ }
+ 
+ /* Snapshot shared CQ evidence only; no image data is exported. */
+@@ -1724,8 +1686,7 @@
+  return 0;
+ }
+ 
+-/* Finite worker connection. This still has no userspace cancellation endpoint
+- * or reopen promise. Runtime cancellation faults retain hardware allocations. */
++/* VB2 stream workers. Failed stop retains independent hardware allocations. */
+ static void worker_close(void *context)
+ {
+     struct integrated_state *state=context;
+@@ -1826,7 +1787,8 @@
+     }
+     if(ret)duet_p1_hw_hold(&state->hw,ret);
+     stop_ret=stream_stop(state);state->stop_error=stop_ret;
+-    if(!ret&&(stop_ret!=-EAGAIN||!state->stop_verified))ret=stop_ret?:-EIO;
++    if(!ret)ret=stop_ret;
++    if(!ret&&!state->stop_verified)ret=-EIO;
+     if(!ret)ret=duet_p1_hw_ring_finalize(&state->hw,state->stop_verified);
+     /* stop_verified alone does not describe capture/publication success. */
+     return ret;
+@@ -1943,10 +1905,6 @@
+  mutex_unlock(&s->control_lock);return ret;
+ }
+ 
+-static ssize_t control_store(struct device *dev,struct device_attribute *attr,const char *buf,size_t count)
+-{(void)dev;(void)attr;(void)buf;(void)count;return -EOPNOTSUPP;}
+-static DEVICE_ATTR_WO(control);
+-
+ static ssize_t result_show(struct device *dev, struct device_attribute *attr, char *buf)
+ {
+ 	struct integrated_state *state = dev_get_drvdata(dev);
+@@ -1964,7 +1922,7 @@
+ 	memcpy(bytes0, state->channel[0].bytes, 16);
+ 	memcpy(bytes1, state->channel[1].bytes, 16);
+ 	spin_unlock_irqrestore(&state->rx_lock, flags);
+-	ret = sysfs_emit(buf,
++	ret = scnprintf(buf, PAGE_SIZE,
+ 		"stage=%u stopped=%u fw_exposed=%u cycle_verified=%u cycles=%u stop_verified=%u control_error=%d send_error=%d stop_error=%d transport_failed=%u scp_owned=%u ipi10=%u ipi11=%u commands=%u rx10=%u len10=%u bytes10=%*phN rx11=%u len11=%u bytes11=%*phN allocated=%u mapped=%u pages=%u scp_dma=%pad cam_iova=%pad pm_ref=%u pm_usage=%d clocks_on=%u irq_owned=%u irq_calls=%d\n",
+ 		state->stage, state->stopped, state->fw_exposed, state->cycle_verified,
+ 		state->cycles, state->stop_verified, state->control_error, state->send_error,
+@@ -1977,7 +1935,6 @@
+ 	mutex_unlock(&state->control_lock);
+ 	return ret;
+ }
+-static DEVICE_ATTR_RO(result);
+ static ssize_t stop_snapshot_show(struct device *dev, struct device_attribute *attr, char *buf)
+ {
+ 	struct integrated_state *state = dev_get_drvdata(dev);
+@@ -1985,7 +1942,7 @@
+ 	int ret;
+ 
+ 	mutex_lock(&state->control_lock);
+-	ret = sysfs_emit(buf, "pwr_status=%08x pwr_status_2nd=%08x cam_ctl=%08x infra_mm_sta=%08x infra_sta=%08x smi_sta=%08x infra_mm_en=%08x valid_mask=%x samples=%u elapsed_us=%llu event_seq=%llu arm_seq=%llu off_seq=%llu armed=%u pending_off=%u provider_off=%u notifier_registered=%u read_error=%d passed=%u\n",
++	ret = scnprintf(buf, PAGE_SIZE, "pwr_status=%08x pwr_status_2nd=%08x cam_ctl=%08x infra_mm_sta=%08x infra_sta=%08x smi_sta=%08x infra_mm_en=%08x valid_mask=%x samples=%u elapsed_us=%llu event_seq=%llu arm_seq=%llu off_seq=%llu armed=%u pending_off=%u provider_off=%u notifier_registered=%u read_error=%d passed=%u\n",
+ 		s->pwr_status, s->pwr_status_2nd, s->cam_ctl, s->infra_mm_sta,
+ 		s->infra_sta, s->smi_sta, s->infra_mm_en, s->valid_mask, s->samples,
+ 		(unsigned long long)s->elapsed_us, (unsigned long long)s->event_seq,
+@@ -1995,7 +1952,6 @@
+ 	mutex_unlock(&state->control_lock);
+ 	return ret;
+ }
+-static DEVICE_ATTR_RO(stop_snapshot);
+ static ssize_t hw_result_show(struct device *dev, struct device_attribute *attr, char *buf)
+ {
+ 	struct integrated_state *state = dev_get_drvdata(dev);
+@@ -2004,12 +1960,12 @@
+ 
+ 	mutex_lock(&state->control_lock);
+ 	duet_p1_hw_observe(&state->hw, &h);
+-	ret = sysfs_emit(buf, "allocated=%u published=%u frame_pending=%u frame_acked=%u output_iova=%pad image_bytes=%u allocation_bytes=%u error=%d send_error=%d submitted=%u ack_count=%u ack_channel=%u ack_sequence=%u",
++	ret = scnprintf(buf, PAGE_SIZE, "allocated=%u published=%u frame_pending=%u frame_acked=%u output_iova=%pad image_bytes=%u allocation_bytes=%u error=%d send_error=%d submitted=%u ack_count=%u ack_channel=%u ack_sequence=%u",
+ 		h.allocated, h.published, h.frame_pending, h.frame_acked, &h.output_iova,
+ 		h.image_bytes, h.allocation_bytes, h.error, h.send_error, h.submitted_sequence,
+ 		h.ack_count, h.ack_channel, h.ack_sequence);
+ 	/* Keep the snapshot plus ARM64 variadic arguments below the stack budget. */
+-	ret += sysfs_emit_at(buf, ret, " irq_enabled=%d irq_count=%u irq_status=%08x irq_status2=%08x irq_sequence=%u cq_writes=%u cq_arms_accepted=%u done_count=%u registers_valid=%u cq_start=%08x cq_base=%08x frame_sequence=%u descriptor=%08x cq_source=%08x shared_sequence=%u cq_shared_base=%08x pre_frame_sequence=%u\n",
++	ret += scnprintf(buf + ret, PAGE_SIZE - ret, " irq_enabled=%d irq_count=%u irq_status=%08x irq_status2=%08x irq_sequence=%u cq_writes=%u cq_arms_accepted=%u done_count=%u registers_valid=%u cq_start=%08x cq_base=%08x frame_sequence=%u descriptor=%08x cq_source=%08x shared_sequence=%u cq_shared_base=%08x pre_frame_sequence=%u\n",
+ 		atomic_read(&state->irq_enabled),
+ 		h.irq_count, h.irq_status, h.irq_status2, h.irq_sequence, h.cq_writes, h.cq_arms_accepted, h.done_count,
+ 		h.registers_valid, h.cq_start, h.cq_base, h.frame_sequence,
+@@ -2018,7 +1974,6 @@
+ 	mutex_unlock(&state->control_lock);
+ 	return ret;
+ }
+-static DEVICE_ATTR_RO(hw_result);
+ 
+ static ssize_t capture_result_show(struct device *dev, struct device_attribute *attr, char *buf)
+ {
+@@ -2027,67 +1982,81 @@
+     ssize_t len;
+     mutex_lock(&s->control_lock);
+     duet_p1_hw_observe(&s->hw,&h);
+-    len=sysfs_emit(buf,"schema=3 frame_limit=0 spans=6 prepared=%u capture_ok=%u capture_error=%d input_error=%d inputs_idle=%u retain_capture=%u\n",
++    len=scnprintf(buf, PAGE_SIZE,"schema=3 frame_limit=0 spans=6 prepared=%u capture_ok=%u capture_error=%d input_error=%d inputs_idle=%u retain_capture=%u\n",
+         s->graph.prepared,s->capture_ok,s->capture_error,s->input_error,s->inputs_idle,s->retain_capture);
+-    len+=sysfs_emit_at(buf,len,"epoch=%llu sof_count=%u done_count=%u done_sequence=%u archived=%u finalized=%u pending=%u refs=%u raw_bytes=%u copy_allocations=%u copy_frees=%u\n",
++    len+=scnprintf(buf + len, PAGE_SIZE - len,"epoch=%llu sof_count=%u done_count=%u done_sequence=%u archived=%u finalized=%u pending=%u refs=%u raw_bytes=%u copy_allocations=%u copy_frees=%u\n",
+         (unsigned long long)h.epoch,h.sof_count,h.done_count,h.done_sequence,h.archived_frames,h.ring_finalized,
+         h.ring_pending_sequence,h.ring_cpu_refs,h.logical_raw_bytes,h.copy_allocations,h.copy_frees);
+     mutex_unlock(&s->control_lock);return len;
+ }
+-static DEVICE_ATTR_RO(capture_result);
+ static ssize_t session_result_show(struct device *dev,struct device_attribute *attr,char *buf)
+ {
+     struct integrated_state *s=dev_get_drvdata(dev);ssize_t n;
+     mutex_lock(&s->control_lock);
+-    n=sysfs_emit(buf,"schema=1 epoch=%llu retired_epoch=%llu rearms=%u retired_sessions=%u retired_cpu_allocations=%u retired_cpu_frees=%u rearm_error=%d graph_registered=%u session_irq_calls=%d\n",
++    n=scnprintf(buf, PAGE_SIZE,"schema=1 epoch=%llu retired_epoch=%llu rearms=%u retired_sessions=%u retired_cpu_allocations=%u retired_cpu_frees=%u rearm_error=%d graph_registered=%u session_irq_calls=%d\n",
+       (unsigned long long)s->session_epoch,(unsigned long long)s->retired_epoch,s->rearms,
+       s->retired_sessions,s->retired_cpu_allocations,s->retired_cpu_frees,s->rearm_error,s->graph.media_registered,atomic_read(&s->session_irq_calls));
+     mutex_unlock(&s->control_lock);return n;
+ }
+-static DEVICE_ATTR_RO(session_result);
+-
+-static ssize_t frame_log_read(struct file *file,struct kobject *kobj,
+-                             const struct bin_attribute *attr,char *buf,loff_t off,size_t count)
+-{
+-    struct integrated_state *s=dev_get_drvdata(kobj_to_dev(kobj));ssize_t ret;
+-    mutex_lock(&s->control_lock);
+-    ret=s->hw.initialized?duet_p1_hw_frame_log(&s->hw,buf,off,count):-ENODATA;
+-    mutex_unlock(&s->control_lock);return ret;
+-}
+-static const struct bin_attribute bin_attr_frame_log={
+-    .attr={.name="frame_log",.mode=0400},.size=sizeof(struct duet_p1_frame_log)*DUET_P1_BURST_FRAMES,.read=frame_log_read,
++
++/* Diagnostics are optional, root-only snapshots. They neither start a
++ * stream nor expose image data, and are not an application ABI. The short
++ * debugfs proxy pins each read until removal has drained it; no seq_file
++ * state or open descriptor retains a pointer after driver teardown. */
++struct p1_diagnostic {
++	const char *name;
++	ssize_t (*show)(struct device *, struct device_attribute *, char *);
+ };
+ 
+-static ssize_t raw_read(struct file *file, struct kobject *kobj,
+-			const struct bin_attribute *attr, char *buf,
+-			loff_t off, size_t count)
+-{
+-	struct integrated_state *s = dev_get_drvdata(kobj_to_dev(kobj));
+-	ssize_t ret = -EPERM;
+-
+-	mutex_lock(&s->control_lock);
+-	if (s->capture_ok && s->stop_verified && s->stopping && !s->stopped &&
+-	    s->inputs_idle && !s->sensor_on && !s->seninf_on && !s->input_error &&
+-	    !s->scp_owned && !s->ipi_registered[0] && !s->ipi_registered[1] &&
+-	    !atomic_read(&s->irq_enabled) && !s->resources.pm_ref &&
+-	    !s->resources.clocks_on && s->retain_capture)
+-		ret = duet_p1_hw_read_output(&s->hw, buf, off, count, s->stop_verified);
+-	mutex_unlock(&s->control_lock);
+-	return ret;
+-}
+-static const struct bin_attribute bin_attr_raw = {
+-	.attr = { .name = "raw", .mode = 0400 }, .size = DUET_P1_BURST_FRAMES * 2496960U, .read = raw_read,
++static ssize_t stats_show(struct device *dev, struct device_attribute *attr,
++			  char *buf)
++{
++	return get_stats(buf, NULL);
++}
++
++static const struct p1_diagnostic p1_diagnostics[] = {
++	{ "result", result_show },
++	{ "stop_snapshot", stop_snapshot_show },
++	{ "hw_result", hw_result_show },
++	{ "capture_result", capture_result_show },
++	{ "session_result", session_result_show },
++	{ "stats", stats_show },
+ };
+-static const struct bin_attribute *integrated_bin_attrs[] = { &bin_attr_raw, &bin_attr_frame_log, NULL };
+-static struct attribute *integrated_attrs[] = {
+-	&dev_attr_result.attr, &dev_attr_control.attr, &dev_attr_stop_snapshot.attr,
+-	&dev_attr_hw_result.attr, &dev_attr_capture_result.attr, &dev_attr_session_result.attr, NULL
++
++static ssize_t p1_debug_read(struct file *file, char __user *user,
++			     size_t count, loff_t *position)
++{
++	const struct p1_diagnostic *diagnostic = debugfs_get_aux(file);
++	char *buf;
++	ssize_t len, ret;
++
++	buf = kmalloc(PAGE_SIZE, GFP_KERNEL);
++	if (!buf)
++		return -ENOMEM;
++	len = diagnostic->show(file->private_data, NULL, buf);
++	ret = len < 0 ? len : simple_read_from_buffer(user, count, position, buf, len);
++	kfree(buf);
++	return ret;
++}
++
++static const struct debugfs_short_fops p1_debug_fops = {
++	.read = p1_debug_read,
++	.llseek = default_llseek,
+ };
+-static const struct attribute_group integrated_group = {
+-	.attrs = integrated_attrs, .bin_attrs = integrated_bin_attrs,
+-};
+-static const struct attribute_group *integrated_groups[] = { &integrated_group, NULL };
+-
++
++static void p1_debug_init(struct integrated_state *state)
++{
++	unsigned int i;
++
++	if (IS_ERR_OR_NULL(p1_debug_root))
++		return;
++	state->debug_dir = debugfs_create_dir(dev_name(state->resources.dev), p1_debug_root);
++	if (IS_ERR_OR_NULL(state->debug_dir))
++		return;
++	for (i = 0; i < ARRAY_SIZE(p1_diagnostics); i++)
++		debugfs_create_file_aux(p1_diagnostics[i].name, 0400, state->debug_dir,
++			state->resources.dev, &p1_diagnostics[i], &p1_debug_fops);
++}
+ 
+ static int integrated_probe(struct platform_device *pdev)
+ {
+@@ -2171,10 +2140,6 @@
+ 	 * orders our remove before SCP pool release. Never use device_link_del.
+ 	 * The supplier lock is held only for this finite, no-IPI probe.
+ 	 */
+-	if (fail_step == 1) {
+-		ret = -ECANCELED;
+-		goto fail;
+-	}
+ 	ret = composer_acquire(&state->composer, pool);
+ 	if (ret)
+ 		goto fail;
+@@ -2238,6 +2203,7 @@
+ 	/* Last fallible publication completed; media/video/subdev graph ready. */
+ 	smp_store_release(&state->video.registered,true);
+ 	finish_stats(0, true);
++	p1_debug_init(state);
+ 	dev_info(dev, "P1_STREAM_HELD bytes=%lu pages=%u irq=%d no_fw=1 no_stream=1\n",
+ 		(unsigned long)TEST_SIZE, state->composer.mapped_pages, state->resources.irq);
+ 	return 0;
+@@ -2269,6 +2235,9 @@
+  struct integrated_state *state=platform_get_drvdata(pdev);
+  int ret;
+  if(!state)return;
++ /* Drain diagnostic readers before taking their control mutex or freeing state. */
++ debugfs_remove(state->debug_dir);
++ state->debug_dir=NULL;
+  if(state->system_notifier_registered){
+   unregister_pm_notifier(&state->system_notifier);
+   state->system_notifier_registered=false;
+@@ -2307,26 +2276,28 @@
+ 		.suppress_bind_attrs = true,
+ 		.of_match_table = integrated_match,
+ 		.pm = &resources_pm_ops,
+-		.dev_groups = integrated_groups,
+ 	},
+ };
+ static int __init integrated_init(void)
+ {
+ 	int ret;
+ 
+-	if (fail_step > 16)
+-		return -EINVAL;
+ 	ret = validate_tree();
+ 	if (ret)
+ 		return ret;
++	p1_debug_root = debugfs_create_dir("duet_p1", NULL);
+ 	ret = platform_driver_register(&integrated_driver);
+-	if (ret) { of_node_put(test_node); test_node = NULL; }
++	if (ret) {
++		debugfs_remove(p1_debug_root);
++		of_node_put(test_node); test_node = NULL;
++	}
+ 	return ret;
+ }
+ module_init(integrated_init);
+ static void __exit integrated_exit(void)
+ {
+  platform_driver_unregister(&integrated_driver);
++ debugfs_remove(p1_debug_root);
+  of_node_put(test_node);
+  test_node=NULL;
+ }

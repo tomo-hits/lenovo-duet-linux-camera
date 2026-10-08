@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-06",
+  "problem": "The first actual USB camera start returned EPERM before any firmware command or frame. The SCP was offline, but automatic recovery remained enabled; rproc_is requires recovery_disabled, as in the accepted RAM environment.",
+  "fix": "After the one owned cold-boot shutdown and client checks, set the standard SCP recovery sysfs control to disabled and verify both its readback and continued offline state before marking initialization PASS.",
+  "source": "packaging/postmarketos/external-scp-init.py",
+  "source_sha256": "876d64872a854017e29a6cc91e5afea289f3db0823b413ddf12bb2c5ddf54362",
+  "changed_runtime_file": "usr/libexec/duet-camera-external-scp-init",
+  "camera_APKs_changed": false,
+  "kernel_modules_changed": false,
+  "tests": {
+    "actual_main_fixtures": 11,
+    "normal": "PASS",
+    "optimized": "PASS",
+    "additional_cases": [
+      "already disabled is not rewritten",
+      "missing recovery control refuses activation",
+      "failed readback refuses activation"
+    ]
+  },
+  "hardware": {
+    "prior_start": "FAIL_EPERM_RECOVERY_ENABLED_ZERO_FRAMES",
+    "normal_app_quit": "PASS",
+    "USB_rootfs_helper_stage": "PASS",
+    "reboot": "PASS",
+    "corrected_cold_boot": "PASS",
+    "capture": "PASS_FRONT_REAR_AND_NEW_PROCESS_REUSE"
+  },
+  "references": [
+    "P1_USB_FIX.json",
+    "UPDATE_VALIDATION.json"
+  ],
+  "acceptance": "USB_ACCEPTANCE.json"
+}

@@ -1,0 +1,204 @@
+{
+  "date": "2026-10-06",
+  "status": "PASS_SCOPED_INTERNAL_CAMERA_AND_RESTORATION",
+  "scope": "Historical modules 0.2.6 internal-eMMC experiment on the original Duet SKU176: short ordinary-app camera checks and restoration of recorded targets; not whole-filesystem equality or general hardware certification",
+  "environment": {
+    "board": "Lenovo IdeaPad Duet Chromebook, original SKU176",
+    "os": "postmarketOS v26.06 / Alpine v3.24",
+    "kernel": "6.18.28-mt81",
+    "architecture": "aarch64",
+    "kcfi": true,
+    "storage_mode": "explicit internal-emmc"
+  },
+  "public_source_records": {
+    "build": "INTERNAL_P1_BUILD.json",
+    "signed_packages": "INTERNAL_PACKAGES.json",
+    "package_changes": "INTERNAL_PACKAGE_FIXES.json",
+    "preserved_usb_inputs": "PRE_INTERNAL_FIX_PACKAGES.json",
+    "modifications": "MODIFICATIONS.json",
+    "official_supplement": "OFFICIAL_ZSTD.json",
+    "procedure": "INTERNAL_EMMC.md"
+  },
+  "build": {
+    "status": "PASS_NATIVE_ARM64_BUILD_AND_SIGNING",
+    "p1_module_sha256": "568eb7d66faac62eebd180a696979e68bb6e834d43f2be85e3c4e1be07bcd651",
+    "p1_continuous_source_sha256": "9ac6278afc8c1bbd91ba719acdbb4b6afb7ecd8db4ffa3672ecb2e5499d27263",
+    "build_record_hardware_tested_remains_false": true,
+    "interpretation": "The build-only record is preserved unchanged. This separate record describes later hardware observations; compilation does not itself prove recognition, capture or image quality."
+  },
+  "installation": {
+    "status": "PASS",
+    "entrypoint": "install.sh --internal-emmc",
+    "selected_packages": {
+      "duet-camera": "0.2.10-r1",
+      "duet-camera-modules": "0.2.6-r0",
+      "duet-camera-config": "0.1.3-r1",
+      "libcamera": "0.7.2-r102",
+      "libcamera-ipa": "0.7.2-r102",
+      "libcamera-tools": "0.7.2-r102",
+      "pipewire-libs": "1.6.8-r104",
+      "gst-plugin-pipewire": "1.6.8-r104"
+    },
+    "official_zstd_added": "1.5.7-r2",
+    "original_package_count": 1104,
+    "installed_package_count": 1104,
+    "installed_payload_files_verified": 206,
+    "runtime_files_verified": 13,
+    "payload_files_overridden_by_runtime": 0,
+    "original_apk_backups_verified": 9,
+    "boot_preparation_scope": "At this revision camera DT and isolation were prepared and restored in a separate boot procedure; the package updater handled packages and runtime settings only."
+  },
+  "sensor_recognition": {
+    "status": "PASS_FRONT_AND_REAR_CAMERA_ROUTES",
+    "recognized_camera_positions": [
+      "front",
+      "rear"
+    ],
+    "evidence": "The accepted ordinary-app run selected each prepared camera route and acquired a JPEG from each. This is runtime recognition evidence, separate from the build result."
+  },
+  "image_acquisition": {
+    "status": "PASS",
+    "application": "Snapshot",
+    "saved_jpeg_count": 3,
+    "saved_jpeg_dimensions": {
+      "width": 1536,
+      "height": 864,
+      "count": 3
+    },
+    "sequence": [
+      "front JPEG in first process",
+      "ordinary switch to rear and rear JPEG",
+      "normal quit, new process, rear JPEG"
+    ],
+    "ordinary_camera_switch": "PASS",
+    "normal_quit": "PASS",
+    "new_process_reopen_and_capture": "PASS",
+    "media_processes_unchanged_during_run": true,
+    "pixel_data_in_public_record": false,
+    "dimension_check_scope": "JPEG header metadata only; dimensions are saved-image dimensions, not a measured frame rate or proof of native sensor resolution."
+  },
+  "stop_safety": {
+    "status": "PASS",
+    "normal_quit_stop_observations": 2,
+    "all_observed_final_stops": {
+      "capture_ok": 1,
+      "capture_error": 0,
+      "input_error": 0,
+      "inputs_idle": 1,
+      "finalized": 1,
+      "pending": 0,
+      "refs": 0
+    },
+    "scp_after_each_normal_quit": "offline"
+  },
+  "human_image_quality": {
+    "status": "NO_MAJOR_ABNORMALITY_IN_LIMITED_VISUAL_CHECK",
+    "evidence": "A limited visual check of saved camera output found no major abnormality.",
+    "scope": "Limited visual observation; no quantitative image-quality assessment, full autofocus calibration or long-term guarantee."
+  },
+  "package_restoration": {
+    "status": "PASS",
+    "entrypoint": "restore.sh --internal-emmc",
+    "restored_package_count": 1104,
+    "all_saved_updater_configs_match": true,
+    "world_restored_exact": true,
+    "supplemental_zstd_returned_to_original_absence": true,
+    "prepared_boot_assets_preserved_until_separate_restore": true
+  },
+  "final_restoration": {
+    "status": "PASS_SCOPED_RECORDED_TARGETS",
+    "final_checker_status": "PASS",
+    "new_boot_after_restoration_verified": true,
+    "package_transaction_status": "RESTORED",
+    "boot_transaction_status": "RESTORED",
+    "complete_original_package_map_exact": true,
+    "original_package_count": 1104,
+    "world_bytes_and_recorded_metadata_exact": true,
+    "baseline_target_counts": {
+      "live_dt_semantics": 1,
+      "persistent": 168,
+      "runtime_observation": 1,
+      "stable_boot_identity": 11,
+      "volatile_observation": 4
+    },
+    "all_recorded_persistent_files_bytes_and_metadata_exact": true,
+    "stable_boot_identity_targets_exact": true,
+    "supplemental_target_counts": {
+      "persistent_configs": 2,
+      "apk_database_files": 4,
+      "original_cache_files": 10
+    },
+    "apk_database_bytes_and_recorded_metadata_exact": true,
+    "original_raw_boot_partition": {
+      "bytes": 33554432,
+      "full_readback_matches_original": true
+    },
+    "original_boot_files_exact": 3,
+    "initial_isolation_configs_returned_to_original_absence": 2,
+    "other_updater_config_targets_verified": 15,
+    "newly_staged_apk_cache_entries_absent": 9,
+    "extra_files_in_monitored_paths": 0,
+    "camera_modules_loaded": 0,
+    "camera_services_returned_to_original_not_found_inactive_dead": true,
+    "original_root_and_boot_mount_identity_and_options_match": true,
+    "normal_desktop_login_after_final_restore": "PASS_GUI_LOGIN_CHECK",
+    "live_dt_review": {
+      "status": "PASS_WITH_NARROW_BOOT_TIMER_EXCEPTION",
+      "byte_exact": false,
+      "strict_semantic_match_with_reviewed_exception": true,
+      "initial_checker_rejected_difference": true,
+      "differing_property": "/firmware/chromeos:vboot-shared-data",
+      "identified_structure": "VbSharedDataHeader version 2",
+      "required_magic": "0x44536256",
+      "required_struct_size_bytes": 1096,
+      "required_property_size_bytes": 3072,
+      "allowed_fields": [
+        {
+          "name": "timer_vb_select_and_load_kernel_enter",
+          "byte_offset": 120,
+          "bytes": 8
+        },
+        {
+          "name": "timer_vb_select_and_load_kernel_exit",
+          "byte_offset": 128,
+          "bytes": 8
+        }
+      ],
+      "all_other_property_bytes_exact": 3056,
+      "all_other_dt_nodes_and_properties_exact": true,
+      "reservation_map_same": true,
+      "boot_cpu_same": true,
+      "layout_verification": "A compiled C offsetof/sizeof check against the fixed public header confirms the two offsets, uint64 field sizes and 1096-byte structure.",
+      "public_source_urls": {
+        "structure_definition": "https://chromium.googlesource.com/chromiumos/platform/vboot/+/2d30a2f5b1c81eb61de4bf82180a910d45f22e81/_vboot_reference/firmware/include/vboot_struct.h#482",
+        "timer_assignments": "https://chromium.googlesource.com/chromiumos/platform/vboot/+/2d30a2f5b1c81eb61de4bf82180a910d45f22e81/_vboot_reference/firmware/lib/vboot_api_kernel.c#1086",
+        "timer_api_contract": "https://chromium.googlesource.com/chromiumos/platform/vboot/+/2d30a2f5b1c81eb61de4bf82180a910d45f22e81/_vboot_reference/firmware/include/vboot_api.h#437"
+      },
+      "disposition": "The sole live-DT difference is confined to the two kernel-selection benchmark timer fields. Both property headers and all other 3056 bytes match. The original strict rejection was preserved, and a separately reviewed checker with only this narrow additional exception passed on the restored device.",
+      "limits": "The public ABI identifies these fields; it does not establish the exact installed firmware source commit, timer units, or the cause of the timing difference. Raw DT byte equality remains false."
+    },
+    "final_checker_revision": 2,
+    "strict_failures": [],
+    "original_desktop_process_kinds_present": true,
+    "user_session_runtime_observation": {
+      "phosh_pipewire_wireplumber_processes_present": "PASS",
+      "pipewire_and_wireplumber_services": "ACTIVE_AFTER_EXPLICIT_MANUAL_START",
+      "automatic_user_service_startup": "NOT_VERIFIED",
+      "audio_devices_and_audible_playback": "NOT_VERIFIED",
+      "interpretation": "Process presence matches the original observation. PipeWire and WirePlumber were explicitly started during the final check; this does not establish autostart or audio functionality."
+    }
+  },
+  "limitations": [
+    "This is a short camera run, not endurance or long-term stability validation.",
+    "Measured frame rate, full autofocus calibration, quantitative image quality, audible audio and suspend/resume are not established by this record.",
+    "Original depmod output was not captured; its original byte equality cannot be proved.",
+    "Whole-filesystem equality is not assessed. Unrecorded package payloads, home files, logs, caches, timestamps, ACLs and xattrs are outside the exact restoration claim.",
+    "Block I/O counters, module-list bytes and SCP runtime state may vary across boots.",
+    "PipeWire and WirePlumber were manually started for the final runtime observation; automatic user-service startup, audio device availability and audible audio remain unverified."
+  ],
+  "privacy": {
+    "device_identifiers_and_connection_details_included": false,
+    "usernames_photo_paths_photo_hashes_and_images_included": false,
+    "public_hash_scope": "Only distributable source and P1 module hashes are included; no device-baseline or photograph hashes."
+  }
+}

@@ -1,0 +1,31 @@
+--- modules/ov8856-standard-highres-still/ov8856.c	2026-10-04 18:16:16
++++ modules/ov8856-standard-balanced-fps/ov8856.c	2026-10-05 02:25:50
+@@ -1262,10 +1262,10 @@
+ 		{0x3809, 0x60},
+ 		{0x380a, 0x04},
+ 		{0x380b, 0xc8},
+-		{0x380c, 0x0f},
+-		{0x380d, 0x18},
+-		{0x380e, 0x09},
+-		{0x380f, 0xb2},
++		{0x380c, 0x0e},
++		{0x380d, 0xec},
++		{0x380e, 0x04},
++		{0x380f, 0xe8},
+ 		{0x3810, 0x00},
+ 		{0x3811, 0x02},
+ 		{0x3812, 0x00},
+@@ -1575,9 +1575,10 @@
+ 		{
+ 			.width = 1632,
+ 			.height = 1224,
+-			.hts = 3864,
+-			.vts_def = 2482,
+-			.vts_min = 2482,
++			.hts = 3820,
++			/* Long readout for capture service; standard 15/30fps range. */
++			.vts_def = 2512,
++			.vts_min = 1256,
+ 			.reg_list = {
+ 				.num_of_regs =
+ 				 ARRAY_SIZE(lane_4_mode_1632x1224),

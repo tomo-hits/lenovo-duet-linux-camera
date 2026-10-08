@@ -1,0 +1,498 @@
+{
+  "schema": 1,
+  "compatible": "google,krane-sku176",
+  "nodes": {
+    "/camera@1a006000": {
+      "mediatek,scp": {
+        "cells": [
+          {
+            "node": "/soc/scp@10500000"
+          }
+        ]
+      },
+      "iommus": {
+        "cells": [
+          {
+            "node": "/soc/iommu@10205000"
+          },
+          192
+        ]
+      },
+      "power-domains": {
+        "cells": [
+          {
+            "node": "/soc/syscon@10006000/power-controller"
+          },
+          8
+        ]
+      },
+      "clock-names": {
+        "hex": "63616d0063616d746700"
+      },
+      "clocks": {
+        "cells": [
+          {
+            "node": "/soc/syscon@1a000000"
+          },
+          2,
+          {
+            "node": "/soc/syscon@1a000000"
+          },
+          3
+        ]
+      },
+      "interrupts": {
+        "hex": "00000000000000ff00000008"
+      },
+      "interrupt-parent": {
+        "cells": [
+          {
+            "node": "/soc/interrupt-controller@c530a80"
+          }
+        ]
+      },
+      "reg": {
+        "hex": "000000001a0060000000000000002000"
+      },
+      "status": {
+        "hex": "6f6b617900"
+      },
+      "compatible": {
+        "hex": "6d6564696174656b2c6d74383138332d70312d72617700"
+      }
+    },
+    "/camera@1a006000/ports": {
+      "#size-cells": {
+        "hex": "00000000"
+      },
+      "#address-cells": {
+        "hex": "00000001"
+      }
+    },
+    "/camera@1a006000/ports/port@0": {
+      "reg": {
+        "hex": "00000000"
+      }
+    },
+    "/camera@1a006000/ports/port@0/endpoint": {
+      "phandle": {
+        "self": true
+      },
+      "remote-endpoint": {
+        "cells": [
+          {
+            "node": "/soc/seninf@1a040000/ports/port@4/endpoint"
+          }
+        ]
+      }
+    },
+    "/soc/i2c@11008000/camera-sensor@3d": {
+      "orientation": {
+        "hex": "00000000"
+      },
+      "rotation": {
+        "hex": "000000b4"
+      },
+      "dovdd-supply": {
+        "cells": [
+          {
+            "node": "/soc/pwrap@1000d000/pmic/regulators/ldo_vcamio"
+          }
+        ]
+      },
+      "dvdd-supply": {
+        "cells": [
+          {
+            "node": "/soc/pwrap@1000d000/pmic/regulators/ldo_vcn18"
+          }
+        ]
+      },
+      "avdd-supply": {
+        "cells": [
+          {
+            "node": "/soc/pwrap@1000d000/pmic/regulators/ldo_vcama1"
+          }
+        ]
+      },
+      "pinctrl-0": {
+        "cells": [
+          {
+            "node": "/soc/pinctrl@10005000/ov02a10-probe-pins"
+          }
+        ]
+      },
+      "pinctrl-names": {
+        "hex": "64656661756c7400"
+      },
+      "reset-gpios": {
+        "cells": [
+          {
+            "node": "/soc/pinctrl@10005000"
+          },
+          109,
+          1
+        ]
+      },
+      "powerdown-gpios": {
+        "cells": [
+          {
+            "node": "/soc/pinctrl@10005000"
+          },
+          107,
+          0
+        ]
+      },
+      "assigned-clock-parents": {
+        "cells": [
+          {
+            "node": "/soc/syscon@10000000"
+          },
+          100
+        ]
+      },
+      "assigned-clocks": {
+        "cells": [
+          {
+            "node": "/soc/syscon@10000000"
+          },
+          29
+        ]
+      },
+      "clock-names": {
+        "hex": "65636c6b00"
+      },
+      "clocks": {
+        "cells": [
+          {
+            "node": "/soc/syscon@10000000"
+          },
+          29
+        ]
+      },
+      "reg": {
+        "hex": "0000003d"
+      },
+      "compatible": {
+        "hex": "6f7674692c6f76303261313000"
+      }
+    },
+    "/soc/i2c@11008000/camera-sensor@3d/port": {},
+    "/soc/i2c@11008000/camera-sensor@3d/port/endpoint": {
+      "phandle": {
+        "self": true
+      },
+      "remote-endpoint": {
+        "cells": [
+          {
+            "node": "/soc/seninf@1a040000/ports/port@1/endpoint"
+          }
+        ]
+      },
+      "ovti,mipi-clock-voltage": {
+        "hex": "00000003"
+      },
+      "link-frequencies": {
+        "hex": "00000000173eed80"
+      },
+      "data-lanes": {
+        "hex": "00000001"
+      }
+    },
+    "/soc/i2c@11009000/camera-main-af@c": {
+      "vdd-supply": {
+        "cells": [
+          {
+            "node": "/soc/pwrap@1000d000/pmic/regulators/ldo_vcama2"
+          }
+        ]
+      },
+      "vin-supply": {
+        "cells": [
+          {
+            "node": "/soc/pwrap@1000d000/pmic/regulators/ldo_vcamio"
+          }
+        ]
+      },
+      "phandle": {
+        "self": true
+      },
+      "reg": {
+        "hex": "0000000c"
+      },
+      "compatible": {
+        "hex": "646f6e67776f6f6e2c64773937363800"
+      }
+    },
+    "/soc/i2c@11009000/camera-sensor@10": {
+      "lens-focus": {
+        "cells": [
+          {
+            "node": "/soc/i2c@11009000/camera-main-af@c"
+          }
+        ]
+      },
+      "orientation": {
+        "hex": "00000001"
+      },
+      "dovdd-supply": {
+        "cells": [
+          {
+            "node": "/soc/pwrap@1000d000/pmic/regulators/ldo_vcamio"
+          }
+        ]
+      },
+      "dvdd-supply": {
+        "cells": [
+          {
+            "node": "/soc/pwrap@1000d000/pmic/regulators/ldo_vcamd"
+          }
+        ]
+      },
+      "avdd-supply": {
+        "cells": [
+          {
+            "node": "/soc/pwrap@1000d000/pmic/regulators/ldo_vcama2"
+          }
+        ]
+      },
+      "pinctrl-0": {
+        "cells": [
+          {
+            "node": "/soc/pinctrl@10005000/ov8856-probe-pins"
+          }
+        ]
+      },
+      "pinctrl-names": {
+        "hex": "64656661756c7400"
+      },
+      "reset-gpios": {
+        "cells": [
+          {
+            "node": "/soc/pinctrl@10005000"
+          },
+          111,
+          1
+        ]
+      },
+      "assigned-clock-parents": {
+        "cells": [
+          {
+            "node": "/soc/syscon@10000000"
+          },
+          100
+        ]
+      },
+      "assigned-clocks": {
+        "cells": [
+          {
+            "node": "/soc/syscon@10000000"
+          },
+          4
+        ]
+      },
+      "clock-names": {
+        "hex": "7876636c6b00"
+      },
+      "clocks": {
+        "cells": [
+          {
+            "node": "/soc/syscon@10000000"
+          },
+          4
+        ]
+      },
+      "status": {
+        "hex": "6f6b617900"
+      },
+      "reg": {
+        "hex": "00000010"
+      },
+      "compatible": {
+        "hex": "6f7674692c6f763838353600"
+      }
+    },
+    "/soc/i2c@11009000/camera-sensor@10/port": {},
+    "/soc/i2c@11009000/camera-sensor@10/port/endpoint": {
+      "remote-endpoint": {
+        "cells": [
+          {
+            "node": "/soc/seninf@1a040000/ports/port@0/endpoint"
+          }
+        ]
+      },
+      "phandle": {
+        "self": true
+      },
+      "link-frequencies": {
+        "hex": "0000000015752a00000000000aba9500"
+      },
+      "data-lanes": {
+        "hex": "00000001000000020000000300000004"
+      },
+      "clock-noncontinuous": {
+        "hex": ""
+      },
+      "clock-lanes": {
+        "hex": "00000000"
+      },
+      "bus-type": {
+        "hex": "00000004"
+      }
+    },
+    "/soc/pinctrl@10005000/ov02a10-probe-pins": {
+      "phandle": {
+        "self": true
+      }
+    },
+    "/soc/pinctrl@10005000/ov02a10-probe-pins/pins-clock": {
+      "pinmux": {
+        "hex": "00006401"
+      }
+    },
+    "/soc/pinctrl@10005000/ov02a10-probe-pins/pins-powerdown": {
+      "output-high": {
+        "hex": ""
+      },
+      "pinmux": {
+        "hex": "00006b00"
+      }
+    },
+    "/soc/pinctrl@10005000/ov02a10-probe-pins/pins-reset": {
+      "output-low": {
+        "hex": ""
+      },
+      "pinmux": {
+        "hex": "00006d00"
+      }
+    },
+    "/soc/pinctrl@10005000/ov8856-probe-pins": {
+      "phandle": {
+        "self": true
+      }
+    },
+    "/soc/pinctrl@10005000/ov8856-probe-pins/pins-clock": {
+      "pinmux": {
+        "hex": "00006301"
+      }
+    },
+    "/soc/pinctrl@10005000/ov8856-probe-pins/pins-reset": {
+      "output-low": {
+        "hex": ""
+      },
+      "pinmux": {
+        "hex": "00006f00"
+      }
+    },
+    "/soc/seninf@1a040000": {
+      "status": {
+        "hex": "6f6b617900"
+      },
+      "power-domains": {
+        "cells": [
+          {
+            "node": "/soc/syscon@10006000/power-controller"
+          },
+          8
+        ]
+      },
+      "clock-names": {
+        "hex": "434c4b5f43414d5f53454e494e4600434c4b5f544f505f4d55585f53454e494e4600"
+      },
+      "clocks": {
+        "cells": [
+          {
+            "node": "/soc/syscon@1a000000"
+          },
+          4,
+          {
+            "node": "/soc/syscon@10000000"
+          },
+          27
+        ]
+      },
+      "reg-names": {
+        "hex": "626173655f7265670072785f72656700"
+      },
+      "reg": {
+        "hex": "000000001a04000000000000000080000000000011c800000000000000006000"
+      },
+      "compatible": {
+        "hex": "6d6564696174656b2c6d74383138332d73656e696e6600"
+      }
+    },
+    "/soc/seninf@1a040000/ports": {
+      "#size-cells": {
+        "hex": "00000000"
+      },
+      "#address-cells": {
+        "hex": "00000001"
+      }
+    },
+    "/soc/seninf@1a040000/ports/port@0": {
+      "reg": {
+        "hex": "00000000"
+      }
+    },
+    "/soc/seninf@1a040000/ports/port@0/endpoint": {
+      "clock-noncontinuous": {
+        "hex": ""
+      },
+      "data-lanes": {
+        "hex": "00000001000000020000000300000004"
+      },
+      "clock-lanes": {
+        "hex": "00000000"
+      },
+      "bus-type": {
+        "hex": "00000004"
+      },
+      "remote-endpoint": {
+        "cells": [
+          {
+            "node": "/soc/i2c@11009000/camera-sensor@10/port/endpoint"
+          }
+        ]
+      },
+      "phandle": {
+        "self": true
+      }
+    },
+    "/soc/seninf@1a040000/ports/port@1": {
+      "reg": {
+        "hex": "00000001"
+      }
+    },
+    "/soc/seninf@1a040000/ports/port@1/endpoint": {
+      "phandle": {
+        "self": true
+      },
+      "remote-endpoint": {
+        "cells": [
+          {
+            "node": "/soc/i2c@11008000/camera-sensor@3d/port/endpoint"
+          }
+        ]
+      },
+      "data-lanes": {
+        "hex": "00000001"
+      }
+    },
+    "/soc/seninf@1a040000/ports/port@4": {
+      "reg": {
+        "hex": "00000004"
+      }
+    },
+    "/soc/seninf@1a040000/ports/port@4/endpoint": {
+      "phandle": {
+        "self": true
+      },
+      "remote-endpoint": {
+        "cells": [
+          {
+            "node": "/camera@1a006000/ports/port@0/endpoint"
+          }
+        ]
+      }
+    }
+  }
+}

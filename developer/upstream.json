@@ -1,0 +1,9 @@
+{
+  "libcamera_commit": "c0049ea0605c1492c99b8f82bb04661a04cf1bf1",
+  "pipewire": "1.6.8",
+  "kernel": "6.18.28-mt81",
+  "vendor_kernel_commit": "527db0b5974bb70364fc692448a55fb37209fe23",
+  "scope": "Experimental public source kit; matched SKU176/kernel/FW; no firmware, Image, OS, credentials or camera images.",
+  "pipewire_commit": "b741e0c74f5436f0c925f7741140db0efd32cf4e",
+  "pmaports_input_commit": "368093c7a882637ee00d32932fb0dafd24cfc4d4"
+}

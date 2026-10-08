@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-06",
+  "environment": "Prepared external USB / SKU176 / exact 6.18.28-mt81 / canonical camera DT",
+  "packages": "USB_PACKAGES.json",
+  "startup_fix": "SCP_RECOVERY_FIX.json",
+  "checks": {
+    "update_apply": "PASS",
+    "runtime_payload_files_verified": 206,
+    "cold_boot_automatic_activation": "PASS",
+    "SCP_recovery_disabled": "PASS",
+    "front_live_and_saved_JPEG": "PASS",
+    "rear_live_and_saved_JPEG": "PASS",
+    "normal_app_quit": "PASS",
+    "reopen_new_process_and_capture": "PASS",
+    "retained_local_JPEGs": 4,
+    "all_eMMC_block_devices_read_only": "PASS",
+    "eMMC_diskstats_write_operations": 0,
+    "audio_play_command": "PASS",
+    "audio_operator_hearing": "NOT_CONFIRMED",
+    "restore_packages_world_configs": "PASS_EXACT_838_PACKAGES_WORLD_CONFIGS",
+    "restored_boot": "NOT_TESTED"
+  },
+  "observed_sessions": {
+    "front": {
+      "SOF": 2235,
+      "DONE": 2235,
+      "delivered": 2234,
+      "dropped": 0
+    },
+    "automated_rear": {
+      "SOF": 748,
+      "DONE": 747
+    },
+    "reopened": {
+      "SOF": 196,
+      "DONE": 195
+    },
+    "all_sampled_final_stops": {
+      "capture_error": 0,
+      "input_error": 0,
+      "inputs_idle": 1,
+      "finalized": 1,
+      "pending": 0,
+      "refs": 0,
+      "SCP": "offline"
+    }
+  },
+  "image_quality": {
+    "rear_full_visual_review": "NOT_TESTED",
+    "complete_image_quality_and_AF_calibration": "NOT_COMPLETE",
+    "front_visual_check": "NO_MAJOR_ISSUE"
+  },
+  "scope": "Short ordinary-app verification; not a new endurance, sleep or high-resolution acceptance run.",
+  "deferred_checks": "Boot after restoration and audible audio remain untested. The successful pre-restoration boot does not establish a restored-system boot."
+}

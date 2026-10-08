@@ -1,0 +1,9 @@
+# Historical rear-camera balanced timing checks (2026-10-05)
+
+The OV8856 Linux 6.18.28-derived GPL-2.0 driver retains Intel 2019 attribution. Existing four-lane 1632×1224 PLL/MIPI/CFA geometry and full 3264×2448 mode values are preserved. Experimental binned HTS 3820 / minimum VTS 1256 / default VTS 2512 yields readout about 32.47 ms, minimum 33.319 ms and default 66.638 ms. The neighboring upstream mode contains these timing values, but the combination is not upstream-validated. Standard HBLANK/VBLANK/exposure/duration conversion uses actual line timing and P1 ownership guards remain unchanged.
+
+The earlier HTS 1932 timing had 16.42 ms readout; a 20 fps run failed when copy completion crossed DONE by 89 µs. That failure is not normal resource reclamation. Register/mode/helper, TRY/ACTIVE and unchanged full-resolution tests passed for the balanced timing, along with native ARM64 build/import/vermagic checks.
+
+Historical RAM tests passed rear 20/25 fps for 60 seconds, then a 300.005-second 30 fps run (hardware about 30.0129 fps, GTK update count about 29.9997 fps), saved images and normal close. Rapid selection, front/rear switching, qcam 3200×2400 capture and new-process Snapshot reuse passed with persistent PipeWire/WirePlumber processes. Final STOP reported inputs idle/finalized, zero pending/references and SCP offline. Maximum observed temperature was 48.023 °C.
+
+GTK update counts are not compositor presentation or optical latency measurements. This endurance run covered five minutes; longer 15 fps runs were separate. Full-resolution rate was about 10 fps. The tested scene used 1250 exposure lines (about 33.16 ms) and analogue code 2047, so low-light quality is not equivalent to longer exposures. Full optical calibration and USB cold boot were not assessed by this run. [Subsequent versioned results](docs/TESTING.md).

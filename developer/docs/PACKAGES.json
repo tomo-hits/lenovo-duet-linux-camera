@@ -1,0 +1,112 @@
+{
+  "libcamera-0.7.2-r102.apk": {
+    "name": "libcamera",
+    "version": "0.7.2-r102",
+    "arch": "aarch64",
+    "license": "LGPL-2.1-or-later",
+    "description": "Experimental Duet SKU176 camera libcamera",
+    "depends": "libcamera-ipa=0.7.2-r102 so:libEGL.so.1 so:libGLESv2.so.2 so:libc.musl-aarch64.so.1 so:libgcc_s.so.1 so:libgnutls.so.30 so:libstdc++.so.6 so:libudev.so.1 so:libyaml-0.so.2",
+    "provides": "so:libcamera-base.so.0.7 so:libcamera.so.0.7",
+    "sha256": "0a68f2ab12b42cf8bc0344ad56afee1a046b84dd12c64185ef7fb490fd70a940"
+  },
+  "libcamera-ipa-0.7.2-r102.apk": {
+    "name": "libcamera-ipa",
+    "version": "0.7.2-r102",
+    "arch": "aarch64",
+    "license": "LGPL-2.1-or-later AND BSD-2-Clause AND CC0-1.0",
+    "description": "Experimental Duet SKU176 camera libcamera-ipa",
+    "depends": "so:libc.musl-aarch64.so.1 so:libcamera-base.so.0.7 so:libcamera.so.0.7 so:libgcc_s.so.1 so:libstdc++.so.6",
+    "provides": "",
+    "sha256": "1373353e31d1c47db5aed0475174637a53ea77e204561215b55106ddff543659"
+  },
+  "libcamera-tools-0.7.2-r102.apk": {
+    "name": "libcamera-tools",
+    "version": "0.7.2-r102",
+    "arch": "aarch64",
+    "license": "GPL-2.0-or-later",
+    "description": "Experimental Duet SKU176 camera libcamera-tools",
+    "depends": "libcamera=0.7.2-r102 so:libc.musl-aarch64.so.1 so:libcamera-base.so.0.7 so:libcamera.so.0.7 so:libdrm.so.2 so:libevent-2.1.so.7 so:libevent_pthreads-2.1.so.7 so:libgcc_s.so.1 so:libstdc++.so.6 so:libyaml-0.so.2",
+    "provides": "",
+    "sha256": "32a515619337c93bb132e38259835b655009fadfdf6fee5711603050a376cdd2"
+  },
+  "libcamera-dev-0.7.2-r102.apk": {
+    "name": "libcamera-dev",
+    "version": "0.7.2-r102",
+    "arch": "aarch64",
+    "license": "LGPL-2.1-or-later",
+    "description": "Experimental Duet SKU176 camera libcamera-dev",
+    "depends": "libcamera=0.7.2-r102",
+    "provides": "",
+    "sha256": "7e417d5efc4c1d881bac97cc4ca08fd2af741cd26d663976be375e9faf228bd4"
+  },
+  "pipewire-libs-1.6.8-r103.apk": {
+    "name": "pipewire-libs",
+    "version": "1.6.8-r103",
+    "arch": "aarch64",
+    "license": "MIT",
+    "description": "Experimental Duet SKU176 camera pipewire-libs",
+    "depends": "so:libasound.so.2 so:libavahi-client.so.3 so:libavahi-common.so.3 so:libc.musl-aarch64.so.1 so:libcamera-base.so.0.7 so:libcamera.so.0.7 so:libcrypto.so.3 so:libdbus-1.so.3 so:libgcc_s.so.1 so:libgio-2.0.so.0 so:libglib-2.0.so.0 so:libgobject-2.0.so.0 so:libintl.so.8 so:libopus.so.0 so:libsndfile.so.1 so:libstdc++.so.6 so:libudev.so.1",
+    "provides": "so:libpipewire-0.3.so.0 so:libpipewire-module-access.so so:libpipewire-module-adapter.so so:libpipewire-module-avb.so so:libpipewire-module-client-device.so so:libpipewire-module-client-node.so so:libpipewire-module-combine-stream.so so:libpipewire-module-echo-cancel.so so:libpipewire-module-fallback-sink.so so:libpipewire-module-filter-chain.so so:libpipewire-module-link-factory.so so:libpipewire-module-loopback.so so:libpipewire-module-metadata.so so:libpipewire-module-netjack2-driver.so so:libpipewire-module-netjack2-manager.so so:libpipewire-module-parametric-equalizer.so so:libpipewire-module-pipe-tunnel.so so:libpipewire-module-portal.so so:libpipewire-module-profiler.so so:libpipewire-module-protocol-native.so so:libpipewire-module-protocol-pulse.so so:libpipewire-module-protocol-simple.so so:libpipewire-module-raop-discover.so so:libpipewire-module-raop-sink.so so:libpipewire-module-rt.so so:libpipewire-module-rtkit.so so:libpipewire-module-rtp-sap.so so:libpipewire-module-rtp-session.so so:libpipewire-module-rtp-sink.so so:libpipewire-module-rtp-source.so so:libpipewire-module-session-manager.so so:libpipewire-module-snapcast-discover.so so:libpipewire-module-spa-device-factory.so so:libpipewire-module-spa-device.so so:libpipewire-module-spa-node-factory.so so:libpipewire-module-spa-node.so so:libpipewire-module-vban-recv.so so:libpipewire-module-vban-send.so so:libpipewire-module-zeroconf-discover.so so:libspa-aec-null.so so:libspa-alsa.so so:libspa-audioconvert.so so:libspa-audiomixer.so so:libspa-audiotestsrc.so so:libspa-avb.so so:libspa-control.so so:libspa-dbus.so so:libspa-filter-graph-plugin-builtin.so so:libspa-filter-graph-plugin-ladspa.so so:libspa-filter-graph.so so:libspa-libcamera.so so:libspa-support.so so:libspa-videoconvert.so so:libspa-videotestsrc.so so:libspa.so",
+    "sha256": "586b8b3ff6229f49b014723ec6a7fc1ec366aad4743772aa3e9b955d636ebb6f"
+  },
+  "gst-plugin-pipewire-1.6.8-r103.apk": {
+    "name": "gst-plugin-pipewire",
+    "version": "1.6.8-r103",
+    "arch": "aarch64",
+    "license": "MIT",
+    "description": "Experimental Duet SKU176 camera gst-plugin-pipewire",
+    "depends": "pipewire-session-manager gst-plugins-base so:libc.musl-aarch64.so.1 so:libglib-2.0.so.0 so:libgobject-2.0.so.0 so:libgstallocators-1.0.so.0 so:libgstaudio-1.0.so.0 so:libgstbase-1.0.so.0 so:libgstreamer-1.0.so.0 so:libgstvideo-1.0.so.0 so:libpipewire-0.3.so.0",
+    "provides": "so:libgstpipewire.so",
+    "sha256": "f2702f69f1a1b1ea8091a3b738ef732c94dcb5212b4aed1cec3e3e8a37e7a720"
+  },
+  "duet-camera-modules-0.2.4-r0.apk": {
+    "name": "duet-camera-modules",
+    "version": "0.2.4-r0",
+    "arch": "aarch64",
+    "license": "GPL-2.0-only AND MIT",
+    "description": "Experimental Duet SKU176 camera duet-camera-modules",
+    "depends": "python3 kmod cmd:udevadm",
+    "provides": "",
+    "sha256": "5e5834ec87a1419ec62562014896fc8fe58b61c0ee25f2b20ea56b6d58dbdfc4"
+  },
+  "duet-camera-config-0.1.3-r0.apk": {
+    "name": "duet-camera-config",
+    "version": "0.1.3-r0",
+    "arch": "aarch64",
+    "license": "MIT",
+    "description": "Experimental Duet SKU176 camera duet-camera-config",
+    "depends": "wireplumber=0.5.15-r0",
+    "provides": "",
+    "sha256": "e6c7f1fcd5f1d27d34906d0483cc3ade3097049ba5bba73b0016f5d53da8b5fe"
+  },
+  "duet-camera-0.2.6-r0.apk": {
+    "name": "duet-camera",
+    "version": "0.2.6-r0",
+    "arch": "aarch64",
+    "license": "MIT",
+    "description": "Experimental Duet SKU176 camera duet-camera",
+    "depends": "duet-camera-modules=0.2.4-r0 duet-camera-config=0.1.3-r0 libcamera=0.7.2-r102 libcamera-ipa=0.7.2-r102 libcamera-tools=0.7.2-r102 pipewire-libs=1.6.8-r103 gst-plugin-pipewire=1.6.8-r103",
+    "provides": "",
+    "sha256": "ed7c7fa9cb8154d92bcf6ef850e9ffd860cc567163316afc63c4fc68edc1b0c4"
+  },
+  "duet-camera-config-0.1.3-r1.apk": {
+    "name": "duet-camera-config",
+    "version": "0.1.3-r1",
+    "arch": "aarch64",
+    "license": "MIT",
+    "description": "Experimental Duet SKU176 camera duet-camera-config",
+    "depends": "wireplumber=0.5.15-r0",
+    "provides": "",
+    "sha256": "8fd6808ffd60056f4dc2855a007649eada918866630d29a1587df747f8e25075"
+  },
+  "duet-camera-0.2.6-r1.apk": {
+    "name": "duet-camera",
+    "version": "0.2.6-r1",
+    "arch": "aarch64",
+    "license": "MIT",
+    "description": "Experimental Duet SKU176 camera duet-camera",
+    "depends": "duet-camera-modules=0.2.4-r0 duet-camera-config=0.1.3-r1 libcamera=0.7.2-r102 libcamera-ipa=0.7.2-r102 libcamera-tools=0.7.2-r102 pipewire-libs=1.6.8-r103 gst-plugin-pipewire=1.6.8-r103",
+    "provides": "",
+    "sha256": "9a696f82dde34bf4ede3ceea576092cde2df0bdbb8946f1f6364416020e14f6b"
+  }
+}

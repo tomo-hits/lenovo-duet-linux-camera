@@ -1,0 +1,13 @@
+--- a/duet_p1_continuous.c
++++ b/duet_p1_continuous.c
+@@ -1715,7 +1715,9 @@
+  if(!vblank||!exposure||!gain||!pattern)return -ENOENT;
+  /* The fixed geometry has a sensor mode minimum. Standard controls own
+   * timing; this check never changes libcamera exposure or blanking. */
+- if(v4l2_ctrl_g_ctrl(vblank)<1258||v4l2_ctrl_g_ctrl(pattern)!=0)return -EINVAL;
++ if(v4l2_ctrl_g_ctrl(vblank)<vblank->minimum||
++    v4l2_ctrl_g_ctrl(vblank)>vblank->maximum||
++    v4l2_ctrl_g_ctrl(pattern)!=0)return -EINVAL;
+  state->requested_exposure=v4l2_ctrl_g_ctrl(exposure);
+  state->requested_gain=v4l2_ctrl_g_ctrl(gain);
+  dev_info(state->resources.dev,"P1_SENSOR_CACHE vblank=%d exposure_code=%u gain_code=%u pattern=0 applied_frame=unknown\n",v4l2_ctrl_g_ctrl(vblank),state->requested_exposure,state->requested_gain);

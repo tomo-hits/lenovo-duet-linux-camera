@@ -1,0 +1,219 @@
+{
+  "date": "2026-10-05",
+  "target": {
+    "sku": "google,krane-sku176",
+    "kernel": "6.18.28-mt81",
+    "runtime": "RAM, legacy DT alias, eudev",
+    "firmware_sha256": "401e9c027b0e105efa9eb9b31683924a8d5f5ab3b1654f0915b174effe2df33d"
+  },
+  "build": {
+    "builtin_exports": 13637,
+    "builtin_gpl_exports": 7415,
+    "builtin_namespaced_exports": 99,
+    "media_scp_exports": 364,
+    "p1_required_exports": 201,
+    "p1_missing_exports": [],
+    "ov8856_private_exports": 0,
+    "tool_packages": {
+      "apk-tools": "3.0.8-r0",
+      "clang22": "22.1.3-r2",
+      "g++": "15.2.0-r5",
+      "gcc": "15.2.0-r5",
+      "gstreamer": "1.28.3-r0",
+      "kmod": "34.2-r1",
+      "lld22": "22.1.3-r0",
+      "meson": "1.11.1-r0",
+      "musl": "1.2.6-r2",
+      "samurai": "1.2-r8"
+    },
+    "module_sha256": {
+      "ov02a10.ko": "d5f7dde7ca22005458aba9fec86a7772f5b83d0e3b1574431393e8bf69a2571d",
+      "dw9768.ko": "2e3e467b8d220e5935a46ed7627064a6e6c117565983b8df11f92a63deaa0b38",
+      "ov8856.ko": "99c00e32314caa74603b978a22c0329d50fa5f8c642f7f3852f3edac7327620b",
+      "mt8183_p1.ko": "503df43025289ca3aee6fa986259f15f7fadb4c6a85001e8f5a8858134e3a46a",
+      "mtk_seninf.ko": "37738ab26cf76d0ec82b069f7a1f6444c25bef08ae17c6384465b19e9215c59b"
+    }
+  },
+  "fresh_linux_source_files_matched": 125,
+  "fresh_libcamera_changed_or_new_files_matched": 28,
+  "fresh_modules_built": 5,
+  "expected_kernel_warning": "Prepared SDK has no Module.symvers; real exports separately audited; no fabricated SDK symvers",
+  "ipa_signature": {
+    "fresh_valid_ipa_accepted": true,
+    "tampered_ipa_rejected": true,
+    "private_key_distributed": false
+  },
+  "regressions": {
+    "production_stop_gate_asan_ubsan_cases": 15,
+    "actual_pipewire_link_cases": 8,
+    "actual_gstreamer_state_lock_regression": "pass",
+    "actual_gstreamer_objects_checked": 3,
+    "gst_defaults": {
+      "always_copy": true,
+      "use_bufferpool": false,
+      "property_overrides_checked": true
+    },
+    "dt_actual_stock_and_legacy_integration_preservation_idempotence": "pass",
+    "dt_negative_cases_rejected": 14,
+    "input_verifier": "valid pass; changed APK and wrong repository key rejected"
+  },
+  "packages": {
+    "signed_apks_verified": 11,
+    "signed_index_created": true,
+    "actual_notice_files_verified": true,
+    "private_runtime_search_paths_in_65_elfs": 0,
+    "mac_metadata_removed_without_changing_other_payloads": true,
+    "final_installed_payload": {
+      "matched_packages": [
+        "libcamera=0.7.2-r102",
+        "libcamera-ipa=0.7.2-r102",
+        "libcamera-tools=0.7.2-r102",
+        "pipewire-libs=1.6.8-r103",
+        "gst-plugin-pipewire=1.6.8-r103",
+        "duet-camera-modules=0.2.3-r0",
+        "duet-camera-config=0.1.2-r1",
+        "duet-camera=0.2.4-r1"
+      ],
+      "matched_regular_files": 200,
+      "matched_final_release_archive": "mt8183-camera-fresh-apk-20261005-v4.tar"
+    }
+  },
+  "ordinary_app_acceptance": {
+    "application": "Snapshot",
+    "front_rear_sensor_enumeration": 2,
+    "five_distinct_processes": true,
+    "same_managers_retained_between_each_fresh_reopen_pair": true,
+    "sessions": [
+      {
+        "kind": "fresh before metadata cleanup",
+        "photos_kept_local": 3,
+        "camera_switches": 2,
+        "normal_close_exit": 0,
+        "actual_process_gone": true,
+        "stop_capture": {
+          "epoch": 6,
+          "sof_count": 523,
+          "done_count": 523,
+          "capture_error": 0,
+          "input_error": 0,
+          "inputs_idle": 1,
+          "finalized": 1,
+          "pending": 0,
+          "refs": 0,
+          "retain_capture": 1,
+          "copy_allocations": 3,
+          "copy_frees": 0
+        },
+        "SCP": "offline"
+      },
+      {
+        "kind": "fresh reopen before metadata cleanup",
+        "photos_kept_local": 3,
+        "camera_switches": 2,
+        "normal_close_exit": 0,
+        "actual_process_gone": true,
+        "stop_capture": {
+          "epoch": 12,
+          "sof_count": 524,
+          "done_count": 524,
+          "capture_error": 0,
+          "input_error": 0,
+          "inputs_idle": 1,
+          "finalized": 1,
+          "pending": 0,
+          "refs": 0,
+          "retain_capture": 1,
+          "copy_allocations": 3,
+          "copy_frees": 0
+        },
+        "SCP": "offline"
+      },
+      {
+        "kind": "signed accepted rollback",
+        "photos_kept_local": 2,
+        "camera_switches": 1,
+        "normal_close_exit": 0,
+        "actual_process_gone": true,
+        "stop_capture": {
+          "epoch": 4,
+          "sof_count": 537,
+          "done_count": 536,
+          "capture_error": 0,
+          "input_error": 0,
+          "inputs_idle": 1,
+          "finalized": 1,
+          "pending": 0,
+          "refs": 0,
+          "retain_capture": 1,
+          "copy_allocations": 3,
+          "copy_frees": 0
+        },
+        "SCP": "offline"
+      },
+      {
+        "kind": "final fresh restore",
+        "photos_kept_local": 3,
+        "camera_switches": 2,
+        "normal_close_exit": 0,
+        "actual_process_gone": true,
+        "stop_capture": {
+          "epoch": 5,
+          "sof_count": 526,
+          "done_count": 525,
+          "capture_error": 0,
+          "input_error": 0,
+          "inputs_idle": 1,
+          "finalized": 1,
+          "pending": 0,
+          "refs": 0,
+          "retain_capture": 1,
+          "copy_allocations": 3,
+          "copy_frees": 0
+        },
+        "SCP": "offline"
+      },
+      {
+        "kind": "final fresh reopen",
+        "photos_kept_local": 2,
+        "camera_switches": 1,
+        "normal_close_exit": 0,
+        "actual_process_gone": true,
+        "stop_capture": {
+          "epoch": 8,
+          "sof_count": 535,
+          "done_count": 534,
+          "capture_error": 0,
+          "input_error": 0,
+          "inputs_idle": 1,
+          "finalized": 1,
+          "pending": 0,
+          "refs": 0,
+          "retain_capture": 1,
+          "copy_allocations": 3,
+          "copy_frees": 0
+        },
+        "SCP": "offline"
+      }
+    ],
+    "total_jpeg_kept_local": 13,
+    "final_release_set_sessions": 2,
+    "final_release_set_jpeg": 5,
+    "signed_full_library_and_five_module_rollback_and_restore": "passed"
+  },
+  "preserved_failure": {
+    "candidate": "initial fresh APK omitted PipeWire client defaults",
+    "observed": "NoCameraFound; no frame progress; normal Close exit0",
+    "fix": "package standard client.conf and client.conf.avail; separately versioned candidate passed"
+  },
+  "evidence_limits": {
+    "build": true,
+    "sensor_recognition": true,
+    "image_acquisition": true,
+    "calibrated_normal_image_quality": false,
+    "canonical_dt_actual_boot": false,
+    "external_os_cold_boot": false,
+    "long_endurance_repeated_on_fresh_set": false,
+    "sleep_and_high_resolution_repeated_on_fresh_set": false
+  },
+  "privacy": "No pixels, raw images, credentials, network settings or private signing keys included."
+}

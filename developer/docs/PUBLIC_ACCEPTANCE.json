@@ -1,0 +1,194 @@
+{
+  "schema": 1,
+  "release": "v1.0.0",
+  "date": "2026-10-07",
+  "status": "PASS_SCOPED_PUBLIC_INTERNAL_CAMERA_SLEEP_AND_RESTORATION",
+  "target": {
+    "board": "google,krane-sku176",
+    "OS": "postmarketOS v26.06 / Alpine v3.24",
+    "kernel": "6.18.28-mt81",
+    "architecture": "aarch64",
+    "KCFI": true,
+    "storage": "internal eMMC",
+    "devices_tested": 1
+  },
+  "packages": {
+    "manifest": "PUBLIC_PACKAGES.json",
+    "modules": "0.2.8-r0",
+    "meta": "0.2.12-r1",
+    "libcamera": "0.7.2-r102",
+    "PipeWire_GStreamer": "1.6.8-r104",
+    "signed_APKs": 11,
+    "other_eight_APKs_unchanged": true
+  },
+  "build": {
+    "status": "PASS",
+    "record": "PUBLIC_P1_BUILD.json",
+    "native_aarch64": true,
+    "required_exports": 203,
+    "missing_exports": 0
+  },
+  "boot_preparation": {
+    "status": "PASS",
+    "public_entrypoint": "install.sh --prepare-boot",
+    "initial_supported_stock_OS": true,
+    "read_only_precheck": true,
+    "native_signed_candidate_verified": true,
+    "kernel_initramfs_commandline_preserved": true,
+    "firmware_GPT_hardware_boot_regions_unchanged": true,
+    "raw_slot_bytes": 33554432,
+    "power_failure_atomic": false,
+    "fstab_read_only_boot_protection": true,
+    "fstab_owner_preservation_added_after_hardware_prepare": {
+      "host_regression": "PASS",
+      "hardware_retest": false
+    }
+  },
+  "installation": {
+    "status": "PASS",
+    "entrypoint": "install.sh --user NAME",
+    "automatic_SCP_init_and_activation_after_reboot": true,
+    "bound_P1_video_endpoint": true,
+    "payload_files_verified": 206,
+    "runtime_files_verified": 15
+  },
+  "recognition": {
+    "status": "PASS",
+    "front": "OV02A10",
+    "rear": "OV8856",
+    "both_PipeWire_nodes": true
+  },
+  "current_capture": {
+    "status": "PASS",
+    "ordinary_nonroot_user": true,
+    "GUI_login": false,
+    "libcamera_continuous": {
+      "front": {
+        "width": 1536,
+        "height": 864,
+        "requested_fps": 30,
+        "frames": 3600,
+        "interval_seconds": 149.698998,
+        "mean_delivered_fps": 24.041577085238742,
+        "all_frame_bytes": [
+          5308416
+        ]
+      },
+      "rear": {
+        "width": 1536,
+        "height": 864,
+        "requested_fps": 30,
+        "frames": 3600,
+        "interval_seconds": 149.82540600000004,
+        "mean_delivered_fps": 24.02129315771718,
+        "all_frame_bytes": [
+          5308416
+        ]
+      }
+    },
+    "PipeWire_GStreamer": {
+      "sessions": [
+        "front",
+        "rear",
+        "front_new_process",
+        "rear_after_wake"
+      ],
+      "JPEGs_per_session": 5,
+      "JPEG_count": 20,
+      "JPEG_dimensions": [
+        1536,
+        864
+      ],
+      "normal_EOS_and_NULL": true,
+      "switch_reopen_and_postwake_capture": true
+    },
+    "additional_front_PPMs": 5,
+    "all_capture_and_input_errors": 0,
+    "finalized_idle_pending_zero_refs_zero_after_each_close": true,
+    "SCP_offline_after_close": true,
+    "images_local_only": true
+  },
+  "sleep": {
+    "status": "PASS_SCOPED",
+    "never_used_camera_deep_sleep_seconds": 20,
+    "closed_after_capture_deep_sleep_seconds": 21,
+    "active_camera_deep_and_s2idle_refused_safely": true,
+    "capture_continued_after_refusal": true,
+    "postwake_JPEG_capture": true,
+    "RTC_alarm_original_empty_restored": true,
+    "long_term_endurance": false
+  },
+  "historical_application_and_image_quality": {
+    "record": "INTERNAL_ACCEPTANCE.json",
+    "modules": "0.2.6-r0",
+    "same_libcamera_PipeWire_packages": true,
+    "Snapshot_front_rear_new_process_JPEGs": 3,
+    "latest_binary_GUI_and_visual_quality_retest": false,
+    "full_colour_noise_lighting_AF_calibration": false,
+    "limited_visual_check": "No major abnormalities"
+  },
+  "user_media_startup": {
+    "status": "PASS_ON_USER_MANAGER_START",
+    "only_selected_user_ConditionUser": true,
+    "fresh_GUI_login_retested": false,
+    "authentication_or_autologin_modified": false
+  },
+  "audio": {
+    "native_PulseAudio_speaker_microphone_enumeration": "PASS",
+    "native_PulseAudio_playback_command": "PASS",
+    "human_audible_confirmation": "NOT_CONFIRMED",
+    "built_PipeWire_audio_optional_features": "NOT_ASSESSED"
+  },
+  "restoration": {
+    "status": "PASS",
+    "entrypoint": "restore.sh --user NAME",
+    "package_and_boot_transactions": "RESTORED",
+    "new_normal_internal_boot": "PASS",
+    "GUI_login_this_final_boot": "NOT_RETESTED",
+    "original_packages": 1104,
+    "package_version_differences": 0,
+    "apk_world_exact": true,
+    "baseline_target_counts": {
+      "live_dt_semantics": 1,
+      "persistent": 168,
+      "runtime_observation": 1,
+      "stable_boot_identity": 11,
+      "volatile_observation": 4
+    },
+    "all_recorded_persistent_bytes_and_metadata_exact": true,
+    "updater_runtime_snapshot_targets": 17,
+    "full_raw_kernel_slot_exact": true,
+    "fstab_original_content_owner_mode_and_boot_mount_options_exact": true,
+    "apk_database_byte_differences": 0,
+    "camera_modules_loaded": false,
+    "extra_monitored_files": 0,
+    "live_DT_semantics_exact_except_reviewed_dynamic_boot_timers": true,
+    "whole_filesystem_equality": "NOT_ASSESSED",
+    "photos_and_recovery_backups_retained": true
+  },
+  "host_regressions": {
+    "production_suites": 8,
+    "normal_and_optimized": true,
+    "executions": 16,
+    "all_passed": true,
+    "restoration_checker_cases": 23,
+    "live_dt_other_bytes_verified": 3056
+  },
+  "failed_candidate_preserved": {
+    "modules": "0.2.7-r0",
+    "result": "Probe timeout; not released",
+    "cause": "Synchronous CAM power-off wait before probe completion",
+    "resolution": "Asynchronous runtime-PM release after probe; retirement before system sleep",
+    "failed_candidate_not_public_asset": true
+  },
+  "limits": [
+    "Exact supported stock boot layout only; one device tested",
+    "This version's continuous delivered rate approximately24fps; constant30fps not guaranteed",
+    "Full AF/image calibration and long-term endurance incomplete",
+    "This version's GUI quality assessment not repeated; earlier Snapshot results identified separately",
+    "Audible output not confirmed",
+    "This version's binary USB acceptance not run"
+  ],
+  "privacy": "This record includes no device identities, connection details, private backup inputs or camera pixels.",
+  "scope": "Historical v1.0.0 internal-eMMC capture, sleep and recorded-target restoration; later v1.0.1 and rear-gamma results are separate in ACCEPTANCE_2026-10-08.json"
+}

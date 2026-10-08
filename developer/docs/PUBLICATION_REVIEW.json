@@ -1,0 +1,112 @@
+{
+  "date": "2026-10-05",
+  "scope": "Historical pre-S1 v5 validation-helper and component-notice checks; local host regressions and native ARM64 packaging/export verification; no new camera hardware acceptance",
+  "resolved_findings": {
+    "R2": "Production DT/provider/export/hash checks use explicit exceptions under normal and optimized Python; exclusive DT output and checked boot input copying",
+    "R3": "Independent auditors and host harnesses have explicit original-compatible SPDX declarations; original third-party notices retained",
+    "R4": "Five camera APKs reissued with actual PROJECT-MIT copyright/permission notice; signed index rebuilt",
+    "R5": "Source-kit boot helper uses adjacent ABI JSON by default; initial INSTALL examples pass --abi explicitly",
+    "R6": "GPL OV02A10 regression fixtures include source and provenance; tests use bundled inputs and print results to stdout"
+  },
+  "host_tests": {
+    "stop_gate_actual_functions": {
+      "pass": true,
+      "cases": 15,
+      "asan_ubsan": true
+    },
+    "pipewire_link_state": {
+      "pass": true,
+      "cases": 8
+    },
+    "gstreamer_actual_state_and_lock": {
+      "pass": true,
+      "cases": 5
+    },
+    "ov02a10_actual_functions": {
+      "pass": true,
+      "asan_ubsan": true,
+      "cold_fault_positions": 123,
+      "live_fault_cases": 5
+    },
+    "ov8856_state": {
+      "pass": true
+    },
+    "ov8856_table_timing": {
+      "pass": true
+    },
+    "seninf_formats": {
+      "pass": true
+    },
+    "dt_preservation_and_idempotence": {
+      "pass": true,
+      "negative_cases": 14,
+      "normal_and_optimized": true
+    },
+    "release_safety_production_clis": {
+      "pass": true,
+      "cases_per_mode": 9,
+      "normal_and_optimized": true,
+      "synthetic_Image_scope": "Input/hash contract only, not a real boot test"
+    },
+    "package_output_protection": {
+      "pass": true,
+      "cases": 8,
+      "normal_and_optimized": true,
+      "existing_and_dangling_output_symlinks_rejected": true
+    }
+  },
+  "native_aarch64_validation": {
+    "apk_tools": "3.0.8",
+    "signature_verified_packages": 11,
+    "signature_verified_index": true,
+    "reissued_packages": 5,
+    "byte_identical_accepted_packages": 6,
+    "regular_payload_hashes_verified": 284,
+    "accepted_elf_and_configuration_payloads_unchanged": true,
+    "optimized_builtin_exports": 13637,
+    "optimized_required_exports": 201,
+    "audited_media_exports": 364,
+    "missing_exports": 0
+  },
+  "documentation": {
+    "bilingual_pairs": [
+      "LICENSE.md",
+      "README.md",
+      "docs/ARCHITECTURE.md",
+      "docs/BUILD.md",
+      "docs/INSTALL.md",
+      "docs/KNOWN_ISSUES.md",
+      "docs/OSS.md",
+      "docs/PROVENANCE.md",
+      "docs/PUBLICATION_FIXES.md",
+      "docs/RELEASE_NOTES.md",
+      "docs/TESTING.md",
+      "packaging/postmarketos/README.md",
+      "tests/README.md"
+    ],
+    "command_blocks_identical": true,
+    "hash_values_identical": true
+  },
+  "camera_driver_or_isp_algorithm_changed": false,
+  "full_native_rebuild_this_revision": false,
+  "revised_packages_installed_on_camera_device": false,
+  "hardware_touched_this_revision": false,
+  "retained_acceptance_record": "BUILD_RECORD.json",
+  "reissued_package_correspondence": "PACKAGE_FIXES.json",
+  "limits": [
+    "Existing hardware evidence applies to accepted v4; revised validation/helpers have host verification only",
+    "Canonical DT actual boot and external cold boot remain unverified",
+    "Complete calibration/AF and long term durability remain unfinished"
+  ],
+  "privacy_verification": {
+    "known_private_email_matches": 0,
+    "secret_pattern_matches_requiring_action": 0,
+    "scope": [
+      "Source kit for the recorded v5 revision",
+      "Decompressed 11 APKs and signed index",
+      "Unchanged complete-source archive including original upstream Linux source"
+    ],
+    "original_upstream_test_keys": "Upstream kernel test key fixtures are retained as original public source under their component licenses"
+  },
+  "superseded_current_package_and_hardware_record": "S1_VALIDATION.json"
+}

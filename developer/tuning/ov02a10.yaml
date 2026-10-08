@@ -1,0 +1,24 @@
+# SPDX-License-Identifier: CC0-1.0
+# Front highlight candidate; not a colour-chart calibration.
+# Parsed by upstream libcamera c0049ea/0.7.2 common SoftISP algorithms.
+%YAML 1.1
+---
+version: 1
+algorithms:
+  - BlackLevel:
+      # 10-bit black code64 -> libcamera's 16-bit control domain4096.
+      # Exposure-intercept observation was about65.7 at gain16.
+      blackLevel: 4096
+  - Awb:
+  - Adjust:
+      gamma: 2.6
+      contrast: 1.16
+  - Agc:
+      relativeLuminanceTarget: [0, 0.16]
+      AeConstraintMode:
+        ConstraintNormal:
+          upper:
+            qLo: 0.98
+            qHi: 1.0
+            yTarget: [0, 0.75]
+...

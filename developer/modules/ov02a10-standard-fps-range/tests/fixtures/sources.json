@@ -1,0 +1,16 @@
+{
+  "source": "Historical local OV02A10 telemetry-v2 source derived from Linux 6.18.28/MediaTek 2020; fixtures are not built as release modules",
+  "license": "GPL-2.0",
+  "files": {
+    "ov02a10.c": {
+      "original_sha256": "cf7e85cd05500589f6a280e498f16066f00445614b68aaa68b94227062237a2c",
+      "distributed_sha256": "defe43336120b37eb4f8249dc80324fa94965f0043dd7c6fb070e73f8b1852ca",
+      "changes": "Dated distribution comment only; original GPL/MediaTek notices retained"
+    },
+    "ov02a10-telemetry.h": {
+      "original_sha256": "b7b71571001d115aa74219d849879e931ddfffe4dac71db215acbf8190875a15",
+      "distributed_sha256": "db96c421056b3e02445f6ae7f69f32c15c79b49dbe91127ae34a393b1af9f994",
+      "changes": "Dated distribution comment only; original GPL/MediaTek notices retained"
+    }
+  }
+}

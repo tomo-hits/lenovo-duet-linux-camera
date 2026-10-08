@@ -1,0 +1,10 @@
+{
+  "kernel": "6.18.28-mt81",
+  "kernel_notes_sha256": "50b9b41ab342b79ce1296adf16b976e876456d51b63b353b3e3c966d1dd689da",
+  "image_sha256": "cce4914459d15558b54640f360e0a58476edfa74595fe30143d29dce7049d5a1",
+  "firmware_sha256": "401e9c027b0e105efa9eb9b31683924a8d5f5ab3b1654f0915b174effe2df33d",
+  "compatible": "google,krane-sku176",
+  "firmware_included": false,
+  "activation": "matched existing kernel; explicit DT boot integration; no boot/FW writes",
+  "kernel_image_included": false
+}

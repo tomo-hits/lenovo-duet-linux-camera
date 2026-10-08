@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-06",
+  "problem": "The previous camera module accepted only explicit RAM test boot markers; a protected USB boot without those markers was rejected with EPERM before P1 registration.",
+  "fix": "Keep the existing RAM route and require an explicit default-off external_usb module parameter for the external route. The activation helper verifies USB root/boot, all eMMC read-only, ABI/DT/firmware, offline SCP and exact module selection before opting in.",
+  "changed_runtime_files": [
+    "lib/modules/6.18.28-mt81/extra/duet-camera/mt8183_p1.ko",
+    "usr/lib/duet-camera/duet-camera-activate.py"
+  ],
+  "updated_service_argument": "--external-usb",
+  "module_version": "0.2.5-r0",
+  "meta_versions": [
+    "0.2.9-r0",
+    "0.2.9-r1"
+  ],
+  "unchanged_APKs": 8,
+  "only_P1_ELF_changed": true,
+  "source_file": "modules/mt8183-p1-public/mt8183_p1_continuous.c",
+  "source_sha256": "50dfa487fe9542da20d309d0288505d969035198867d886fb5ca9d4bc980b153",
+  "module_sha256": "fca9f949b6f0912f70b828f9a4dd4a1d0f4b5bc646505eabb1180235551d261a",
+  "native_build": "PASS",
+  "missing_exports": 0,
+  "signed_APKs": 11,
+  "signed_index": "PASS",
+  "reextracted_payload_entries": 288,
+  "external_activation_fixture_tests": 12,
+  "fixtures_normal_and_optimized": "PASS",
+  "new_kernel_or_OS_image_built": false,
+  "hardware": {
+    "old_candidate_USB_boot": "PASS",
+    "old_candidate_activation": "FAIL_RAM_MARKER_REQUIRED",
+    "old_candidate_restore_packages_world_configs": "PASS_838_PACKAGES",
+    "restore_reboot": "NOT_TESTED",
+    "fixed_candidate_load": "PASS_SYSTEMD_ACTIVATION",
+    "fixed_candidate_front_rear_capture": "PASS_AFTER_SCP_RECOVERY_STARTUP_FIX",
+    "fixed_candidate_reboot": "PASS_AUTOMATIC_SCP_INIT_AND_MODULE_ACTIVATION",
+    "fixed_candidate_restore": "PASS_EXACT_838_PACKAGES_WORLD_CONFIGS",
+    "fixed_candidate_apply": "PASS",
+    "fixed_candidate_verified_runtime_files": 206,
+    "fixed_candidate_sensor_recognition": "PASS_FRONT_AND_REAR",
+    "fixed_candidate_user_session_camera_recognition": "PASS_FRONT_AND_REAR_PIPEWIRE_DEVICES",
+    "prior_fixed_candidate_capture": "FAIL_START_WITH_RECOVERY_ENABLED_ZERO_FRAMES",
+    "fixed_candidate_reuse": "PASS_NEW_PROCESS"
+  },
+  "followup": "SCP_RECOVERY_FIX.json",
+  "acceptance": "USB_ACCEPTANCE.json"
+}

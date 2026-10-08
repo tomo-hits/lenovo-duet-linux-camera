@@ -1,0 +1,26 @@
+--- a/ov02a10.c
++++ b/ov02a10.c
+@@ -80,7 +80,10 @@
+  * SOF period is 66.530ms vs model66.575ms (0.068%). Not a new HTS write.
+  */
+ #define OV02A10_LINE_LENGTH 1868U
+-#define OV02A10_FIXED_VBLANK 1580U
++#define OV02A10_DEFAULT_VBLANK 1580U
++/* Existing 1600x1200 mode: 1390 total lines, documented 30fps.
++ * Keep the accepted 15fps default; expose its native minimum via V4L2. */
++#define OV02A10_MIN_VBLANK 190U
+ #define OV02A10_ECLK_FREQ				(24 * HZ_PER_MHZ)
+ 
+ /* Number of lanes supported by this driver */
+@@ -1519,9 +1522,9 @@
+ 	if (ctrl)
+ 		ctrl->flags |= V4L2_CTRL_FLAG_READ_ONLY;
+ 
+-	vblank_def = OV02A10_FIXED_VBLANK;
++	vblank_def = OV02A10_DEFAULT_VBLANK;
+ 	ov02a10->vblank = v4l2_ctrl_new_std(handler, &ov02a10_ctrl_ops, V4L2_CID_VBLANK,
+-			  vblank_def, OV02A10_VTS_MAX - mode->height, 1,
++			  OV02A10_MIN_VBLANK, OV02A10_VTS_MAX - mode->height, 1,
+ 			  vblank_def);
+ 
+ 	exposure_max = mode->height + vblank_def - 4;

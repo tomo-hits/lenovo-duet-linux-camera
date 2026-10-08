@@ -1,0 +1,39 @@
+{
+  "archive": "mt8183-camera-complete-sources-20261008-v1.tar.xz",
+  "bytes": 158776516,
+  "sha256": "46b51cfaa40b9fe500b16d93d7ff7233d2213fc79a78ffaf69a37d7442855c9f",
+  "components": {
+    "libcamera": {
+      "upstream_commit": "c0049ea0605c1492c99b8f82bb04661a04cf1bf1",
+      "files": 1519,
+      "source": "Actual patched fresh-build input plus dated modification comments only; original input hashes in MODIFICATIONS.json. Includes full Meson/build scripts, original copyright, REUSE metadata and licenses"
+    },
+    "pipewire": {
+      "upstream_commit": "b741e0c74f5436f0c925f7741140db0efd32cf4e",
+      "files": 1348,
+      "source": "Actual patched fresh-build input plus dated modification comments only; original input hashes in MODIFICATIONS.json. Includes full Meson/build scripts, original copyright, REUSE metadata and licenses"
+    },
+    "linux": {
+      "version": "6.18.28",
+      "sha512": "5acc1a97ae0bca7aeb7fcac04fd3b7bafea5ff976dfe5d42c7015e084d9ee3104c3945880846dfb185a1010d0bad8c7a229b23febdef44306d19fb494a03b1a6",
+      "source": "Original full kernel source; matching config and seven patches are in the public kit. No kernel binary included."
+    }
+  },
+  "use_with": "Matching version-specific source kit: module sources, fixed configs, patches, build/install/package scripts and tuning.",
+  "source_comments_only_after_build": false,
+  "previous_source_record": "PRE_REAR_BRIGHTNESS_COMPLETE_SOURCES.json",
+  "tuning_update": {
+    "date": "2026-10-08",
+    "source_archive_sha256": "540367cfcd9b33c8a958f7a7f7aa8185d7c71a2a3ba6be265f8d1f7e36263ae4",
+    "source_kit_path": "developer/tuning/ov8856.yaml",
+    "archive_member": "release-tuning/ov8856.yaml",
+    "sha256": "91c6a6e64f89c6006c31504901cfbb5c3b1d28184bcc9ecd952a2dce6686c95c",
+    "change": "Add gamma 2.4 to rear Adjust; no other tuning or native component source change.",
+    "native_component_bytes_and_metadata_preserved": true,
+    "native_rebuild_performed": false,
+    "removed_appledouble_metadata_files": 3,
+    "internal_sha256sums_cover_all_regular_members_except_itself": true,
+    "generator": "developer/scripts/update-complete-tuning.py",
+    "verification_scope": "Source archive correspondence only; APK signatures, extracted payload bytes and hardware acceptance are verified separately."
+  }
+}

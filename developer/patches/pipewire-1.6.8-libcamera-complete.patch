@@ -1,0 +1,164 @@
+--- a/spa/plugins/libcamera/libcamera-source.cpp
++++ b/spa/plugins/libcamera/libcamera-source.cpp
+@@ -6,6 +6,7 @@
+ 
+ #include <array>
+ #include <cstddef>
++#include <cstdio>
+ #include <limits>
+ #include <optional>
+ #include <type_traits>
+@@ -160,6 +161,8 @@
+ 
+ 	ControlList ctrls;
+ 	ControlList initial_controls;
++	spa_fraction configured_rate = { 0, 1 };
++	Size configured_size;
+ 	bool active = false;
+ 	bool acquired = false;
+ 
+@@ -303,7 +306,7 @@
+ }
+ 
+ [[nodiscard]]
+-std::size_t count_unique_fds(libcamera::Span<const libcamera::FrameBuffer::Plane> planes)
++std::size_t count_unique_fds(std::span<const libcamera::FrameBuffer::Plane> planes)
+ {
+ 	std::size_t c = 0;
+ 	int fd = -1;
+@@ -565,7 +568,29 @@
+ 	SizeRange sizeRange;
+ 	Size frameSize;
+ 
+-	if (!sizes.empty() && port->size_index <= sizes.size()) {
++	if (!impl->configured_size.isNull()) {
++		if (port->size_index > 0) {
++			port->size_index = 0;
++			port->fmt_index++;
++			goto next_fmt;
++		}
++		/* Validate the optional standard node size without acquiring/configuring
++		 * hardware. Never advertise a size silently adjusted by libcamera. */
++		auto candidate = impl->camera->generateConfiguration({ StreamRole::VideoRecording });
++		if (!candidate || candidate->empty()) {
++			port->fmt_index++;
++			goto next_fmt;
++		}
++		candidate->at(0).pixelFormat = format;
++		candidate->at(0).size = impl->configured_size;
++		if (candidate->validate() == CameraConfiguration::Invalid ||
++		    candidate->at(0).size != impl->configured_size ||
++		    candidate->at(0).pixelFormat != format) {
++			port->fmt_index++;
++			goto next_fmt;
++		}
++		frameSize = impl->configured_size;
++	} else if (!sizes.empty() && port->size_index <= sizes.size()) {
+ 		if (port->size_index == 0) {
+ 			Size wanted = Size(640, 480);
+ 			int best = std::numeric_limits<int>::max();
+@@ -633,6 +658,11 @@
+ 		spa_pod_builder_rectangle(&b, frameSize.width, frameSize.height);
+ 	}
+ 
++	/* Optional standard node preference, propagated into negotiated caps. */
++	if (impl->configured_rate.num)
++		spa_pod_builder_add(&b, SPA_FORMAT_VIDEO_framerate,
++			SPA_POD_Fraction(&impl->configured_rate), 0);
++
+ 	if (streamConfig.colorSpace) {
+ 		auto colorimetry = color_space_to_colorimetry(*streamConfig.colorSpace);
+ 
+@@ -667,6 +697,7 @@
+ 	struct spa_rectangle *size = nullptr;
+ 	CameraConfiguration::Status validation;
+ 	int res;
++	spa_fraction fps = { 0, 1 };
+ 
+ 	switch (format->media_subtype) {
+ 	case SPA_MEDIA_SUBTYPE_raw:
+@@ -694,6 +725,10 @@
+ 			      format->media_subtype, video_format);
+ 		return -EINVAL;
+ 	}
++	if (!impl->configured_size.isNull() &&
++	    (size->width != impl->configured_size.width ||
++	     size->height != impl->configured_size.height))
++		return -EINVAL;
+ 	StreamConfiguration& streamConfig = impl->config->at(0);
+ 
+ 	streamConfig.pixelFormat = info->pix;
+@@ -715,6 +750,36 @@
+ 	if (res != 0)
+ 		goto error;
+ 
++	/* Sensor limits are mode dependent: query after configure(). */
++	switch (format->media_subtype) {
++	case SPA_MEDIA_SUBTYPE_raw: fps = format->info.raw.framerate; break;
++	case SPA_MEDIA_SUBTYPE_mjpg:
++	case SPA_MEDIA_SUBTYPE_jpeg: fps = format->info.mjpg.framerate; break;
++	case SPA_MEDIA_SUBTYPE_h264: fps = format->info.h264.framerate; break;
++	default: break;
++	}
++	if (!fps.num)
++		fps = impl->configured_rate;
++	if (fps.num && fps.denom) {
++		const auto &controls = impl->camera->controls();
++		auto limits = controls.find(libcamera::controls::FRAME_DURATION_LIMITS);
++		if (limits == controls.end()) {
++			res = -ENOTSUP;
++			goto error;
++		}
++		int64_t duration = (1000000LL * fps.denom + fps.num / 2) / fps.num;
++		if (duration < limits->second.min().get<int64_t>() ||
++		    duration > limits->second.max().get<int64_t>()) {
++			res = -ERANGE;
++			goto error;
++		}
++		std::array<int64_t, 2> durations{ duration, duration };
++		impl->initial_controls.set(libcamera::controls::FrameDurationLimits,
++			std::span<const int64_t, 2>(durations));
++		impl->ctrls.set(libcamera::controls::FrameDurationLimits,
++			std::span<const int64_t, 2>(durations));
++		spa_log_info(impl->log, "frame duration %lld us", (long long)duration);
++	}
+ 	port->streamConfig = impl->config->at(0);
+ 
+ 	if ((res = allocBuffers(impl, port, port->streamConfig.bufferCount)) < 0)
+@@ -1355,6 +1420,7 @@
+ 
+ 	for (auto& req : impl->requestPool) {
+ 		req->reuse(libcamera::Request::ReuseFlag::ReuseBuffers);
++		req->controls().merge(impl->initial_controls);
+ 
+ 		if ((res = impl->camera->queueRequest(req.get())) < 0)
+ 			goto err_stop;
+@@ -2235,6 +2301,28 @@
+ 			  std::move(manager), std::move(camera),
+ 			  std::move(config));
+ 
++	const char *size = info ? spa_dict_lookup(info, "video.size") : nullptr;
++	if (size) {
++		unsigned int width, height;
++		char tail;
++		if (std::sscanf(size, "%ux%u%c", &width, &height, &tail) != 2 ||
++		    !width || !height || width > 32768 || height > 32768) {
++			std::destroy_at(reinterpret_cast<impl *>(handle));
++			return -EINVAL;
++		}
++		reinterpret_cast<impl *>(handle)->configured_size = Size(width, height);
++	}
++	const char *rate = info ? spa_dict_lookup(info, "video.framerate") : nullptr;
++	if (rate) {
++		unsigned int num, denom;
++		char tail;
++		if (std::sscanf(rate, "%u/%u%c", &num, &denom, &tail) != 2 ||
++		    !num || !denom || num > 1000000 || denom > 1000000) {
++			std::destroy_at(reinterpret_cast<impl *>(handle));
++			return -EINVAL;
++		}
++		reinterpret_cast<impl *>(handle)->configured_rate = { num, denom };
++	}
+ 	return 0;
+ }
+ 

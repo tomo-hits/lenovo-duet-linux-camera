@@ -1,0 +1,39 @@
+{
+  "upstream_commit": "527db0b5974bb70364fc692448a55fb37209fe23",
+  "upstream_branch": "chromeos-5.10",
+  "upstream_version": "5.10.262",
+  "target_commit": "c31b94a4231c974dca12e6b83f2af1d1d95dfc5e",
+  "target_release": "6.18.28-mt81",
+  "target_package": "linux-postmarketos-mediatek-mt81-6.18.28-r0",
+  "original_files": [
+    {
+      "path": "drivers/media/platform/mtk-isp/isp_50/seninf/mtk_seninf.c",
+      "sha256": "63f6f08b0e52d33c103f2eb7307256e4e17f508d571f74826056d31737aba695",
+      "license": "GPL-2.0",
+      "url": "https://chromium.googlesource.com/chromiumos/third_party/kernel/+/527db0b5974bb70364fc692448a55fb37209fe23/drivers/media/platform/mtk-isp/isp_50/seninf/mtk_seninf.c"
+    },
+    {
+      "path": "drivers/media/platform/mtk-isp/isp_50/seninf/mtk_seninf_def.h",
+      "sha256": "329094063b851b17a45c3888eea3a8469f9aee7c43c4d1731633332ddc2dbd57",
+      "license": "GPL-2.0",
+      "url": "https://chromium.googlesource.com/chromiumos/third_party/kernel/+/527db0b5974bb70364fc692448a55fb37209fe23/drivers/media/platform/mtk-isp/isp_50/seninf/mtk_seninf_def.h"
+    },
+    {
+      "path": "drivers/media/platform/mtk-isp/isp_50/seninf/mtk_seninf_reg.h",
+      "sha256": "316b67516f86bed0bb0bcde13ddb7d1cd86e6283070cad46c96ccc826d1894c0",
+      "license": "GPL-2.0",
+      "url": "https://chromium.googlesource.com/chromiumos/third_party/kernel/+/527db0b5974bb70364fc692448a55fb37209fe23/drivers/media/platform/mtk-isp/isp_50/seninf/mtk_seninf_reg.h"
+    },
+    {
+      "path": "drivers/media/platform/mtk-isp/isp_50/seninf/Makefile",
+      "sha256": "c896ea6e4b61612f0ac1169bd380c8cbed8ca072912e96e8e3f7d7d6700af555",
+      "license": "GPL-2.0",
+      "url": "https://chromium.googlesource.com/chromiumos/third_party/kernel/+/527db0b5974bb70364fc692448a55fb37209fe23/drivers/media/platform/mtk-isp/isp_50/seninf/Makefile"
+    }
+  ],
+  "scope": "Separate one-lane CSI1/mux0 1600x1200 RGGB10 capture experiment. Synchronous one-time PM put with sticky errors; CSI IRQ masks zero. Parent owns sensor start/stop, graph and positive CAM stop. Not hardware-validated.",
+  "capture_base": {
+    "path": "../mt8183-seninf/mtk_seninf.c",
+    "sha256": "30322c6b7152c4584ae53867c248d98d87da1886afdb3463d925392ec519afd0"
+  }
+}

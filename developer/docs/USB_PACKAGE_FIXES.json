@@ -1,0 +1,29 @@
+{
+  "duet-camera-modules-0.2.5-r0.apk": {
+    "accepted_package": "duet-camera-modules-0.2.4-r1.apk",
+    "accepted_sha256": "51724387944b472e2548f5fd2a63cbf87380b321fb2478e7abaaaf5211934739",
+    "changed_payload_files": [
+      "lib/modules/6.18.28-mt81/extra/duet-camera/mt8183_p1.ko",
+      "usr/lib/duet-camera/duet-camera-activate.py"
+    ],
+    "elf_payload_unchanged": false,
+    "p1_module_sha256": "fca9f949b6f0912f70b828f9a4dd4a1d0f4b5bc646505eabb1180235551d261a",
+    "activation_sha256": "028a81991670e1af4667148b3aae4ea4650cdfe5e25e5fa4df0214bce60e9cff"
+  },
+  "duet-camera-0.2.9-r0.apk": {
+    "accepted_package": "duet-camera-0.2.8-r0.apk",
+    "accepted_sha256": "b72fc04d0cef6a732745e0ecd932f316ec05baf4f294190de3b5213073fa404d",
+    "changed_payload_files": [],
+    "elf_payload_unchanged": true,
+    "p1_module_sha256": null,
+    "activation_sha256": null
+  },
+  "duet-camera-0.2.9-r1.apk": {
+    "accepted_package": "duet-camera-0.2.8-r1.apk",
+    "accepted_sha256": "b68dc1a484a299494e1d55fcbdd535931aa079c50e5770a3212e77f13193c6f2",
+    "changed_payload_files": [],
+    "elf_payload_unchanged": true,
+    "p1_module_sha256": null,
+    "activation_sha256": null
+  }
+}
