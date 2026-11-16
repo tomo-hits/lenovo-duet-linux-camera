@@ -1985,14 +1985,21 @@ failed:
 }
 static int video_stop(void *context)
 {
- struct integrated_state *s=context;int ret=0;mutex_lock(&s->control_lock);
+ struct integrated_state *s=context;struct dcv_video_stats video;int ret=0;mutex_lock(&s->control_lock);
  if(s->workers.initialized&&!s->workers.drained){
   mt8183_p1_hw_request_stop(&s->hw);wait_for_completion(&s->workers.stop_done);
   ret=dpw_drain(&s->workers);smp_store_release(&s->workers_active,false);
  }
  if(!ret&&(!s->workers.drained||!s->stop_verified||!s->hw.finalized||s->hw.error||!s->inputs_idle||s->scp_owned||s->ipi_registered[0]||s->ipi_registered[1]||atomic_read(&s->irq_enabled)))ret=-EBUSY;
  s->capture_error=ret;s->capture_ok=!ret;
- dev_info(s->resources.dev,"MT8183_P1_STREAM_STOP ret=%d epoch=%llu sof=%u done=%u delivered=%llu dropped=%llu joined=%u off=%u\n",ret,(unsigned long long)s->session_epoch,s->hw.observed.sof_count,s->hw.observed.done_count,(unsigned long long)s->video.delivered,(unsigned long long)s->video.dropped,s->workers.drained,s->stop_verified);
+ dcv_get_stats(&s->video,&video);
+ dev_info(s->resources.dev,"MT8183_P1_STREAM_STOP schema=2 ret=%d epoch=%llu stream_id=%llu sof=%u done=%u delivered=%llu no_buffer=%llu stopping=%llu errors=%llu total_delivered=%llu total_dropped=%llu joined=%u off=%u\n",
+  ret,(unsigned long long)s->session_epoch,(unsigned long long)video.stream_id,
+  s->hw.observed.sof_count,s->hw.observed.done_count,
+  (unsigned long long)video.delivered,(unsigned long long)video.no_buffer,
+  (unsigned long long)video.stopping,(unsigned long long)video.errors,
+  (unsigned long long)video.total_delivered,(unsigned long long)video.total_dropped,
+  s->workers.drained,s->stop_verified);
  if(!ret&&s->stream_module_ref){s->stream_module_ref=false;module_put(THIS_MODULE);}
  mutex_unlock(&s->control_lock);return ret;
 }
@@ -2091,6 +2098,22 @@ static ssize_t session_result_show(struct device *dev,struct device_attribute *a
     mutex_unlock(&s->control_lock);return n;
 }
 
+static ssize_t video_result_show(struct device *dev,struct device_attribute *attr,char *buf)
+{
+    struct integrated_state *s=dev_get_drvdata(dev);
+    struct dcv_video_stats video;
+
+    /* Use the frontend stream ID: it is reset with all counters under one lock,
+     * before the parent start callback may change its hardware epoch. */
+    dcv_get_stats(&s->video,&video);
+    return scnprintf(buf,PAGE_SIZE,
+        "schema=1 stream_id=%llu running=%u delivered=%llu no_buffer=%llu stopping=%llu errors=%llu total_delivered=%llu total_dropped=%llu\n",
+        (unsigned long long)video.stream_id,video.running,
+        (unsigned long long)video.delivered,(unsigned long long)video.no_buffer,
+        (unsigned long long)video.stopping,(unsigned long long)video.errors,
+        (unsigned long long)video.total_delivered,(unsigned long long)video.total_dropped);
+}
+
 /* Diagnostics are optional, root-only snapshots. They neither start a
  * stream nor expose image data, and are not an application ABI. The short
  * debugfs proxy pins each read until removal has drained it; no seq_file
@@ -2112,6 +2135,7 @@ static const struct p1_diagnostic p1_diagnostics[] = {
 	{ "hw_result", hw_result_show },
 	{ "capture_result", capture_result_show },
 	{ "session_result", session_result_show },
+	{ "video_result", video_result_show },
 	{ "stats", stats_show },
 };
 

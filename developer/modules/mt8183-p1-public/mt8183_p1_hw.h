@@ -22,7 +22,7 @@ struct mt8183_p1_frame_log {
     u64 sof_ns, done_ns, send_begin_ns, send_end_ns;
     u64 copy_begin_ns, copy_end_ns, compare_begin_ns, compare_end_ns, published_ns, delivery_ns;
     u32 iova, span, generation, sof_imgo, sof_cq_sequence;
-    bool copied, compared, match, archived, reclaimed, delivered;
+    bool copied, compared, match, archived, reclaimed, delivery_completed, delivered;
 };
 struct mt8183_p1_hw_snapshot {
     u32 cq_start,cq_base,frame_sequence,irq_status,irq_status2,irq_sequence,irq_count;
@@ -56,6 +56,7 @@ struct mt8183_p1_hw {
     struct mt8183_p1_hw_snapshot observed;
     struct mt8183_p1_frame_log frames[MT8183_P1_LOG_FRAMES];
     bool stop_requested;
+    /* 1: VB2 delivery, 0: benign discard, negative: failed handoff. */
     int (*deliver)(void *,const u8 *,size_t,u64,u64);
     void *deliver_context;
     /* Immutable for the active epoch; called after HW spinlock release. */

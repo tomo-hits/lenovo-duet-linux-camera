@@ -228,7 +228,10 @@ static int read_image(struct mt8183_p1_hw *h,u64 logical,bool compare)
         spin_unlock_irqrestore(&h->lock,flags);
         ret=h->deliver?h->deliver(h->deliver_context,shadow,h->frame_bytes,logical,f->sof_ns):-ENODEV;
         spin_lock_irqsave(&h->lock,flags);
-        f->delivered=!ret;f->delivery_ns=ktime_get_ns();
+        /* No-buffer/STOP discards still complete this private-shadow handoff.
+         * Preserve normal reclamation without claiming a VB2 delivery. */
+        f->delivery_completed=ret>=0;f->delivered=ret>0;f->delivery_ns=ktime_get_ns();
+        if(ret>=0)ret=0;
     }
     h->copy_pending=false;
     if(ret)hold_locked(h,ret);
@@ -243,9 +246,9 @@ int mt8183_p1_hw_publish_image(struct mt8183_p1_hw *h,u64 logical)
  dps_mapping(h->stream.epoch,logical,&m);
  ret=dpa_publish_begin(&h->adapter,&m.key,&t);if(ret)goto hold;
  /* Late publication only closes the diagnostic owner/reclaim transaction.
-  * Application bytes were transferred once by the guarded COPY caller. */
+  * The guarded COPY handoff either delivered bytes or benignly discarded them. */
  h->publish_pending=true;
- ret=h->frames[logical%MT8183_P1_LOG_FRAMES].delivered?0:-EPROTO;
+ ret=h->frames[logical%MT8183_P1_LOG_FRAMES].delivery_completed?0:-EPROTO;
  end=dpa_publish_end(&h->adapter,&t,ret,ret?0:h->frame_bytes,&r);h->publish_pending=false;
  if(!end){end=dpa_return_end(&h->adapter,&r);if(!end&&r.kind!=DPS_RETURN_DONE)end=-ECANCELED;}
  if(!ret)ret=end;if(ret)goto hold;

@@ -35,6 +35,8 @@ python3 tests/test-compressed-firmware.py /compiled/stock.dtb
 python3 tests/test-link-state.py
 python3 tests/test-gst-state.py
 python3 tests/test-handoff-wait.py
+python3 tests/test-video-timing.py
+python3 modules/mt8183-p1-public/tests/run_delivery.py
 python3 tests/test-package-paths.py
 python3 -O tests/test-package-paths.py
 python3 modules/mt8183-p1-public/tests/run_stop_gate.py
@@ -47,6 +49,8 @@ python3 tests/test-release-safety.py /compiled/stock.dtb
 Harnesses extract actual production functions and use thin framework/provider shims. PipeWire/GStreamer retain original MIT input headers; driver/DT tests declare GPL-2.0-only. Production validation and DT test oracles work under optimization. The release-safety test uses synthetic Image bytes solely to test SHA256/input/output contracts, not actual kernel acceptance. Full application, concurrency and hardware tests remain separate.
 
 The handoff test checks actual idle-wait/STOP/active-deadline functions in seven ASan/UBSan cases, including first publication after 2000 ms and 4350 ms. [Hardware evidence](../docs/LOW_FPS_FIX.md) is separate.
+
+The delivery test exercises the public driver's actual delivery/accounting functions with synthetic VB2/DMA providers. The video-timing tests use numeric ffprobe fixtures. See [recording diagnostics](../docs/RECORDING_DIAGNOSTICS.md) for interpreting counters and local recording timestamps; these host tests do not measure recording performance.
 
 The self-contained package-path test checks preserved-sidecar validation, a fixed P1 destination, symlink/hardlink rejection and use of the captured P1 bytes. Run it with normal Python and `-O` as shown above. It uses temporary fixtures and mocked packaging commands; it does not require private keys, a native APK toolchain or a device. [S2 validation](../docs/S2_VALIDATION.json) records the helper checks separately from S1 hardware acceptance.
 
