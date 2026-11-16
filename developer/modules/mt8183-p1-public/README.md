@@ -9,3 +9,10 @@ RAM is the guarded default. Internal-eMMC and external-USB modes are opt-in and 
 Optional root-only numeric diagnostics are under `/sys/kernel/debug/mt8183_p1/<platform-device>/`; applications do not require debugfs. Failed STOP retains DMA and prevents reuse. `python3 tests/run_stop_gate.py` exercises 15 extracted-function cases under ASan/UBSan using synthetic providers; hardware results are separate.
 
 [Build guide](../../docs/BUILD.md) / [versioned hardware results and limits](../../docs/TESTING.md).
+
+Candidate-source delivery diagnostics add `video_result` with per-stream delivered,
+no-buffer, stopping and error counts, plus explicitly named lifetime totals.
+Backend delivery-attempt completion is distinct from actual VB2 delivery;
+`archived` is a reclamation count. See [recording diagnostics](../../docs/RECORDING_DIAGNOSTICS.md)
+and run `python3 tests/run_delivery.py` for the host accounting regression.
+These additions require a rebuilt candidate; the signed v1.0.2 binaries are unchanged.

@@ -53,23 +53,36 @@ static void return_buffers(struct dcv_video *v,enum vb2_buffer_state state)
 }
 static int start(struct vb2_queue *q,unsigned int count)
 {
- struct dcv_video *v=vb2_get_drv_priv(q);int ret;(void)count;
+ struct dcv_video *v=vb2_get_drv_priv(q);unsigned long f;int ret;(void)count;
  if(v->blocked){return_buffers(v,VB2_BUF_STATE_QUEUED);return v->last_error?:-EIO;}
  /* start may publish synchronously before return; admission opens first.
   * A failed start must join every producer before QUEUED rollback. */
  ret=video_device_pipeline_alloc_start(&v->vdev);
  if(ret){return_buffers(v,VB2_BUF_STATE_QUEUED);return ret;}
  v->pipeline_started=true;
+ /* VB2 serializes STREAMON after the prior stop callback joined producers.
+  * Reset before opening admission: start() may deliver synchronously. */
+ spin_lock_irqsave(&v->buffers_lock,f);
+ v->stats=(struct dcv_video_stats){
+  .stream_id=v->stats.stream_id+1,
+  .total_delivered=v->stats.total_delivered,
+  .total_dropped=v->stats.total_dropped,
+ };
  WRITE_ONCE(v->running,true);
+ spin_unlock_irqrestore(&v->buffers_lock,f);
  ret=v->start(v->context);
  if(ret){video_device_pipeline_stop(&v->vdev);v->pipeline_started=false;}
- if(ret){WRITE_ONCE(v->running,false);v->last_error=ret;v->blocked=true;return_buffers(v,VB2_BUF_STATE_QUEUED);}
+ if(ret){
+  spin_lock_irqsave(&v->buffers_lock,f);WRITE_ONCE(v->running,false);spin_unlock_irqrestore(&v->buffers_lock,f);
+  v->last_error=ret;v->blocked=true;return_buffers(v,VB2_BUF_STATE_QUEUED);
+ }
  return ret;
 }
 static void stop(struct vb2_queue *q)
 {
- struct dcv_video *v=vb2_get_drv_priv(q);int ret;
- WRITE_ONCE(v->running,false);ret=v->stop(v->context);
+ struct dcv_video *v=vb2_get_drv_priv(q);unsigned long f;int ret;
+ spin_lock_irqsave(&v->buffers_lock,f);WRITE_ONCE(v->running,false);spin_unlock_irqrestore(&v->buffers_lock,f);
+ ret=v->stop(v->context);
  /* Hardware callbacks must return only after capture/publisher real joins.
   * Failure holds the CAM resources and blocks reopen, but VB2 CPU buffers
   * are safe to return after those joins. Never return an in-flight buffer. */
@@ -165,12 +178,25 @@ int dcv_register(struct dcv_video *v,struct device *dev,struct v4l2_device *v4l2
  /* Caller publishes subdev nodes and only then sets registered with release. */
  return 0;
 }
+void dcv_get_stats(struct dcv_video *v,struct dcv_video_stats *out)
+{
+ unsigned long f;
+ spin_lock_irqsave(&v->buffers_lock,f);
+ *out=v->stats;out->running=READ_ONCE(v->running);
+ spin_unlock_irqrestore(&v->buffers_lock,f);
+}
 int dcv_deliver(struct dcv_video *v,const u8 *raw,size_t bytes,u64 logical,u64 timestamp)
 {
  struct dcv_buffer *b;unsigned long f;int ret,end_ret;void *out;struct dma_buf *dbuf;
- if(!v||!raw||bytes!=v->width*v->height*5U/4U)return -EINVAL;
+ if(!v)return -EINVAL;
  spin_lock_irqsave(&v->buffers_lock,f);
- if(!READ_ONCE(v->running)||list_empty(&v->buffers)){v->dropped++;spin_unlock_irqrestore(&v->buffers_lock,f);return 0;}
+ if(!raw||bytes!=v->width*v->height*5U/4U){v->stats.errors++;spin_unlock_irqrestore(&v->buffers_lock,f);return -EINVAL;}
+ if(!READ_ONCE(v->running)){
+  v->stats.stopping++;v->stats.total_dropped++;spin_unlock_irqrestore(&v->buffers_lock,f);return 0;
+ }
+ if(list_empty(&v->buffers)){
+  v->stats.no_buffer++;v->stats.total_dropped++;spin_unlock_irqrestore(&v->buffers_lock,f);return 0;
+ }
  b=list_first_entry(&v->buffers,struct dcv_buffer,link);list_del_init(&b->link);spin_unlock_irqrestore(&v->buffers_lock,f);
  /* vmalloc imported mappings do not synchronize an external exporter for
   * CPU writes. Balance access before publishing a DONE buffer to libcamera. */
@@ -181,6 +207,11 @@ int dcv_deliver(struct dcv_video *v,const u8 *raw,size_t bytes,u64 logical,u64 t
   if(dbuf){end_ret=dma_buf_end_cpu_access(dbuf,DMA_BIDIRECTIONAL);if(!ret)ret=end_ret;}
  }
  b->vb.sequence=(u32)logical;b->vb.field=V4L2_FIELD_NONE;b->vb.vb2_buf.timestamp=timestamp;vb2_set_plane_payload(&b->vb.vb2_buf,0,ret?0:v->width*v->height*2U);
- vb2_buffer_done(&b->vb.vb2_buf,ret?VB2_BUF_STATE_ERROR:VB2_BUF_STATE_DONE);if(!ret)v->delivered++;return ret;
+ vb2_buffer_done(&b->vb.vb2_buf,ret?VB2_BUF_STATE_ERROR:VB2_BUF_STATE_DONE);
+ spin_lock_irqsave(&v->buffers_lock,f);
+ if(ret)v->stats.errors++;
+ else {v->stats.delivered++;v->stats.total_delivered++;}
+ spin_unlock_irqrestore(&v->buffers_lock,f);
+ return ret?ret:1;
 }
 MODULE_IMPORT_NS("DMA_BUF");

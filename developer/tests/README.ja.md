@@ -35,6 +35,8 @@ python3 tests/test-compressed-firmware.py /compiled/stock.dtb
 python3 tests/test-link-state.py
 python3 tests/test-gst-state.py
 python3 tests/test-handoff-wait.py
+python3 tests/test-video-timing.py
+python3 modules/mt8183-p1-public/tests/run_delivery.py
 python3 tests/test-package-paths.py
 python3 -O tests/test-package-paths.py
 python3 modules/mt8183-p1-public/tests/run_stop_gate.py
@@ -47,6 +49,8 @@ python3 tests/test-release-safety.py /compiled/stock.dtb
 ハーネスは実際のproduction関数を抽出し、薄いframework/provider shimで検査します。PipeWire/GStreamer入力の原MIT表示を保持し、driver/DT試験にはGPL-2.0-onlyを明記します。productionの検証とDT試験の判定は最適化でも働きます。release-safetyのImageはSHA256・入力／出力契約を検査する合成データで、実kernel受入ではありません。アプリ・並行処理・実機の確認とは区別します。
 
 handoff試験は実際の待機/STOP/実処理期限の関数をASan/UBSanで7cases検査し、2000ms・4350ms後の初回publishを含みます。[実機結果](../docs/LOW_FPS_FIX.ja.md)は別に記録しています。
+
+delivery試験はpublicドライバの実際の配信・カウンタ処理を合成VB2/DMA providerで検査します。video-timing試験はffprobeの数値fixtureを使います。カウンタと保存動画の時刻の読み方は[録画診断](../docs/RECORDING_DIAGNOSTICS.ja.md)を参照してください。ホスト試験は録画性能を測定するものではありません。
 
 自己完結したpackage-path試験は、保全sidecarの検証、P1書込先の固定、symlink/hardlink拒否、読み取り済みP1 bytesの使用を検査します。上記の通常Pythonと `-O` の両方で実行してください。一時fixtureと代替の梱包commandを使うため、秘密鍵・native APK toolchain・実機は不要です。[S2検証](../docs/S2_VALIDATION.json)ではhelperの確認をS1実機受入と分けて記録します。
 
